@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "../auth/AuthForm";
 
 const App = () => {
-  const [showAuthForm, setShowAuthForm] = useState(true); // Set the initial state to true
+  const [showAuthForm, setShowAuthForm] = useState(true);
+  const [tapData, setTapData] = useState(null);
 
   const navigate = useNavigate();
 
@@ -17,7 +18,13 @@ const App = () => {
         <h1>Taplist Integration Wizard</h1>
       </div>
 
-      {showAuthForm && <AuthForm navigate={navigate} onClose={closeAuthForm} />}
+      {showAuthForm && (
+        <AuthForm
+          navigate={navigate}
+          onClose={closeAuthForm}
+          setTapData={setTapData}
+        />
+      )}
     </div>
   );
 };

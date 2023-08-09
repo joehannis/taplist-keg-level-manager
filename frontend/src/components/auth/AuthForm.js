@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-const AuthForm = (props) => {
-  const [venue, setVenue] = useState("");
-  const [auth_token, setAuth_Token] = useState("");
-
+const AuthForm = (setTapData) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -24,31 +21,19 @@ const AuthForm = (props) => {
       });
   };
 
-  const handleVenueChange = (event) => {
-    setVenue(event.target.value);
-  };
-
-  const handleAuthTokenChange = (event) => {
-    setAuth_Token(event.target.value);
-  };
-
   return (
     <>
       <h2>Enter your details</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter your venue name"
-          value={venue}
-          onChange={handleVenueChange}
-        />
+      <form>
+        <input type="text" placeholder="Enter your venue name" value={venue} />
         <input
           type="text"
           placeholder="Enter your Auth Token"
           value={auth_token}
-          onChange={handleAuthTokenChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onSubmit={handleSubmit(venue, auth_token)}>
+          Submit
+        </button>
       </form>
     </>
   );
