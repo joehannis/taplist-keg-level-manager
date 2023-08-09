@@ -1,9 +1,9 @@
-const getTaps = async (venue, authToken) => {
+const getTaps = async (venue) => {
   try {
     const response = await fetch(
       `https://api.taplist.io/api/v1/venues/${venue}/taps`,
       {
-        headers: { Authorization: `Token ${authToken}` },
+        headers: { Authorization: `Token ${process.env.authToken}` },
       }
     );
     const data = await response.json();
