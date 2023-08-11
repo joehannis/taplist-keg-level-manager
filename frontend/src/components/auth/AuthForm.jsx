@@ -10,8 +10,6 @@ const AuthForm = () => {
     try {
       await fetchAuth(venue, auth_token);
       event.target.reset();
-      setShowAuthForm(false);
-      setAuthDetails(true);
     } catch (error) {
       console.error("An error occurred:", error);
     }

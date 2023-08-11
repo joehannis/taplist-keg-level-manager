@@ -1,6 +1,7 @@
 const express = require("express");
 const tapsRoute = require("../routes/tapsRoute");
 const authRoute = require("../routes/authRoute");
+const servedRoute = require("../routes/servedRoute");
 
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -24,6 +25,7 @@ app.use(express.json()); // Parse JSON request body
 
 app.use("/taps", tapsRoute);
 app.use("/auth", authRoute);
+app.use("/served", servedRoute);
 
 // Start the server
 const port = 3000;

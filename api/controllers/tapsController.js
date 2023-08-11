@@ -2,6 +2,7 @@ const Auth = require("../models/auth");
 
 const tapsController = async (req, res) => {
   try {
+    console.log("testing log");
     const details = await Auth.find();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;
@@ -11,8 +12,7 @@ const tapsController = async (req, res) => {
         headers: { Authorization: `Token ${auth_token}` },
       }
     );
-    const data = await response.json(); // Use response.json() here
-    console.log("response:", data);
+    const data = await response.json();
     res.status(200).json(data);
   } catch (err) {
     console.error("Error occurred while fetching taps:", err);

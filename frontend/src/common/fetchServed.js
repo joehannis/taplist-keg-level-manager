@@ -1,12 +1,12 @@
-const fetchAuth = async (venue, auth_token) => {
+const fetchServed = async (currentTapNumber, servedAmount) => {
   try {
     const requestBody = JSON.stringify({
-      venue: venue,
-      auth_token: auth_token,
+      currentTapNumber: currentTapNumber,
+      servedAmount: servedAmount,
     });
 
-    const response = await fetch("http://localhost:3000/auth", {
-      method: "POST",
+    const response = await fetch("http://localhost:3000/served", {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -21,4 +21,4 @@ const fetchAuth = async (venue, auth_token) => {
   }
 };
 
-export default fetchAuth;
+export default fetchServed;
