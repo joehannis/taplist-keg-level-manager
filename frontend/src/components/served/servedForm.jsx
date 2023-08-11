@@ -20,16 +20,18 @@ const ServedForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        className="served-amount"
-        type="number"
-        placeholder="Enter served amount in ml"
-        name="served_amount"
-        onFocus={(e) => e.target.setAttribute("placeholder", "")}
-        onBlur={(e) =>
-          e.target.setAttribute("placeholder", "Enter served amount in ml")
-        }
-      />
+      <div className="input-container">
+        <input
+          className="served-amount"
+          type="number"
+          placeholder="Enter served amount in ml"
+          name="served_amount"
+          onFocus={(e) => e.target.setAttribute("placeholder", "")}
+          onBlur={(e) =>
+            e.target.setAttribute("placeholder", "Enter served amount in ml")
+          }
+        />
+      </div>
       <button className="served-submit" type="submit">
         Submit
       </button>
