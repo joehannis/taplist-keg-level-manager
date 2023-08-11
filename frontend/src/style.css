@@ -29,6 +29,10 @@ code {
   color: white;
 }
 
+.logo {
+  margin-top: 10px;
+}
+
 .tap-data-container {
   display: flex;
   align-items: start; /* Align items to the top of the container */
