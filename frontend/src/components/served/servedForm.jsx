@@ -1,7 +1,9 @@
 import fetchServed from "../../common/fetchServed";
+import fetchReset from "../../common/fetchReset";
 
 const ServedForm = ({
   currentTapNumber,
+  fullVolume,
   fetchTapData,
   setTapData,
   setShowAuthForm,
@@ -12,6 +14,16 @@ const ServedForm = ({
     try {
       await fetchServed(currentTapNumber, served_amount);
       e.target.reset();
+      fetchTapData(setTapData, setShowAuthForm);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleReset = async (e) => {
+    e.preventDefault();
+    try {
+      await fetchReset(currentTapNumber, fullVolume);
       fetchTapData(setTapData, setShowAuthForm);
     } catch (error) {
       console.error("An error occurred:", error);
@@ -35,6 +47,11 @@ const ServedForm = ({
       <button className="served-submit" type="submit">
         Submit
       </button>
+      <p>
+        <button className="served-submit" onClick={handleReset} type="submit">
+          Reset
+        </button>
+      </p>
     </form>
   );
 };

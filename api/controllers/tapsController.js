@@ -2,7 +2,6 @@ const Auth = require("../models/auth");
 
 const tapsController = async (req, res) => {
   try {
-    console.log("testing log");
     const details = await Auth.find();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;

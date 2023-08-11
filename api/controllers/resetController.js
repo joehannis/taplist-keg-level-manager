@@ -1,9 +1,10 @@
 const Auth = require("../models/auth");
 
-const servedController = async (req, res) => {
+const resetController = async (req, res) => {
   try {
-    const { currentTapNumber, servedAmount } = req.body;
-    const parsedServedAmount = parseInt(servedAmount);
+    const { currentTapNumber, fullVolume } = req.body;
+    console.log(req.body);
+    const parsedFullVolume = parseInt(fullVolume);
     const details = await Auth.find();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;
@@ -17,12 +18,12 @@ const servedController = async (req, res) => {
         },
 
         body: JSON.stringify({
-          add_served_volume_ml: parsedServedAmount,
+          remaining_volume_ml: parsedFullVolume,
         }),
       }
     );
     const data = await response.json();
-    console.log("keg volume updated");
+    console.log("keg volume reset");
     res.status(200).json(data);
   } catch (err) {
     console.error("Error occurred while updating tap volume:", err);
@@ -32,4 +33,4 @@ const servedController = async (req, res) => {
   }
 };
 
-module.exports = servedController;
+module.exports = resetController;

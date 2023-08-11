@@ -39,11 +39,7 @@ const App = () => {
       <>
         <div className="app-container">
           <div className="header">
-            <img
-              className="logo"
-              src="./public/logo.png"
-              alt="Taplist Wizard"
-            />
+            <img className="logo" src="./logo.png" alt="Taplist Wizard" />
             <h1>Taplist Integration Wizard</h1>
           </div>
           <Routes>

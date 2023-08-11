@@ -41,6 +41,7 @@ const TapContainer = ({
             </div>
             <ServedForm
               currentTapNumber={tap.current_keg.current_tap_number}
+              fullVolume={tap.current_keg.full_volume_ml}
               setTapData={setTapData}
               setShowAuthForm={setShowAuthForm}
               fetchTapData={fetchTapData}
