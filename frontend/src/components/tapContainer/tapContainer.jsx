@@ -28,15 +28,20 @@ const TapContainer = ({
                 </b>
                 <p>Beer Name: {tap.current_keg.beverage.name}</p>
                 <p>ABV: {tap.current_keg.beverage.abv_percent}</p>
-                <p>Style: {tap.current_keg.beverage.style.style}</p>
                 <p>
-                  Remaining Keg Volume: <br />
+                  Style:{" "}
+                  {tap.current_keg.beverage.style
+                    ? tap.current_keg.beverage.style.style ||
+                      tap.current_keg.beverage.beverage_type
+                    : tap.current_keg.beverage.beverage_type}
+                </p>
+                <div>
+                  <p>Remaining Keg Volume:</p>
                   <p>
-                    {" "}
                     {Math.trunc(tap.current_keg.remaining_volume_ml)} ml /{" "}
                     {Math.trunc(tap.current_keg.percent_full)}% full{" "}
                   </p>
-                </p>
+                </div>
               </div>
             </div>
             <ServedForm

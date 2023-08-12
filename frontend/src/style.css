@@ -35,7 +35,7 @@ code {
 
 .tap-data-container {
   display: flex;
-  align-items: start; /* Align items to the top of the container */
+  align-items: start;
   margin-top: 30px;
   margin-left: 6px;
 }
@@ -46,12 +46,10 @@ code {
   align-items: center;
   padding: 30px;
   border: 1px solid #ccc;
-  margin: 20x; /* Adjust the margin to provide spacing between cards */
+  margin: 20x;
   border-radius: 10px;
   box-sizing: border-box;
-  width: calc(
-    33.33%
-  ); /* Distribute the available width among 3 cards with margins */
+  width: calc(33.33%);
   text-align: center;
 }
 
@@ -60,6 +58,7 @@ code {
   flex-grow: 1;
   align-items: center;
   justify-content: center;
+  text-transform: capitalize;
 }
 
 .glass-image {
@@ -81,7 +80,7 @@ code {
 }
 
 .tap-details p {
-  margin: 8px 0; /* Add margin to each paragraph for spacing */
+  margin: 8px 0;
 }
 
 .served-amount {
@@ -105,52 +104,49 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Ensure the container takes up the full height of the input box */
+  height: 100%;
   width: 200px;
 }
 .served-amount::placeholder {
   text-align: center;
 }
 
-/* Original CSS */
-
-/* Add responsive media query for smaller screens */
 @media (max-width: 768px) {
   .header {
-    min-height: 60px; /* Adjust header height */
-    font-size: calc(8px + 1.5vmin); /* Adjust font size */
+    min-height: 60px;
+    font-size: calc(8px + 1.5vmin);
   }
 
   .logo {
-    margin-top: 5px; /* Adjust margin-top for smaller screens */
+    margin-top: 5px;
     max-width: 300px;
   }
 
   .tap-data-container {
-    flex-direction: column; /* Stack cards vertically on smaller screens */
-    align-items: center; /* Center cards horizontally */
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
   }
 
   .tap-item {
-    width: 80%; /* Make cards wider for better readability on smaller screens */
-    margin: 10px 0; /* Adjust vertical margin for spacing */
-    padding: 15px; /* Reduce padding for smaller screens */
+    width: 80%;
+    margin: 10px 0;
+    padding: 15px;
   }
 
   .glass-image {
-    width: 60px; /* Adjust image width for smaller screens */
-    margin: 10px 0; /* Adjust vertical margin */
+    width: 60px;
+    margin: 10px 0;
   }
 
   .tap-details {
-    width: 100%; /* Take full width */
+    width: 100%;
     font-size: medium;
     text-align: center;
   }
 
   .served-submit {
     font-size: medium;
-    padding: 8px 15px; /* Adjust button padding */
+    padding: 8px 15px;
   }
 }
