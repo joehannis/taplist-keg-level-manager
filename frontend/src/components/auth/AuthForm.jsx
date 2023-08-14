@@ -1,6 +1,6 @@
 import fetchAuth from "../../common/fetchAuth";
 
-const AuthForm = () => {
+const AuthForm = ({ setIsAuthorized }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -10,6 +10,9 @@ const AuthForm = () => {
     try {
       await fetchAuth(venue, auth_token);
       event.target.reset();
+      localStorage.setItem("venue", venue);
+      localStorage.setItem("auth_token", auth_token);
+      setIsAuthorized(true);
     } catch (error) {
       console.error("An error occurred:", error);
     }

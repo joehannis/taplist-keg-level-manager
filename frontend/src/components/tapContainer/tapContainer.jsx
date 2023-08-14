@@ -1,12 +1,8 @@
 import React from "react";
 import ServedForm from "../served/servedForm";
+import fetchTapData from "../../common/fetchTapData";
 
-const TapContainer = ({
-  tapData,
-  setTapData,
-  setIsAuthorised,
-  fetchTapData,
-}) => {
+const TapContainer = ({ tapData, setTapData, setIsAuthorised }) => {
   console.log(tapData);
   return (
     <div className="tap-data-container">
