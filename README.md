@@ -10,4 +10,6 @@ Log into your taplist.io account and select 'Account' in the navigation bar and 
 
 Run the Taplist Integration Wizard and enter your venue name and the API Key.
 
+![](./taplist-integration-first.png)
+
 
