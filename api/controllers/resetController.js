@@ -2,9 +2,7 @@ const Auth = require("../models/auth");
 
 const resetController = async (req, res) => {
   try {
-    const { currentTapNumber, fullVolume } = req.body;
-    console.log(req.body);
-    const parsedFullVolume = parseInt(fullVolume);
+    const { currentTapNumber } = req.body;
     const details = await Auth.find();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;
@@ -18,7 +16,7 @@ const resetController = async (req, res) => {
         },
 
         body: JSON.stringify({
-          remaining_volume_ml: parsedFullVolume,
+          served_volume_ml: 0,
         }),
       }
     );

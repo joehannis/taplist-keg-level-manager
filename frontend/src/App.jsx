@@ -6,7 +6,7 @@ import fetchTaps from "./common/fetchTaps";
 import TapContainer from "./components/tapContainer/tapContainer";
 
 const App = () => {
-  const [showAuthForm, setShowAuthForm] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [tapData, setTapData] = useState(null);
 
   const fetchTapData = async () => {
@@ -18,7 +18,7 @@ const App = () => {
           (tap) => tap.current_keg !== null
         );
         setTapData(filteredTapData);
-        setShowAuthForm(false);
+        setIsAuthorized(true); // Mark as authorized after fetching tap data
       } else {
         console.error(
           "An error occurred while fetching tap data:",
@@ -31,8 +31,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log("useEffect called");
+    console.log("isAuthorized:", isAuthorized);
     fetchTapData();
-  }, []);
+  }, [isAuthorized]);
 
   return (
     <BrowserRouter>
@@ -43,17 +45,19 @@ const App = () => {
             <h1>Taplist Integration Wizard</h1>
           </div>
           <Routes>
-            <Route path="/" element={showAuthForm ? <AuthForm /> : null} />
+            <Route path="/" element={isAuthorized ? null : <AuthForm />} />
           </Routes>
         </div>
-        <div className="tap-data-container">
-          <TapContainer
-            tapData={tapData}
-            setTapData={setTapData}
-            setShowAuthForm={setShowAuthForm}
-            fetchTapData={fetchTapData}
-          />
-        </div>
+        {isAuthorized && (
+          <div className="tap-data-container">
+            <TapContainer
+              tapData={tapData}
+              setTapData={setTapData}
+              setIsAuthorized={setIsAuthorized} // Pass setIsAuthorized to update authorization status
+              fetchTapData={fetchTapData}
+            />
+          </div>
+        )}
       </>
     </BrowserRouter>
   );

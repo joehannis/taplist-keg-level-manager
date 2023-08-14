@@ -1,8 +1,7 @@
-const fetchReset = async (currentTapNumber, fullVolume) => {
+const fetchReset = async (currentTapNumber) => {
   try {
     const requestBody = JSON.stringify({
       currentTapNumber: currentTapNumber,
-      fullVolume: fullVolume,
     });
 
     const response = await fetch("http://localhost:3000/reset", {

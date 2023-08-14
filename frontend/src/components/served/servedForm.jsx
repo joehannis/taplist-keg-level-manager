@@ -3,10 +3,9 @@ import fetchReset from "../../common/fetchReset";
 
 const ServedForm = ({
   currentTapNumber,
-  fullVolume,
   fetchTapData,
   setTapData,
-  setShowAuthForm,
+  setIsAuthorised,
 }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +13,7 @@ const ServedForm = ({
     try {
       await fetchServed(currentTapNumber, served_amount);
       e.target.reset();
-      fetchTapData(setTapData, setShowAuthForm);
+      fetchTapData(setTapData, setIsAuthorised);
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -22,11 +21,16 @@ const ServedForm = ({
 
   const handleReset = async (e) => {
     e.preventDefault();
-    try {
-      await fetchReset(currentTapNumber, fullVolume);
-      fetchTapData(setTapData, setShowAuthForm);
-    } catch (error) {
-      console.error("An error occurred:", error);
+    const confirmReset = window.confirm(
+      "Are you sure you want to reset the keg volume?"
+    );
+    if (confirmReset) {
+      try {
+        await fetchReset(currentTapNumber);
+        fetchTapData(setTapData, setIsAuthorised);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
     }
   };
 
@@ -34,10 +38,10 @@ const ServedForm = ({
     <form onSubmit={handleSubmit}>
       <div className="input-container">
         <input
-          className="served-amount"
+          className="served-text"
           type="number"
           placeholder="Enter served amount in ml"
-          name="served_amount"
+          name="served-text"
           onFocus={(e) => e.target.setAttribute("placeholder", "")}
           onBlur={(e) =>
             e.target.setAttribute("placeholder", "Enter served amount in ml")

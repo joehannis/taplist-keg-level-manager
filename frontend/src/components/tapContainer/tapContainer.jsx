@@ -4,7 +4,7 @@ import ServedForm from "../served/servedForm";
 const TapContainer = ({
   tapData,
   setTapData,
-  setShowAuthForm,
+  setIsAuthorised,
   fetchTapData,
 }) => {
   console.log(tapData);
@@ -42,13 +42,16 @@ const TapContainer = ({
                     {Math.trunc(tap.current_keg.percent_full)}% full{" "}
                   </p>
                 </div>
+                <p>
+                  Pints Remaining:{" "}
+                  {Math.trunc(tap.current_keg.remaining_volume_ml / 568)}
+                </p>
               </div>
             </div>
             <ServedForm
               currentTapNumber={tap.current_keg.current_tap_number}
-              fullVolume={tap.current_keg.full_volume_ml}
               setTapData={setTapData}
-              setShowAuthForm={setShowAuthForm}
+              setIsAuthorised={setIsAuthorised}
               fetchTapData={fetchTapData}
             />
           </div>

@@ -17,16 +17,32 @@ const AuthForm = () => {
 
   return (
     <>
-      <h2>Enter your details</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Enter your venue name" name="venue" />
-        <input
-          type="text"
-          placeholder="Enter your Auth Token"
-          name="auth_token"
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="form-container">
+        <h2 className="auth-title">Enter your details</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <input
+              className="auth-text"
+              type="text"
+              placeholder="Enter your venue name"
+              name="venue"
+            />
+            <input
+              className="auth-text"
+              type="text"
+              placeholder="Enter your Auth Token"
+              name="auth_token"
+            />
+          </div>
+          <div>
+            <p>
+              <button className="auth-submit" type="submit">
+                Submit
+              </button>
+            </p>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
