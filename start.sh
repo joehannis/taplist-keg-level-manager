@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Start the server
-node ./api/bin/www.js &
+cd api
+npm install
+node ./bin/www.js &
 
 # Build the frontend
-cd ./frontend
+cd ../frontend
+npm install
 npm run build
 
 # Start the frontend (in the background)
