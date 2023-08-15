@@ -21,6 +21,6 @@ The wizard will then collect your tap information. Enter the amount you've serve
 This is designed to be run locally on your machine.
 
 - Clone the repo onto your local machine
-- ```cd``` into the repo
+- Open a terminal window, and ```cd``` into the repo
 - Run ```chmod +x ./start.sh```
 - run ```./start.sh```
