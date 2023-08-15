@@ -24,3 +24,4 @@ This is designed to be run locally on your machine.
 - Open a terminal window, and ```cd``` into the repo
 - Run ```chmod +x ./start.sh```
 - run ```./start.sh```
+- You can stop the wizard with ```./stop``` when in the repo directory
