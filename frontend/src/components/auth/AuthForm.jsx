@@ -33,16 +33,14 @@ const AuthForm = ({ setIsAuthorized }) => {
             <input
               className="auth-text"
               type="text"
-              placeholder="Enter your Auth Token"
+              placeholder="Enter your API key"
               name="auth_token"
             />
           </div>
           <div>
-            <p>
-              <button className="auth-submit" type="submit">
-                Submit
-              </button>
-            </p>
+            <button className="auth-submit" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>

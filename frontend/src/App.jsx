@@ -19,36 +19,31 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <>
-        <div className="app-container">
-          <div className="header">
-            <img className="logo" src="./logo.png" alt="Taplist Wizard" />
-            <h1>Taplist Integration Wizard</h1>
-          </div>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isAuthorized ? null : (
-                  <AuthForm
-                    setTapData={setTapData}
-                    setIsAuthorized={setIsAuthorized}
-                  />
-                )
-              }
-            />
-          </Routes>
+      <div className="main-container">
+        <div className="header">
+          <img className="logo" src="./logo.png" alt="Taplist Wizard" />
+          <h1>Taplist Integration Wizard</h1>
         </div>
-        {isAuthorized && (
-          <div className="tap-data-container">
-            <TapContainer
-              tapData={tapData}
-              setTapData={setTapData}
-              setIsAuthorized={setIsAuthorized}
-            />
-          </div>
-        )}
-      </>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isAuthorized ? (
+                <TapContainer
+                  tapData={tapData}
+                  setTapData={setTapData}
+                  setIsAuthorized={setIsAuthorized}
+                />
+              ) : (
+                <AuthForm
+                  setTapData={setTapData}
+                  setIsAuthorized={setIsAuthorized}
+                />
+              )
+            }
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

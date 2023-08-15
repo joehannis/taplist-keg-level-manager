@@ -1,3 +1,4 @@
+/* Reset and global styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,50 +19,66 @@ code {
     monospace;
 }
 
+/* Main container styles */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Take up full viewport height */
+  background-color: #ffffff; /* Background color for visibility */
+}
+
+/* Header styles */
 .header {
   background-color: #2c3e50;
-  min-height: 30%;
+  min-height: 30px; /* Adjusted min-height for responsive header */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%; /* Added width to span the entire width */
 }
 
+/* Logo styles */
 .logo {
-  margin-top: 10px;
+  margin-top: 1%;
 }
 
+/* Tap data container styles */
 .tap-data-container {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-top: 30px;
-  margin-left: 45px;
+  width: 100%;
 }
 
+/* Tap item styles */
 .tap-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  padding: 2%;
   border: 1px solid #ccc;
-  margin: 150px;
+  margin: 1%;
   border-radius: 10px;
   box-sizing: border-box;
   width: calc(33.33%);
   text-align: center;
 }
 
+/* Form container styles */
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  margin-left: 45px;
+  width: 100%;
+  margin: 5%;
+  padding: 0%;
 }
-
+/* Tap content styles */
 .tap-content {
   display: flex;
   flex-grow: 1;
@@ -70,34 +87,40 @@ code {
   text-transform: capitalize;
 }
 
+/* Glass image styles */
 .glass-image {
   width: 100px;
   height: auto;
-  margin-top: 50px;
-  margin-left: 20px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 
+/* Tap details styles */
 .tap-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 250px;
+  width: 70%;
   font-size: large;
 }
 
+/* Tap details paragraph styles */
 .tap-details p {
   margin: 8px 0;
 }
 
+/* Served text styles */
 .served-text {
-  width: 100%;
-  padding: 5px;
-  margin-top: 10px;
+  width: 230px;
+  padding: 8%;
+  margin-top: 5%;
+  margin-bottom: 2%;
 }
 
+/* Served submit button styles */
 .served-submit {
   background-color: #2c3e50;
   color: white;
@@ -106,80 +129,108 @@ code {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 4%;
 }
 
+/* Auth text styles */
 .auth-text {
   width: 200px;
   padding: 10px;
-  margin-top: 30px;
-  margin: 5px;
+  margin-top: 5%;
+  margin: 5%;
+  margin-left: 5%;
 }
 
+/* Auth title styles */
 .auth-title {
-  font-size: 40px;
-  margin-bottom: 30px;
+  font-size: 3vw; /* Relative font size based on viewport width */
+  margin-bottom: 3%;
 }
 
+/* Auth submit button styles */
 .auth-submit {
+  display: flex;
+  flex-direction: column;
   background-color: #2c3e50;
   color: white;
   font-size: large;
   border: none;
-  padding: 10px 20px;
+  padding: 5% 10%;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
-  margin-left: 45px;
+  margin-top: 4%;
+  margin-left: 33%;
 }
 
+/* Input container styles */
 .input-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 200px;
+  width: 100%;
 }
+
+/* Placeholder styles for served amount input */
 .served-amount::placeholder {
   text-align: center;
 }
 
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
+  /* Header styles */
   .header {
     min-height: 60px;
     font-size: calc(8px + 1.5vmin);
   }
 
+  /* Logo styles */
   .logo {
     margin-top: 5px;
     max-width: 300px;
   }
 
+  /* Tap data container styles */
   .tap-data-container {
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 4%;
+    width: 90%;
   }
 
+  /* Tap item styles */
   .tap-item {
     width: 80%;
-    margin: 10px 0;
-    padding: 15px;
+    margin: 4% 0;
+    padding: 3%;
   }
 
+  /* Glass image styles */
   .glass-image {
     width: 60px;
-    margin: 10px 0;
+    margin: 3% 0;
   }
 
+  /* Tap details styles */
   .tap-details {
     width: 100%;
     font-size: medium;
-    text-align: center;
   }
 
-  .form-submit {
+  /* Served submit button styles */
+  .served-submit {
     font-size: medium;
     padding: 8px 15px;
+  }
+
+  /* Auth title styles */
+  .auth-title {
+    font-size: 5vw;
+    margin-bottom: 5%;
+  }
+
+  /* Auth submit button styles */
+  .auth-submit {
+    margin-top: 6%;
   }
 }
