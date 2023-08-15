@@ -8,5 +8,7 @@ cd ./frontend
 npm run build
 
 # Start the frontend (in the background)
-cd dist
 npm run preview &
+
+sleep 5
+open http://localhost:4173
