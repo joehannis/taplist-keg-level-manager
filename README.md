@@ -1,4 +1,4 @@
-# Taplist Integration Wizard
+# Taplist Keg Level Manager
 
 ### Manage your Taplist keg levels through a simple interface
 
