@@ -29,3 +29,5 @@ This is designed to be run locally on your machine.
 - Run ```chmod +x ./start.sh```
 - Run ```./start.sh```
 - You can stop the wizard with ```./stop``` when in the repo directory
+
+##### If you use this and enjoy it, please conside buying me a [beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
