@@ -34,17 +34,54 @@ code {
   background-color: #2c3e50;
   min-height: 30px; /* Adjusted min-height for responsive header */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
   width: 100%; /* Added width to span the entire width */
+  position: relative; /* Fixed position to keep the header at the top */
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
 }
 
 /* Logo styles */
 .logo {
   margin-top: 1%;
+  max-height: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+.venue {
+  text-align: center;
+  font-size: medium;
+}
+
+.venue-logo {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 50%;
+  height: auto;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  align-items: flex-end;
+  margin-right: 2%;
+  margin-top: 5%;
 }
 
 /* Tap data container styles */
@@ -180,19 +217,36 @@ code {
 @media (max-width: 768px) {
   /* Header styles */
   .header {
-    min-height: 60px;
+    min-height: auto; /* Let the header height adjust based on content */
     font-size: calc(8px + 1.5vmin);
+    flex-direction: column; /* Stack the header content vertically */
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center the content vertically */
   }
 
   /* Logo styles */
   .logo {
     margin-top: 5px;
-    max-width: 300px;
+    width: 10%;
+    height: 10%;
+    max-width: 50%; /* Set a maximum width to control image size */
+    display: block; /* Ensure proper block-level display */
+  }
+
+  /* Logo container styles */
+  .logo-container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   /* Tap data container styles */
   .tap-data-container {
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     margin-top: 4%;
     width: 90%;
@@ -200,9 +254,9 @@ code {
 
   /* Tap item styles */
   .tap-item {
-    width: 80%;
-    margin: 4% 0;
-    padding: 3%;
+    flex-wrap: wrap;
+    width: 90%; /* Adjust the card width as needed */
+    margin: 4% auto;
   }
 
   /* Glass image styles */

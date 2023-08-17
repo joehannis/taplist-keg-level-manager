@@ -21,9 +21,33 @@ const App = () => {
     <BrowserRouter>
       <div className="main-container">
         <div className="header">
-          <img className="logo" src="./logo.png" alt="Taplist Wizard" />
-          <h1>Taplist Integration Wizard</h1>
+          <div className="logo-container">
+            <div className="logo">
+              <img src="./logo.png" alt="Taplist Wizard" />
+            </div>
+            <h1 className="title">Taplist Keg Level Manager</h1>
+          </div>
+          <div className="icon-container">
+            <div className="venue">
+              <h5>
+                {tapData
+                  ? tapData[0]?.current_keg?.beverage?.producer?.name
+                  : null}
+              </h5>
+              <img
+                className="venue-logo"
+                src={
+                  tapData
+                    ? tapData[0]?.current_keg?.beverage?.producer?.picture
+                        ?.thumbnail_url
+                    : null
+                }
+                alt="logo"
+              />
+            </div>
+          </div>
         </div>
+
         <Routes>
           <Route
             path="/"
