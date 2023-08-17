@@ -10,12 +10,18 @@ const App = () => {
     localStorage.getItem("auth_token") !== null
   );
   const [tapData, setTapData] = useState(null);
+  const [unit, setUnit] = useState(localStorage.getItem("unit") || "metric");
 
   useEffect(() => {
     if (isAuthorized) {
       fetchTapData({ setTapData, setIsAuthorized });
     }
   }, [isAuthorized]);
+
+  const handleUnitChange = (e) => {
+    setUnit(e.target.value);
+    localStorage.setItem("unit", e.target.value);
+  };
 
   return (
     <BrowserRouter>
@@ -45,6 +51,13 @@ const App = () => {
             </div>
           </div>
         </div>
+        <div className="unit-container">
+          <select value={unit} onChange={handleUnitChange}>
+            <option value="metric">Metric</option>
+            <option value="us-imperial">US Imperial</option>
+            <option value="british-imperial">British Imperial</option>
+          </select>
+        </div>
 
         <Routes>
           <Route
@@ -55,6 +68,8 @@ const App = () => {
                   tapData={tapData}
                   setTapData={setTapData}
                   setIsAuthorized={setIsAuthorized}
+                  unit={unit}
+                  setUnit={setUnit}
                 />
               ) : (
                 <AuthForm

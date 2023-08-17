@@ -1,23 +1,11 @@
-import React from "react";
+import { React } from "react";
+
 import ServedForm from "../served/servedForm";
 import fetchTapData from "../../common/fetchTapData";
 
-const TapContainer = ({ tapData, setTapData, setIsAuthorised }) => {
-  console.log(tapData);
+const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
   return (
     <div className="tap-data-container">
-      {/* <div className="unit-selector">
-        <form>
-          <label for="unit">Choose a unit:</label>
-          <select name="unit" id="unit">
-            <option value="metric">Metric</option>
-            <option value="imperial">Imperial</option>
-          </select>
-          <br />
-          <br />
-          <input type="submit" value="Submit"></input>
-        </form>
-      </div> */}
       {tapData !== null &&
         tapData.map((tap, index) => (
           <div
@@ -45,15 +33,23 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised }) => {
                 </p>
                 <div>
                   <p>Remaining Keg Volume:</p>
-                  <p>
-                    {Math.trunc(tap.current_keg.remaining_volume_ml)} ml /{" "}
-                    {Math.trunc(tap.current_keg.percent_full)}% full{" "}
-                  </p>
+                  {unit === "us-imperial" ? (
+                    <p>
+                      {Math.trunc(tap.current_keg.remaining_volume_ml / 29.6)}{" "}
+                      oz / {Math.trunc(tap.current_keg.percent_full)}% full
+                    </p>
+                  ) : unit === "british-imperial" ? (
+                    <p>
+                      {Math.trunc(tap.current_keg.remaining_volume_ml / 568)}{" "}
+                      pints / {Math.trunc(tap.current_keg.percent_full)}% full
+                    </p>
+                  ) : (
+                    <p>
+                      {Math.trunc(tap.current_keg.remaining_volume_ml)} ml /{" "}
+                      {Math.trunc(tap.current_keg.percent_full)}% full
+                    </p>
+                  )}
                 </div>
-                <p>
-                  Pints Remaining:{" "}
-                  {Math.trunc(tap.current_keg.remaining_volume_ml / 568)}
-                </p>
               </div>
             </div>
             <ServedForm
@@ -61,6 +57,7 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised }) => {
               setTapData={setTapData}
               setIsAuthorised={setIsAuthorised}
               fetchTapData={fetchTapData}
+              unit={unit}
             />
           </div>
         ))}

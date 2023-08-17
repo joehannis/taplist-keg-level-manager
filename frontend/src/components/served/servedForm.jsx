@@ -1,3 +1,4 @@
+import React from "react";
 import fetchServed from "../../common/fetchServed";
 import fetchReset from "../../common/fetchReset";
 
@@ -6,13 +7,24 @@ const ServedForm = ({
   fetchTapData,
   setTapData,
   setIsAuthorised,
+  unit,
 }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const served_amount = e.target.elements.served_amount.value;
+    const served_amount = e.target.elements["served-text"].value;
     try {
       await fetchServed(currentTapNumber, served_amount);
       e.target.reset();
+      fetchTapData(setTapData, setIsAuthorised);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleBeer = (served_amount) => async (e) => {
+    e.preventDefault();
+    try {
+      await fetchServed(currentTapNumber, served_amount);
       fetchTapData(setTapData, setIsAuthorised);
     } catch (error) {
       console.error("An error occurred:", error);
@@ -35,28 +47,100 @@ const ServedForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="input-container">
-        <input
-          className="served-text"
-          type="number"
-          placeholder="Enter served amount in ml"
-          name="served-text"
-          onFocus={(e) => e.target.setAttribute("placeholder", "")}
-          onBlur={(e) =>
-            e.target.setAttribute("placeholder", "Enter served amount in ml")
-          }
-        />
+    <div>
+      <div className="serving-button-container">
+        {unit === "us-imperial" ? (
+          <>
+            <button
+              className="oz6"
+              onClick={() => handleBeer(177)}
+              type="button"
+            >
+              6oz
+            </button>
+            <button
+              className="oz12"
+              onClick={() => handleBeer(355)}
+              type="button"
+            >
+              12oz
+            </button>
+            <button
+              className="oz16"
+              onClick={() => handleBeer(473)}
+              type="button"
+            >
+              16oz
+            </button>
+            <button
+              className="oz20"
+              onClick={() => handleBeer(568)}
+              type="button"
+            >
+              20oz
+            </button>
+          </>
+        ) : unit === "metric" ? (
+          <>
+            <button
+              className="ml250"
+              onClick={() => handleBeer(250)}
+              type="button"
+            >
+              250ml
+            </button>
+            <button
+              className="ml500"
+              onClick={() => handleBeer(500)}
+              type="button"
+            >
+              500ml
+            </button>
+          </>
+        ) : unit === "british-imperial" ? (
+          <>
+            <button
+              className="pinthalf"
+              onClick={() => handleBeer(284)}
+              type="button"
+            >
+              1/2 Pint
+            </button>
+            <button
+              className="pint"
+              onClick={() => handleBeer(568)}
+              type="button"
+            >
+              Pint
+            </button>
+          </>
+        ) : null}
       </div>
-      <button className="served-submit" type="submit">
-        Submit
-      </button>
-      <p>
-        <button className="served-submit" onClick={handleReset} type="submit">
-          Reset
+
+      <form onSubmit={handleSubmit}>
+        <div className="custom-amount">Custom Amount</div>
+        <div className="input-container">
+          <input
+            className="served-text"
+            type="number"
+            placeholder="Enter served amount in ml"
+            name="served_amount"
+            onFocus={(e) => e.target.setAttribute("placeholder", "")}
+            onBlur={(e) =>
+              e.target.setAttribute("placeholder", "Enter served amount in ml")
+            }
+          />
+        </div>
+        <button className="served-submit" type="submit">
+          Submit
         </button>
-      </p>
-    </form>
+        <p>
+          <button className="served-submit" onClick={handleReset} type="button">
+            Reset
+          </button>
+        </p>
+      </form>
+    </div>
   );
 };
 
