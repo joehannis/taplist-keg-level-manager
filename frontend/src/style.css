@@ -227,8 +227,8 @@ code {
   /* Logo styles */
   .logo {
     margin-top: 5px;
-    width: 10%;
-    height: 10%;
+    width: auto;
+    height: auto;
     max-width: 50%; /* Set a maximum width to control image size */
     display: block; /* Ensure proper block-level display */
   }
@@ -241,6 +241,14 @@ code {
     align-items: center;
     justify-content: center;
     width: 100%;
+  }
+
+  .icon-container {
+    display: flex;
+    position: relative;
+    left: 1%;
+    align-items: center;
+    margin-top: 10px;
   }
 
   /* Tap data container styles */

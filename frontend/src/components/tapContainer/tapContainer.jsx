@@ -6,6 +6,18 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised }) => {
   console.log(tapData);
   return (
     <div className="tap-data-container">
+      {/* <div className="unit-selector">
+        <form>
+          <label for="unit">Choose a unit:</label>
+          <select name="unit" id="unit">
+            <option value="metric">Metric</option>
+            <option value="imperial">Imperial</option>
+          </select>
+          <br />
+          <br />
+          <input type="submit" value="Submit"></input>
+        </form>
+      </div> */}
       {tapData !== null &&
         tapData.map((tap, index) => (
           <div

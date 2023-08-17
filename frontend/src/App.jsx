@@ -22,9 +22,7 @@ const App = () => {
       <div className="main-container">
         <div className="header">
           <div className="logo-container">
-            <div className="logo">
-              <img src="./logo.png" alt="Taplist Wizard" />
-            </div>
+            <img className="logo" src="./logo.png" alt="Taplist Wizard" />
             <h1 className="title">Taplist Keg Level Manager</h1>
           </div>
           <div className="icon-container">
