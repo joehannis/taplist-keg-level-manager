@@ -8,7 +8,7 @@ Supports metric, US imperial and British Imperial units. Buttons can be used for
 
 ## Instructions
 
-### A paid subscription to [taplist.io](http://taplist.io) is required
+### A paid subscription to [taplist.io](https://taplist.io) is required
 
 Log into your taplist.io account and select 'Account' in the navigation bar and then 'Integrations'. Create and API key and copy it. The key you need will start with 'secret-'
 
