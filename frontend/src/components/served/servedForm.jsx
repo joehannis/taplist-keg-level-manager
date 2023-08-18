@@ -21,8 +21,7 @@ const ServedForm = ({
     }
   };
 
-  const handleBeer = (served_amount) => async (e) => {
-    e.preventDefault();
+  const handleBeer = async (served_amount) => {
     try {
       await fetchServed(currentTapNumber, served_amount);
       fetchTapData(setTapData, setIsAuthorised);

@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     if (isAuthorized) {
-      fetchTapData({ setTapData, setIsAuthorized });
+      fetchTapData(setTapData);
     }
   }, [isAuthorized]);
 
@@ -31,33 +31,37 @@ const App = () => {
             <img className="logo" src="./logo.png" alt="Taplist Wizard" />
             <h1 className="title">Taplist Keg Level Manager</h1>
           </div>
-          <div className="icon-container">
-            <div className="venue">
-              <h5>
-                {tapData
-                  ? tapData[0]?.current_keg?.beverage?.producer?.name
-                  : null}
-              </h5>
-              <img
-                className="venue-logo"
-                src={
-                  tapData
-                    ? tapData[0]?.current_keg?.beverage?.producer?.picture
-                        ?.thumbnail_url
-                    : null
-                }
-                alt="logo"
-              />
+          {isAuthorized ? (
+            <div className="icon-container">
+              <div className="venue">
+                <h5>
+                  {tapData
+                    ? tapData[0]?.current_keg?.beverage?.producer?.name
+                    : null}
+                </h5>
+                <img
+                  className="venue-logo"
+                  src={
+                    tapData
+                      ? tapData[0]?.current_keg?.beverage?.producer?.picture
+                          ?.thumbnail_url
+                      : null
+                  }
+                  alt="logo"
+                />
+              </div>
             </div>
+          ) : null}
+        </div>
+        {isAuthorized && (
+          <div className="unit-container">
+            <select value={unit} onChange={handleUnitChange}>
+              <option value="metric">Metric</option>
+              <option value="us-imperial">US Imperial</option>
+              <option value="british-imperial">British Imperial</option>
+            </select>
           </div>
-        </div>
-        <div className="unit-container">
-          <select value={unit} onChange={handleUnitChange}>
-            <option value="metric">Metric</option>
-            <option value="us-imperial">US Imperial</option>
-            <option value="british-imperial">British Imperial</option>
-          </select>
-        </div>
+        )}
 
         <Routes>
           <Route

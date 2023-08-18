@@ -178,7 +178,7 @@ code {
   width: 200px;
   padding: 10px;
   margin-top: 5%;
-  margin: 5%;
+  margin: 3%;
   margin-left: 5%;
 }
 
@@ -192,15 +192,15 @@ code {
 .auth-submit {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #2c3e50;
   color: white;
   font-size: medium;
   border: none;
-  padding: 5% 10%;
+  padding: 3% 10%;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 4%;
-  margin-left: 33%;
+  margin-left: 5%;
 }
 
 .oz6,
@@ -245,6 +245,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 3%;
   height: 100%;
   width: 100%;
 }
@@ -330,5 +331,6 @@ code {
   /* Auth submit button styles */
   .auth-submit {
     margin-top: 6%;
+    align-items: center;
   }
 }
