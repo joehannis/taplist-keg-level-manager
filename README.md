@@ -20,8 +20,7 @@ The wizard will then collect your tap information. Enter the amount you've serve
 
 #### Required
 
-You will need to install node.js and npm for this to run. This can be done via [homebrew](https://brew.sh/) (macOS) with `brew install node`. For linux, use `sudo apt-get install Node.js
-sudo apt-get install npm` Please see this [link](https://nodejs.org/en/download/package-manager) for other systems.
+You will need to install node.js and npm for this to run. This can be done via [homebrew](https://brew.sh/) (macOS) with `brew install node`. For linux, use `sudo apt-get install nodejs npm` Please see this [link](https://nodejs.org/en/download/package-manager) for other systems.
 
 This is designed to be run locally on your machine.
 
@@ -31,4 +30,4 @@ This is designed to be run locally on your machine.
 - Run `./start.sh`
 - You can stop the wizard with `./stop` when in the repo directory
 
-##### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
+#### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
