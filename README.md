@@ -32,6 +32,6 @@ This is designed to be run locally on your machine.
 - Open a terminal window, and `cd` into the repo
 - Run `chmod +x ./start.sh`
 - Run `./start.sh`
-- You can stop the wizard with `./stop` when in the repo directory
+- You can stop the manager with `./stop` when in the repo directory
 
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
