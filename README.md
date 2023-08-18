@@ -2,6 +2,10 @@
 
 ### Manage your Taplist keg levels through a simple interface
 
+## Features
+
+Supports metric, US imperial and British Imperial units. Buttons can be used for standard pours, or a custom amount can be entered.
+
 ## Instructions
 
 ### A paid subscription to taplist.io is required
