@@ -10,11 +10,11 @@ Log into your taplist.io account and select 'Account' in the navigation bar and 
 
 Run the Taplist Integration Wizard and enter your venue name and the API Key.
 
-![](./taplist-integration-first.png)
+![](./taplist-keg-level-manager-first.png)
 
 The wizard will then collect your tap information. Enter the amount you've served from the keg in ml and the tap will be updated. Press 'Reset' to reset to the default full volume for the keg selected.
 
-![](./taplist-main.png)
+![](./taplist-keg-level-manager.png)
 
 ## Build Instructions
 
