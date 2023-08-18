@@ -12,11 +12,11 @@ Supports metric, US imperial and British Imperial units. Buttons can be used for
 
 Log into your taplist.io account and select 'Account' in the navigation bar and then 'Integrations'. Create and API key and copy it. The key you need will start with 'secret-'
 
-Run the Taplist Integration Wizard and enter your venue name and the API Key.
+Run the Taplist Keg Level Manager and enter your venue name and the API Key.
 
 ![](./taplist-keg-level-manager-first.png)
 
-The wizard will then collect your tap information. Enter the amount you've served from the keg in ml and the tap will be updated. Press 'Reset' to reset to the default full volume for the keg selected.
+Your tap information will be populated. Enter the amount you've served from the keg in ml and the tap will be updated. Press 'Reset' to reset to the default full volume for the keg selected.
 
 ![](./taplist-keg-level-manager-main.png)
 
