@@ -13,4 +13,4 @@ npm install
 npm run dev &
 
 sleep 5
-open http://localhost:4173
+open http://localhost:5173
