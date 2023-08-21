@@ -3,12 +3,18 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthForm from "./components/auth/AuthForm";
 import fetchTapData from "./common/fetchTapData";
+import isAuthValid from "./common/fetchIsAuthValid";
 import TapContainer from "./components/tapContainer/tapContainer";
 
 const App = () => {
+  useEffect(() => {
+    isAuthValid();
+  }, []);
+
   const [isAuthorized, setIsAuthorized] = useState(
     localStorage.getItem("auth_token") !== null
   );
+  console.log(localStorage.getItem("auth_token"));
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState(localStorage.getItem("unit") || "metric");
 
