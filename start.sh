@@ -8,10 +8,9 @@ node ./bin/www.js &
 # Build the frontend
 cd ../frontend
 npm install
-npm run build
 
 # Start the frontend (in the background)
-npm run preview &
+npm run dev &
 
 sleep 5
 open http://localhost:4173
