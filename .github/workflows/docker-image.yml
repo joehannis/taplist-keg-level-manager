@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GIT_AUTH_TOKEN: ${{ secrets.GITTOKEN }}
     steps:
       -
         name: Checkout
@@ -20,13 +18,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Set up Docker Buildx
-        run: |
-          docker build --platform=local -o . git://github.com/docker/buildx-bin
-          chmod a+x buildx
-          mkdir -p ~/.docker/cli-plugins
-          mv buildx ~/.docker/cli-plugins/docker-buildx
       -
         name: Create Docker Builder Instance
         run: docker buildx create --use --name mybuilder --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
