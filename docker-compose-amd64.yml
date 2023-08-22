@@ -14,7 +14,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-      target: linux/amd64
+      target: amd64
     image: joehannis/taplist-keg-level-manager:latest-amd64
     container_name: api-container
     ports:
@@ -28,7 +28,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: linux/amd64
+      target: amd64
     image: joehannis/taplist-keg-level-manager:latest-amd64
     container_name: frontend-container
     ports:
