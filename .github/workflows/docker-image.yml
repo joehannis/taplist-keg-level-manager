@@ -22,8 +22,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build Docker images using docker-compose
-        run: docker buildx build --platform linux/amd64,linux/arm64 -t joehannis/taplist-keg-level-manager:api-multiarch .
-             docker buildx build --platform linux/amd64,linux/arm64 -t joehannis/taplist-keg-level-manager:frontend-multiarch . 
+        run: docker buildx build --platform linux/amd64,linux/arm64 -t joehannis/taplist-keg-level-manager:api-multiarch -f ./api/Dockerfile .
+             docker buildx build --platform linux/amd64,linux/arm64 -t joehannis/taplist-keg-level-manager:frontend-multiarch -f ./frontend/Dockerfile .
       -
         name: Tag API image with "latest"
         run: |
