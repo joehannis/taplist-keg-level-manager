@@ -27,16 +27,16 @@ jobs:
       -
         name: Build Docker images using docker-compose
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:api-latest ./api
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:frontend-latest ./frontend
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:api-multiarch ./api
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:frontend-multiarch ./frontend
       -
         name: Tag API image with "latest"
         run: |
-          docker tag joehannis/taplist-keg-level-manager:api-latest joehannis/taplist-keg-level-manager:latest
+          docker tag joehannis/taplist-keg-level-manager:api-multiarch joehannis/taplist-keg-level-manager:latest
       -
         name: Tag frontend image with "latest"
         run: |
-          docker tag joehannis/taplist-keg-level-manager:frontend-latest joehannis/taplist-keg-level-manager:latest
+          docker tag joehannis/taplist-keg-level-manager:frontend-multiarch joehannis/taplist-keg-level-manager:latest
       -
         name: Push Docker images to Docker Hub
         run: |
