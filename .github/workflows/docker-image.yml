@@ -11,6 +11,10 @@ jobs:
     env:
       TAG: latest
     steps:
+      - name: Get Git port
+        run: |
+         netstat -an | grep :22
+         echo $PORT | tee GIT_PORT
       -
         name: Checkout
         uses: actions/checkout@v3
