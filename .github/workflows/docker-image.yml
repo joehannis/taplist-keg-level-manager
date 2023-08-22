@@ -22,7 +22,7 @@ jobs:
         name: Create Docker Builder Instance and Build
         run: |
           docker buildx create --use --name mybuilder --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t joehannis/taplist-keg-level-manager .
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t joehannis/taplist-keg-level-manager . --push
         
       -
         name: Build and Push Docker images using docker-compose
