@@ -14,7 +14,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    image: joehannis/taplist-keg-level-manager:api-multiarch
+    image: taplist-keg-level-manager/api
     container_name: api-container
     ports:
       - "3000:3000"
@@ -27,7 +27,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: joehannis/taplist-keg-level-manager:frontend-multiarch
+    image: taplist-keg-level-manager/frontend
     container_name: frontend-container
     ports:
       - "5173:5173"
