@@ -27,5 +27,20 @@ services:
     environment:
       MONGODB_URL: mongodb://mongodb-container:27017/taplist-klm
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        ARCHITECTURE: ${ARCHITECTURE}
+    image: joehannis/taplist-keg-level-manager:latest-${ARCHITECTURE}
+    container_name: frontend-container
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network
+    environment:
+      REACT_APP_API_URL: http://api-container:3000
+
 networks:
   my-network:
