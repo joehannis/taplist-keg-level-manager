@@ -1,3 +1,5 @@
+ARG ARCHITECTURE=armhf
+
 version: "3"
 services:
   mongodb:
@@ -14,7 +16,9 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    image: joehannis/taplist-keg-level-manager:latest-armhf
+      args:
+        ARCHITECTURE: $ARCHITECTURE
+    image: joehannis/taplist-keg-level-manager:latest-$ARCHITECTURE
     container_name: api-container
     ports:
       - "3000:3000"
@@ -27,7 +31,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: joehannis/taplist-keg-level-manager:latest-armhf
+      args:
+        ARCHITECTURE: $ARCHITECTURE
+    image: joehannis/taplist-keg-level-manager:latest-$ARCHITECTURE
     container_name: frontend-container
     ports:
       - "5173:5173"
