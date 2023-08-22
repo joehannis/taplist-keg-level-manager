@@ -19,12 +19,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        run: |
-          docker buildx build \
-          --tag joehannis/taplist-keg-level-manager:latest \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
-        
-      -
         name: Build and Push Docker images using docker-compose
         run: |
           docker-compose -f ./docker-compose-amd64.yml build
