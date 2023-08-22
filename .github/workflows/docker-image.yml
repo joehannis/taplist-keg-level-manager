@@ -21,6 +21,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Create builder instance
+          run:|
+          docker buildx create --use --platform linux/amd64,linux/arm64
+      -
         name: Build Docker images using docker-compose
         run: |
           docker buildx build --platform linux/amd64,linux/arm64 -t joehannis/taplist-keg-level-manager:api-multiarch ./api
