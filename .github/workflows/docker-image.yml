@@ -34,3 +34,4 @@ jobs:
         name: Push Docker images to Docker Hub
         run: |
           docker-compose -f ./docker-compose.yml push
+
