@@ -28,10 +28,10 @@ jobs:
       -
         name: Build Docker images using docker-compose
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t taplist-keg-level-manager:${TAG} ./api --push
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t taplist-keg-level-manager:${FRONTEND_TAG} ./frontend --push
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t taplist-keg-level-manager/frontend:${FRONTEND_TAG} ./frontend --push
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t taplist-keg-level-manager/api:${TAG} ./api --push
       -
         name: Push Docker images to Docker Hub
         run: |
-          docker push taplist-keg-level-manager:${TAG}
-          docker push taplist-keg-level-manager:${FRONTEND_TAG}
+          docker push taplist-keg-level-manager/frontend:${FRONTEND_TAG}
+          docker push taplist-keg-level-manager/api:${TAG}
