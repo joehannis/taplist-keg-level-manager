@@ -41,7 +41,7 @@ services:
     networks:
       - my-network
     volumes:
-      - ./mongodb-data:/data/db # Persist MongoDB data
+      - ./mongodb-data:/data/db
 
   api:
     build:
@@ -67,7 +67,7 @@ services:
     networks:
       - my-network
     environment:
-      REACT_APP_API_URL: http://api-container:3000 # Replace with your API container name and port
+      REACT_APP_API_URL: http://api-container:3000
 
 networks:
   my-network:
