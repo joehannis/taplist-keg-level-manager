@@ -14,7 +14,6 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-      target: armhf
     image: joehannis/taplist-keg-level-manager:latest-armhf
     container_name: api-container
     ports:
@@ -28,7 +27,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: armhf
     image: joehannis/taplist-keg-level-manager:latest-armhf
     container_name: frontend-container
     ports:
