@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TAG: latest
     steps:
       -
         name: Checkout
@@ -19,22 +21,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Create builder instance
+        name: Set up Docker Buildx
+        id: buildx
         run: |
-          docker buildx create --use --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
+          docker build --platform=local -o . git://github.com/docker/buildx-bin
+          chmod a+x buildx
+          mkdir -p ~/.docker/cli-plugins
+          mv buildx ~/.docker/cli-plugins/docker-buildx
       -
-        name: Build and Push Docker image for frontend
-        run: |
-          # Build and push frontend image
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/frontend ./frontend --push
+        name: Create Docker Builder Instance
+        run: docker buildx create --use --name mybuilder --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
       -
-        name: Build and Push Docker image for api
+        name: Build and Push Docker images using docker-compose
         run: |
-          # Build and push api image
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/api ./api --push
-      -
-        name: Debug Docker Login
-        run: |
-          echo "Docker Hub Username: ${{ secrets.DOCKERHUB_USERNAME }}"
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-      
+          docker-compose -f ./docker-compose.yml build
+          docker-compose -f ./docker-compose.yml push
