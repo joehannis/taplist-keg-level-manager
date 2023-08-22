@@ -31,14 +31,6 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:${TAG} ./api --push
           docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t joehannis/taplist-keg-level-manager:${FRONTEND_TAG} ./frontend --push
       -
-        name: Tag API image with "latest"
-        run: |
-          docker tag joehannis/taplist-keg-level-manager:${TAG} joehannis/taplist-keg-level-manager:latest
-      -
-        name: Tag frontend image with "latest"
-        run: |
-          docker tag joehannis/taplist-keg-level-manager:${FRONTEND_TAG} joehannis/taplist-keg-level-manager:latest
-      -
         name: Push Docker images to Docker Hub
         run: |
           docker-compose -f ./docker-compose.yml push
