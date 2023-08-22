@@ -11,10 +11,6 @@ jobs:
     env:
       TAG: latest
     steps:
-      - name: Get Git port
-        run: |
-         netstat -an | grep :22
-         echo $PORT | tee GIT_PORT
       -
         name: Checkout
         uses: actions/checkout@v3
@@ -27,6 +23,7 @@ jobs:
       -
         name: Set up Docker Buildx
         id: buildx
+        secrets: GIT_AUTH_TOKEN=${{ secrets.GITTOKEN }}
         run: |
           docker build --platform=local -o . git://github.com/docker/buildx-bin
           chmod a+x buildx
