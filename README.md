@@ -24,14 +24,59 @@ Your tap information will be populated. Enter the amount you've served from the 
 
 #### Required
 
-You will need to install node.js and npm for this to run. This can be done via [homebrew](https://brew.sh/) (macOS) with `brew install node`. For linux, use `sudo apt-get install nodejs npm` Please see this [link](https://nodejs.org/en/download/package-manager) for other systems.
+You will need to have [docker](https://www.docker.com) installed on your system
 
-This is designed to be run locally on your machine.
+In your terminal, run ```docker pull joehannis/taplist-keg-level-manager:latest```
 
-- Clone the repo onto your local machine
-- Open a terminal window, and `cd` into the repo
-- Run `chmod +x ./start.sh`
-- Run `./start.sh`
-- You can stop the manager with `./stop` when in the repo directory
+Create a file called ```docker-compose.yml``` and paste this:
+
+```
+version: "3"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-container
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+    volumes:
+      - ./mongodb-data:/data/db # Persist MongoDB data
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: joehannis/taplist-keg-level-manager:api-latest
+    container_name: api-container
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+    environment:
+      MONGODB_URL: mongodb://mongodb-container:27017/taplist-klm
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: joehannis/taplist-keg-level-manager:frontend-latest
+    container_name: frontend-container
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network
+    environment:
+      REACT_APP_API_URL: http://api-container:3000 # Replace with your API container name and port
+
+networks:
+  my-network:
+
+volumes:
+  mongodb-data:
+```
+In terminal, ```cd``` to the directory containing docker-compose.yml.
+
+Run ```docker-compose -f ./docker-compose.yml up```
 
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
