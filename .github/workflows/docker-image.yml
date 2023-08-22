@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FRONTEND_TAG: frontend-multiarch
     steps:
       -
         name: Checkout
@@ -28,6 +26,4 @@ jobs:
         name: Build and Push Docker image for frontend
         run: |
           # Build and push frontend image
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/frontend:${FRONTEND_TAG} ./frontend --push
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/api:${FRONTEND_TAG} ./api --push
-
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/frontend ./frontend --push
