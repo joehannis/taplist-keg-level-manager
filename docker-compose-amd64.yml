@@ -1,3 +1,5 @@
+ARG ARCHITECTURE=amd64
+
 version: "3"
 services:
   mongodb:
@@ -14,6 +16,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+      arg: $Architecture
     image: joehannis/taplist-keg-level-manager:latest-amd64
     container_name: api-container
     ports:
