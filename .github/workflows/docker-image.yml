@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      TAG: api-multiarch
       FRONTEND_TAG: frontend-multiarch
+      API_TAG: api-multiarch
     steps:
       -
         name: Checkout
@@ -26,12 +26,18 @@ jobs:
         run: |
           docker buildx create --use --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8
       -
-        name: Build Docker images using docker-compose
+        name: Build Docker images for frontend and api
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t joehannis/taplist-keg-level-manager/frontend:${FRONTEND_TAG} ./frontend --push
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t joehannis/taplist-keg-level-manager/api:${TAG} ./api --push
+          # Build and push frontend image
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/frontend:${FRONTEND_TAG} ./frontend --push
+
+          # Build and push api image
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/api:${API_TAG} ./api --push
       -
         name: Push Docker images to Docker Hub
         run: |
-          docker push joehannis/taplist-keg-level-manager/frontend:${FRONTEND_TAG}
-          docker push joehannis/taplist-keg-level-manager/api:${TAG}
+          # Push frontend image
+          docker push taplist-keg-level-manager/frontend:${FRONTEND_TAG}
+
+          # Push api image
+          docker push taplist-keg-level-manager/api:${API_TAG}
