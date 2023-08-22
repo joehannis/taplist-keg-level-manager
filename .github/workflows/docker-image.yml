@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TAG: latest
     steps:
       -
         name: Checkout
@@ -18,14 +20,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      -
-        name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/taplist-keg-level-manager:latest
+      - name: Build and push Docker images using docker-compose
+        run: |
+          docker-compose -f ./docker-compose.yml build
+          docker-compose -f ./docker-compose.yml push
