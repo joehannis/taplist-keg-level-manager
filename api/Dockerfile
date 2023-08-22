@@ -1,4 +1,4 @@
-FROM node:18 AS server-build
+FROM --platform=${BUILDPLATFORM} node:18 AS server-build
 WORKDIR /app/server
 COPY ./package*.json ./
 RUN npm install
