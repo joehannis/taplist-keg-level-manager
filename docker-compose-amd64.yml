@@ -15,7 +15,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
       target: linux/amd64
-    image: joehannis/taplist-keg-level-manager
+    image: joehannis/taplist-keg-level-manager:latest-amd64
     container_name: api-container
     ports:
       - "3000:3000"
@@ -29,7 +29,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       target: linux/amd64
-    image: joehannis/taplist-keg-level-manager
+    image: joehannis/taplist-keg-level-manager:latest-amd64
     container_name: frontend-container
     ports:
       - "5173:5173"
