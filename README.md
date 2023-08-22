@@ -1,5 +1,5 @@
 <p align="center">
-  # Taplist Keg Level Manager
+  <strong>Taplist Keg Level Manager</strong>
 </p>
 
 <p align="center">
@@ -9,16 +9,16 @@
 </p>
 
 <p align="center">
-  ### Manage your Taplist keg levels through a simple interface
+  Manage your Taplist keg levels through a simple interface
 </p>
 
-## Features
+#### Features
 
 Supports metric, US imperial and British Imperial units. Buttons can be used for standard pours, or a custom amount can be entered.
 
-## Instructions
+#### Instructions
 
-### A paid subscription to [taplist.io](https://taplist.io) is required
+##### A paid subscription to [taplist.io](https://taplist.io) is required
 
 Log into your taplist.io account and select 'Account' in the navigation bar and then 'Integrations'. Create and API key and copy it. The key you need will start with 'secret-'
 
@@ -30,9 +30,9 @@ Your tap information will be populated. Enter the amount you've served from the 
 
 ![](./taplist-keg-level-manager-main.png)
 
-## Build Instructions
+#### Build Instructions
 
-#### Required
+###### Required
 
 You will need to have [docker](https://www.docker.com) installed on your system
 
