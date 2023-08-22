@@ -1,6 +1,6 @@
 # Taplist Keg Level Manager
 
-![Docker](https://img.shields.io/badge/-Docker?style=flat-square&logo=docker&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
 ### Manage your Taplist keg levels through a simple interface
 
