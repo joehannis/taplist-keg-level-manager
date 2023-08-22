@@ -32,3 +32,9 @@ jobs:
         run: |
           # Build and push api image
           docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v8 -t taplist-keg-level-manager/api ./api --push
+      -
+        name: Debug Docker Login
+        run: |
+          echo "Docker Hub Username: ${{ secrets.DOCKERHUB_USERNAME }}"
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      
