@@ -3,12 +3,15 @@ const tapsRoute = require("../routes/tapsRoute");
 const authRoute = require("../routes/authRoute");
 const servedRoute = require("../routes/servedRoute");
 const resetRoute = require("../routes/resetRoute");
-
-const mongoose = require("mongoose");
 const cors = require("cors");
+const mongoose = require("mongoose");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 const mongoDbUrl =
-  process.env.MONGODB_URL || "mongodb://localhost:27017/taplist-wizard";
+  process.env.MONGODB_URL || "mongodb://localhost:27017/taplist-klm";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -19,10 +22,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", function () {
   console.log("Connected to MongoDB!");
 });
-
-const app = express();
-app.use(cors());
-app.use(express.json()); // Parse JSON request body
 
 app.use("/taps", tapsRoute);
 app.use("/auth", authRoute);

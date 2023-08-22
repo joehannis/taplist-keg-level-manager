@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-container
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+    volumes:
+      - ./mongodb-data:/data/db # Persist MongoDB data
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api-container
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+    environment:
+      MONGODB_URL: mongodb://mongodb-container:27017/taplist-klm
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-container
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network
+    environment:
+      REACT_APP_API_URL: http://api-container:3000 # Replace with your API container name and port
+
+networks:
+  my-network:
+
+volumes:
+  mongodb-data:
