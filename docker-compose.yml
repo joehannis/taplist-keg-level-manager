@@ -36,7 +36,7 @@ services:
     networks:
       - my-network
     environment:
-      MONGODB_URI: mongodb://mongodb-container:27017/taplist-klm
+      MONGODB_URI: mongodb://mongodb:27017/taplist-klm
 
   frontend:
     build:
