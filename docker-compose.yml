@@ -18,7 +18,7 @@ services:
       - ./mongodb-data:/data/db
     restart: always
     command: mongod
-    network-mode: host
+    network_mode: host
 
   api:
     build:
@@ -41,6 +41,7 @@ services:
       MONGODB_URI: mongodb://localhost:27017/taplist-klm
     depends_on:
       - mongodb
+    network_mode: host
 
   frontend:
     build:
@@ -63,7 +64,7 @@ services:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
-    network-mode: host
+    network_mode: host
 
 networks:
   my-network:
