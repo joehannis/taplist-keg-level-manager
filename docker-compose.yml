@@ -13,7 +13,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-      target:
+      target: prod
         platforms:
           - "linux/amd64"
           - "linux/arm64"
@@ -33,7 +33,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target:
+      target: prod
         platforms:
           - "linux/amd64"
           - "linux/arm64"
