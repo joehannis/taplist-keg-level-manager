@@ -16,6 +16,7 @@ services:
       - my-network
     volumes:
       - ./mongodb-data:/data/db
+    restart: always
 
   api:
     build:
