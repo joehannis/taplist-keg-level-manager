@@ -12,8 +12,6 @@ services:
     container_name: mongodb-container
     ports:
       - "27017:27017"
-    networks:
-      - my-network
     volumes:
       - ./mongodb-data:/data/db
     restart: always
@@ -35,8 +33,6 @@ services:
     container_name: api-container
     ports:
       - "3000:3000"
-    networks:
-      - my-network
     environment:
       MONGODB_URI: mongodb://localhost:27017/taplist-klm
     depends_on:
@@ -58,14 +54,8 @@ services:
     container_name: frontend-container
     ports:
       - "5173:5173"
-    networks:
-      - my-network
     environment:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
     network_mode: host
-
-networks:
-  my-network:
-    driver: bridge
