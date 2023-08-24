@@ -17,6 +17,7 @@ services:
     volumes:
       - ./mongodb-data:/data/db
     restart: always
+    command: mongod
 
   api:
     build:

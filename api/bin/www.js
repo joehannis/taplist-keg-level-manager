@@ -11,7 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 const mongoDbUrl =
-  process.env.MONGODB_URI || "mongodb://mongodb-container:27017/taplist-klm";
+  process.env.MONGODB_URI ||
+  "mongodb-container://mongodb-container:27017/taplist-klm";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
