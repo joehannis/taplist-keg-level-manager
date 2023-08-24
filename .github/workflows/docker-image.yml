@@ -19,9 +19,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Create builder instance
-        run: |
-          docker buildx create --use --driver docker-buildkit
+        name: Setup Buildx
+        uses: docker/setup-buildx-action@v2
       -
         name: Build Docker images
         run: |
