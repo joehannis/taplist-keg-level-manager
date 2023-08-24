@@ -1,4 +1,21 @@
+I have a docker-compose.yml which contains a owmf-web-prod service configured for docker buildx bake:
+
+version: '3.8'
+
+...
+
 services:
+
+...
+
+  owmf-web-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target:
+        platforms:
+          - "linux/amd64"
+          - "linux/arm64"
   mongodb:
     image: mongo:latest
     container_name: mongodb-container
@@ -13,7 +30,14 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    image: joehannis/taplist-keg-level-manager:latest
+      target:
+        platforms:
+          - "linux/amd64"
+          - "linux/arm64"
+          - "linux/arm/v6"
+          - "linux/arm/v7"
+          - "linux/arm/v6"
+      image: joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
       - "3000:3000"
