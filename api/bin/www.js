@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const mongoDbUrl =
-  process.env.MONGODB_URL || "mongodb://mongodb:27017/taplist-klm";
+  process.env.MONGODB_URL || "mongodb://0.0.0.0:27017/taplist-klm";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,7 +30,7 @@ app.use("/reset", resetRoute);
 
 // Start the server
 const port = 3000;
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server started on port ${port}`);
 });
 
