@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const mongoDbUrl =
-  process.env.MONGODB_URL || "mongodb://localhost:27017/taplist-klm";
+  process.env.MONGODB_URL || "mongodb://mongodb:27017/taplist-klm";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
