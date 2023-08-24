@@ -14,12 +14,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
       target: prod
-        platforms:
-          - "linux/amd64"
-          - "linux/arm64"
-          - "linux/arm/v6"
-          - "linux/arm/v7"
-          - "linux/arm/v6"
+        platforms:linux/amd64,linux/arm64, linux/arm/v6,linux/arm/v7,linux/arm/v6
       image: joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
@@ -34,12 +29,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       target: prod
-        platforms:
-          - "linux/amd64"
-          - "linux/arm64"
-          - "linux/arm/v6"
-          - "linux/arm/v7"
-          - "linux/arm/v6"
+        platforms:linux/amd64,linux/arm64, linux/arm/v6,linux/arm/v7,linux/arm/v6
     image: joehannis/taplist-keg-level-manager:latest
     container_name: frontend-container
     ports:
