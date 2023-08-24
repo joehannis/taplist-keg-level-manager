@@ -17,7 +17,8 @@ services:
         platforms:
           - linux/amd64
           - linux/arm64
-      tags: joehannis/taplist-keg-level-manager:latest
+      tags: 
+        - joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
       - "3000:3000"
@@ -34,7 +35,8 @@ services:
         platforms:
           - linux/amd64
           - linux/arm64
-      tags: joehannis/taplist-keg-level-manager:latest
+      tags: 
+        - joehannis/taplist-keg-level-manager:latest
     container_name: frontend-container
     ports:
       - "5173:5173"
