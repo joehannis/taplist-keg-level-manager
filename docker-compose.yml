@@ -14,8 +14,6 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-      args:
-        ARCHITECTURE: ${ARCHITECTURE}
     image: joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
@@ -29,8 +27,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        ARCHITECTURE: ${ARCHITECTURE}
     image: joehannis/taplist-keg-level-manager:latest
     container_name: frontend-container
     ports:
