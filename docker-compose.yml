@@ -13,8 +13,10 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-      target: prod
-        platforms: ["linux/amd64", "linux/arm64", "linux/arm/v6", "linux/arm/v7"]
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
       image: joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
@@ -28,8 +30,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: prod
-        platforms: ["linux/amd64", "linux/arm64", "linux/arm/v6", "linux/arm/v7"]    
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
       image: joehannis/taplist-keg-level-manager:latest
     container_name: frontend-container
     ports:
