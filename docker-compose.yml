@@ -8,7 +8,7 @@ services:
         - linux/arm/v8
       tags:
         - joehannis/taplist-keg-level-manager:latest
-    image: mongo:latest
+    image: mongo
     container_name: mongodb-container
     ports:
       - "27017:27017"
@@ -17,6 +17,12 @@ services:
     restart: always
     command: mongod
     network_mode: host
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:$DB_PORT/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
 
   api:
     build:
