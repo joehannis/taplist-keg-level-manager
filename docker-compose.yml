@@ -44,7 +44,7 @@ services:
       - DB_HOST=mongodb
       - DB_USER=root
       - DB_PASSWORD=password123
-      - DB_NAME=test
+      - DB_NAME=taplist-klm
       - DB_PORT=27017
     depends_on:
       - mongodb
