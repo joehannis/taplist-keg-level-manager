@@ -15,7 +15,9 @@ services:
     volumes:
       - ./mongodb-data:/data/db
     restart: always
-    command: mongod
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password123
     network_mode: host
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:$DB_PORT/test --quiet
@@ -40,7 +42,11 @@ services:
     ports:
       - "3000:3000"
     environment:
-      MONGODB_URI: mongodb://0.0.0.0:27017/taplist-klm
+      - DB_HOST=mongodb
+      - DB_USER=root
+      - DB_PASSWORD=password123
+      - DB_NAME=test
+      - DB_PORT=27017
     depends_on:
       - mongodb
     network_mode: host
