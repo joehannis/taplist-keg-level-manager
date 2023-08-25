@@ -1,5 +1,7 @@
 services:
   mongodb:
+    env_file:
+      - .env
     x-bake:
       platforms:
         - linux/amd64
@@ -28,6 +30,8 @@ services:
   api:
     build:
       context: ./api
+      env_file:
+        - .env
       dockerfile: Dockerfile
       x-bake:
         platforms:
