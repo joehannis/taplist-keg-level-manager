@@ -32,10 +32,10 @@ Your tap information will be populated. Enter the amount you've served from the 
 
 #### Build Instructions
 
-###### Required
+##### Required
 
 You will need to have [docker](https://www.docker.com) installed on your system
 
-In your terminal, run ```docker pull joehannis/taplist-keg-level-manager:latest````
+In your terminal, run ```docker pull joehannis/taplist-keg-level-manager:latest```
 
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
