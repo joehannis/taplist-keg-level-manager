@@ -29,7 +29,7 @@ services:
 
   api:
     env_file:
-      - ./api/api.env
+      - ./api/.env
     build:
       context: ./api
       dockerfile: Dockerfile
