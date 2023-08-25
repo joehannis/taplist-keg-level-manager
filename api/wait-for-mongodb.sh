@@ -2,9 +2,13 @@
 
 host="mongodb"
 port=27017     
-timeout=60  
+timeout=60 
+
+netstat -an | grep LISTEN
 
 echo "Waiting for MongoDB to become available..."
+
+ping mongodb
 
 
 while ! nc -z $host $port; do

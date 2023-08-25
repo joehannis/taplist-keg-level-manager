@@ -1,5 +1,5 @@
 FROM node:18
-RUN apt-get update && apt-get install -y netcat-traditional
+RUN apt-get update && apt-get install -y netcat-traditional net-tools
 WORKDIR /app/server
 COPY ./package*.json ./
 RUN npm install
