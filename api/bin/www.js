@@ -5,6 +5,7 @@ const servedRoute = require("../routes/servedRoute");
 const resetRoute = require("../routes/resetRoute");
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
