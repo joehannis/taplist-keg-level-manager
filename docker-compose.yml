@@ -19,7 +19,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password123
     network_mode: host
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:$DB_PORT/test --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/taplist-klm --quiet
       interval: 10s
       timeout: 10s
       retries: 5
