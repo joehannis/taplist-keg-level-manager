@@ -38,4 +38,8 @@ You will need to have [docker](https://www.docker.com) installed on your system
 
 In your terminal, run ```docker pull joehannis/taplist-keg-level-manager:latest```
 
+Once the pull has completed, run ```docker run -p 4173:4173 joehannis/taplist-keg-level-manager```
+
+The interface can be accessed at ```http://localhost:4173``` on your local machine or ```<your_ip_address>:4173``` from another device on the network.
+
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
