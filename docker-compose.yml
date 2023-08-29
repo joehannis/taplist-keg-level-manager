@@ -23,8 +23,6 @@ services:
   api:
     networks:
       - my-network
-    env_file:
-      - ./api/.env
     build:
       context: ./api
       dockerfile: Dockerfile

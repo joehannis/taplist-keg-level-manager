@@ -14,7 +14,6 @@ const App = () => {
   const [isAuthorized, setIsAuthorized] = useState(
     localStorage.getItem("auth_token") !== null
   );
-  console.log(localStorage.getItem("auth_token"));
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState(localStorage.getItem("unit") || "metric");
 
