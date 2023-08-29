@@ -1,34 +1,28 @@
 services:
-  mongodb:
-    env_file:
-      - ./api/.env
-    x-bake:
-      platforms:
-        - linux/amd64
-        - linux/arm64
-        - linux/arm/v7
-        - linux/arm/v8
-      tags:
-        - joehannis/taplist-keg-level-manager:latest
-    image: mongo:latest
+  mongo:
+    networks:
+      - my-network
+    image: mongo
+    container_name: mongo
     ports:
-      - "27017:27017"
-    volumes:
-      - ./mongodb-data:/data/db
+      - 27017:27017
+
+  mongo-express:
+    networks:
+      - my-network
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password123
-    network_mode: host
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/taplist-klm --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
-    command: mongod
+      - ME_CONFIG_MONGODB_SERVER=mongo
 
   api:
+    networks:
+      - my-network
     env_file:
       - ./api/.env
     build:
@@ -46,10 +40,11 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - mongodb
-    network_mode: host
+      - mongo
 
   frontend:
+    networks:
+      - my-network
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -68,4 +63,7 @@ services:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
-    network_mode: host
+
+networks:
+  my-network:
+    driver: bridge

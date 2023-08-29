@@ -1,4 +1,4 @@
-FROM node:18 AS server-build
+FROM node AS frontend-build
 WORKDIR /app/client
 COPY ./package*.json ./
 RUN npm install

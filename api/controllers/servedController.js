@@ -4,7 +4,7 @@ const servedController = async (req, res) => {
   try {
     const { currentTapNumber, servedAmount } = req.body;
     const parsedServedAmount = parseInt(servedAmount);
-    const details = await Auth.find();
+    const details = await Auth.find().exec();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;
     const response = await fetch(

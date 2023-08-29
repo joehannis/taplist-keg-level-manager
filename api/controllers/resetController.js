@@ -3,7 +3,7 @@ const Auth = require("../models/auth");
 const resetController = async (req, res) => {
   try {
     const { currentTapNumber } = req.body;
-    const details = await Auth.find();
+    const details = await Auth.find().exec();
     const venue = details[0].venue;
     const auth_token = details[0].auth_token;
     const response = await fetch(

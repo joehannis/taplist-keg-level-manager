@@ -5,19 +5,13 @@ const servedRoute = require("../routes/servedRoute");
 const resetRoute = require("../routes/resetRoute");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-console.log("DB_USER", process.env["DB_USER"]);
-console.log("DB_PASSWORD", process.env["DB_PASSWORD"]);
-console.log("DB_HOST", process.env["DB_HOST"]);
-console.log("DB_PORT", process.env["DB_PORT"]);
-console.log("DB_NAME", process.env["DB_NAME"]);
-
-const mongoDbUrl = `mongodb://${process.env["DB_USER"]}:${process.env["DB_PASSWORD"]}@${process.env["DB_HOST"]}:${process.env["DB_PORT"]}/${process.env["DB_NAME"]}?authSource=admin`;
+const mongoDbUrl =
+  process.env.MONGODB_URL || "mongodb://mongo:27017/taplist-klm";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
