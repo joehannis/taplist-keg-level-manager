@@ -36,9 +36,80 @@ Your tap information will be populated. Enter the amount you've served from the 
 
 You will need to have [docker](https://www.docker.com) installed on your system
 
-In your terminal, run ```docker pull joehannis/taplist-keg-level-manager:latest```
+Create a file in a directory of your choice called ```docker-compose.yml```
 
-Once the pull has completed, run ```docker run -p 4173:4173 joehannis/taplist-keg-level-manager```
+Paste this into that file:
+
+```
+services:
+  mongo:
+    networks:
+      - my-network
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    networks:
+      - my-network
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+
+  api:
+    networks:
+      - my-network
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:latest
+    container_name: api-container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  frontend:
+    networks:
+      - my-network
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:latest
+    container_name: frontend-container
+    ports:
+      - "4173:4173"
+    environment:
+      REACT_APP_API_URL: http://api-container:3000
+    depends_on:
+      - api
+
+networks:
+  my-network:
+    driver: bridge
+```
+In your terminal, navigate to the file containing your ```docker-compose.yml``` and run ```docker-compose up -d```
 
 The interface can be accessed at ```http://localhost:4173``` on your local machine or ```<your_ip_address>:4173``` from another device on the network.
 
