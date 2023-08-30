@@ -1,6 +1,6 @@
-<p align="center">
+<h1 align="center">
   <strong>Taplist Keg Level Manager</strong>
-</p>
+</h1>
 
 <p align="center">
   <a href="https://hub.docker.com/r/joehannis/taplist-keg-level-manager">
