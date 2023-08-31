@@ -76,7 +76,7 @@ services:
           - linux/arm/v7
           - linux/arm/v8
         tags:
-          - joehannis/taplist-keg-level-manager:latest
+          - joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
       - "3000:3000"
@@ -96,7 +96,7 @@ services:
           - linux/arm/v7
           - linux/arm/v8
         tags:
-          - joehannis/taplist-keg-level-manager:latest
+          - joehannis/taplist-keg-level-manager:frontend-latest
     container_name: frontend-container
     ports:
       - "4173:4173"
