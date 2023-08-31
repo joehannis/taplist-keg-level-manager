@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://hub.docker.com/r/joehannis/taplist-keg-level-manager">
-    <img src="https://img.shields.io/badge/-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+    <img src="https://img.shields.io/badge/-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" width="150" height="50" alt="Docker">
   </a>
 </p>
 
