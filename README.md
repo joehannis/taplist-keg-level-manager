@@ -66,17 +66,7 @@ services:
   api:
     networks:
       - my-network
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-      x-bake:
-        platforms:
-          - linux/amd64
-          - linux/arm64
-          - linux/arm/v7
-          - linux/arm/v8
-        tags:
-          - joehannis/taplist-keg-level-manager:api-latest
+    image: joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
       - "3000:3000"
@@ -86,17 +76,7 @@ services:
   frontend:
     networks:
       - my-network
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      x-bake:
-        platforms:
-          - linux/amd64
-          - linux/arm64
-          - linux/arm/v7
-          - linux/arm/v8
-        tags:
-          - joehannis/taplist-keg-level-manager:frontend-latest
+    image: joehannis/taplist-keg-level-manager:frontend-latest
     container_name: frontend-container
     ports:
       - "4173:4173"
