@@ -1,60 +1,27 @@
 services:
-  mongo:
-    networks:
-      - my-network
-    image: mongo
-    container_name: mongo
-    ports:
-      - 27017:27017
-    restart: always
-
-  mongo-express:
-    networks:
-      - my-network
-    image: mongo-express
-    container_name: mongo-express
-    ports:
-      - 8081:8081
-    depends_on:
-      - mongo
-    restart: always
+   db:  # PostgreSQL database service
+    image: postgres:latest
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taplist-integration
+    volumes:
+      - ./api/schema: docker-entrypoint-initdb.d
+    networks:
+      - my-network
 
   api:
     networks:
       - my-network
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-      x-bake:
-        platforms:
-          - linux/amd64
-          - linux/arm64
-          - linux/arm/v7
-          - linux/arm/v8
-        tags:
-          - joehannis/taplist-keg-level-manager:api-latest
+    image: joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
       - "3000:3000"
-    depends_on:
-      - mongo
 
   frontend:
     networks:
       - my-network
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      x-bake:
-        platforms:
-          - linux/amd64
-          - linux/arm64
-          - linux/arm/v7
-          - linux/arm/v8
-        tags:
-          - joehannis/taplist-keg-level-manager:frontend-latest
+    image: joehannis/taplist-keg-level-manager:frontend-latest
     container_name: frontend-container
     ports:
       - "4173:4173"
