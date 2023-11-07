@@ -1,14 +1,24 @@
-# Taplist Keg Level Manager
+<h1 align="center">
+  <strong>Taplist Keg Level Manager</strong>
+</h1>
 
-### Manage your Taplist keg levels through a simple interface
+<p align="center">
+  <a href="https://hub.docker.com/r/joehannis/taplist-keg-level-manager">
+    <img src="https://img.shields.io/badge/-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" width="150" height="50" alt="Docker">
+  </a>
+</p>
 
-## Features
+<p align="center">
+  Manage your Taplist keg levels through a simple interface
+</p>
+
+#### Features
 
 Supports metric, US imperial and British Imperial units. Buttons can be used for standard pours, or a custom amount can be entered.
 
-## Instructions
+#### Instructions
 
-### A paid subscription to [taplist.io](https://taplist.io) is required
+##### A paid subscription to [taplist.io](https://taplist.io) is required
 
 Log into your taplist.io account and select 'Account' in the navigation bar and then 'Integrations'. Create and API key and copy it. The key you need will start with 'secret-'
 
@@ -20,18 +30,55 @@ Your tap information will be populated. Enter the amount you've served from the 
 
 ![](./taplist-keg-level-manager-main.png)
 
-## Build Instructions
+#### Build Instructions
 
-#### Required
+##### Required
 
-You will need to install node.js and npm for this to run. This can be done via [homebrew](https://brew.sh/) (macOS) with `brew install node`. For linux, use `sudo apt-get install nodejs npm` Please see this [link](https://nodejs.org/en/download/package-manager) for other systems.
+You will need to have [docker](https://www.docker.com) installed on your system
 
-This is designed to be run locally on your machine.
+Create a file in a directory of your choice called ```docker-compose.yml```
 
-- Clone the repo onto your local machine
-- Open a terminal window, and `cd` into the repo
-- Run `chmod +x ./start.sh`
-- Run `./start.sh`
-- You can stop the manager with `./stop` when in the repo directory
+Paste this into that file:
+
+```
+services:
+   db:  # PostgreSQL database service
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taplist-integration
+    volumes:
+      - ./api/schema:/docker-entrypoint-initdb.d
+    networks:
+      - my-network
+
+  api:
+    networks:
+      - my-network
+    image: joehannis/taplist-keg-level-manager:api-latest
+    container_name: api-container
+    ports:
+      - "3000:3000"
+
+  frontend:
+    networks:
+      - my-network
+    image: joehannis/taplist-keg-level-manager:frontend-latest
+    container_name: frontend-container
+    ports:
+      - "4173:4173"
+    environment:
+      REACT_APP_API_URL: http://api-container:3000
+    depends_on:
+      - api
+
+networks:
+  my-network:
+    driver: bridge
+```
+In your terminal, navigate to the file containing your ```docker-compose.yml``` and run ```docker-compose up -d```
+
+The interface can be accessed at ```http://localhost:4173``` on your local machine or ```<your_ip_address>:4173``` from another device on the network.
 
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
