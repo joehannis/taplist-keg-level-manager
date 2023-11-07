@@ -42,26 +42,16 @@ Paste this into that file:
 
 ```
 services:
-  mongo:
-    networks:
-      - my-network
-    image: mongo
-    container_name: mongo
-    ports:
-      - 27017:27017
-
-  mongo-express:
-    networks:
-      - my-network
-    image: mongo-express
-    container_name: mongo-express
-    ports:
-      - 8081:8081
-    depends_on:
-      - mongo
-    restart: always
+   db:  # PostgreSQL database service
+    image: postgres:latest
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taplist-integration
+    volumes:
+      - ./api/schema:/docker-entrypoint-initdb.d
+    networks:
+      - my-network
 
   api:
     networks:
@@ -70,8 +60,6 @@ services:
     container_name: api-container
     ports:
       - "3000:3000"
-    depends_on:
-      - mongo
 
   frontend:
     networks:
