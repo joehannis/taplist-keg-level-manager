@@ -1,14 +1,14 @@
 services:
-   db:  # PostgreSQL database service
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: taplist-integration
-    volumes:
-      - ./api/schema:/docker-entrypoint-initdb.d
-    networks:
-      - my-network
+  db: # PostgreSQL database service
+  image: postgres:latest
+  environment:
+    POSTGRES_USER: root
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: taplist-integration
+  volumes:
+    - ./api/schema:/docker-entrypoint-initdb.d
+  networks:
+    - my-network
 
   api:
     networks:
@@ -16,7 +16,7 @@ services:
     image: joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
   frontend:
     networks:
@@ -29,8 +29,6 @@ services:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
-    networks:
-      - my-network
 
 networks:
   my-network:
