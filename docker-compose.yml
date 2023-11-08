@@ -1,5 +1,5 @@
 services:
-  db: # PostgreSQL database service
+   db:  # PostgreSQL database service
     image: postgres:latest
     environment:
       POSTGRES_USER: root
@@ -11,14 +11,16 @@ services:
       - my-network
 
   api:
+    networks:
+      - my-network
     image: joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
-      - '3000:3000'
-    networks:
-      - my-network
+      - "3000:3000"
 
   frontend:
+    networks:
+      - my-network
     image: joehannis/taplist-keg-level-manager:frontend-latest
     container_name: frontend-container
     ports:
