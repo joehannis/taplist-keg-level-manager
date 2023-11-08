@@ -25,6 +25,9 @@ services:
         tags:
           - joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
+    environment:
+      - DATABASE_URL=postgres://root:password@db:5432/taplist-integration
+
     ports:
       - '3000:3000'
     depends_on:

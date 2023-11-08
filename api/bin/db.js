@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const db = new Pool({
   user: 'root',
+  host: 'db',
   database: 'taplist-integration',
   password: 'password',
   port: 5432, // default port for PostgreSQL
