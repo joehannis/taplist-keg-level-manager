@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: taplist-integration
     volumes:
-      - ./api/schema: docker-entrypoint-initdb.d
+      - api/schema:/docker-entrypoint-initdb.d
     networks:
       - my-network
 
