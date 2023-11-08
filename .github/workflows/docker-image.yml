@@ -24,4 +24,4 @@ jobs:
       -
         name: Build Docker images
         run: |
-          docker buildx bake --push
+          docker buildx bake --push frontend:latest,api:latest
