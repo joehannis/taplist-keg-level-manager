@@ -6,31 +6,23 @@ const db = new Pool({
   host: 'db',
   database: 'taplist-integration',
   password: 'password',
-  port: 5432, // default port for PostgreSQL
+  port: 5432,
 });
 
-db.connect((err, client, done) => {
-  if (err) throw err;
+(async () => {
+  const client = await db.connect();
 
-  // Read and execute the schema SQL file
-  fs.readFile('../schema/schema.sql', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading schema file:', err);
-      return;
-    }
-
-    client.query(data, (err) => {
-      done(); // Release the client back to the pool
-
-      if (err) {
-        console.error('Error executing schema SQL:', err);
-      } else {
-        console.log(
-          'Connected to PostgreSQL database and schema executed successfully'
-        );
-      }
-    });
-  });
-});
+  try {
+    const schemaSQL = fs.readFileSync('../schema/schema.sql', 'utf8');
+    await client.query(schemaSQL);
+    console.log(
+      'Connected to PostgreSQL database and schema executed successfully'
+    );
+  } catch (err) {
+    console.error('Error executing schema SQL:', err);
+  } finally {
+    client.release();
+  }
+})();
 
 module.exports = db;
