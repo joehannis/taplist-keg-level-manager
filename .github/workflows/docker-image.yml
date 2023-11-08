@@ -24,4 +24,4 @@ jobs:
       -
         name: Build Docker images
         run: |
-          docker buildx bake --push -f docker-compose.yml
+          docker buildx bake --push -f docker-compose.yml taplist-keg-level-manager
