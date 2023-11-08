@@ -13,15 +13,37 @@ services:
       - my-network
 
   api:
-    image: joehannis/taplist-keg-level-manager:api-latest
+    networks:
+      - my-network
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:latest
     container_name: api-container
     ports:
       - '3000:3000'
-    networks:
-      - my-network
 
   frontend:
-    image: joehannis/taplist-keg-level-manager:frontend-latest
+    networks:
+      - my-network
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:latest
     container_name: frontend-container
     ports:
       - '4173:4173'
@@ -29,8 +51,6 @@ services:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
-    networks:
-      - my-network
 
 networks:
   my-network:
