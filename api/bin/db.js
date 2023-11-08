@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 const fs = require('fs');
+const path = require('path');
 
 const db = new Pool({
   user: 'root',
@@ -13,7 +14,8 @@ const db = new Pool({
   const client = await db.connect();
 
   try {
-    const schemaSQL = fs.readFileSync('../schema/schema.sql', 'utf8');
+    const schemaFilePath = path.join(__dirname, '../schema/schema.sql');
+    const schemaSQL = fs.readFileSync(schemaFilePath, 'utf8');
     await client.query(schemaSQL);
     console.log(
       'Connected to PostgreSQL database and schema executed successfully'
