@@ -28,7 +28,7 @@ const resetController = async (req, res) => {
   } catch (err) {
     console.error('Error occurred while updating tap volume:', err);
     res.status(500).json({
-      error: `An error occurred while updatng tap volume: ${err.message}`,
+      error: `An error occurred while updating tap volume: ${err.message}`,
     });
   }
 };
