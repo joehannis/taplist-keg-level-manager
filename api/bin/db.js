@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'postgres',
+  user: 'taplist',
   host: 'db',
   database: 'taplist-integration',
   password: 'password',
