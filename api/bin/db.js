@@ -17,9 +17,7 @@ const db = new Pool({
     const schemaFilePath = path.join(__dirname, '../schema/schema.sql');
     const schemaSQL = fs.readFileSync(schemaFilePath, 'utf8');
     await client.query(schemaSQL);
-    console.log(
-      'Connected to PostgreSQL database and schema executed successfully'
-    );
+    console.log('Connected to PostgreSQL database and schema executed');
   } catch (err) {
     console.error('Error executing schema SQL:', err);
   } finally {
