@@ -12,7 +12,7 @@ const createAuth = async (venue, auth_token) => {
 
     return result; // Return the result object
   } catch (err) {
-    console.error('Error occurred while saving authorization:', err);
+    console.error('Error occurred while saving authorisation:', err);
     throw err; // Rethrow the error for the controller to handle
   }
 };
