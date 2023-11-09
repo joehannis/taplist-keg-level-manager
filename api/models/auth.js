@@ -1,14 +1,14 @@
-const db = require('../bin/db'); // Import your database connection
+const pool = require('../bin/db'); // Import your database connection
 
 const createAuth = async (venue, auth_token) => {
   try {
     const query = `
       INSERT INTO "taplist-integration"."auth_info" ("venue", "auth_token")
-      VALUES ($1, $2)
+      VALUES (${venue}, ${auth_token})
       RETURNING "id";
     `;
 
-    const result = await db.one(query, [venue, auth_token]);
+    const result = await pool.query(query);
 
     return result; // Return the result object
   } catch (err) {

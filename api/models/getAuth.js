@@ -1,4 +1,4 @@
-const db = require('../bin/db'); // Import your database connection
+const pool = require('../bin/db'); // Import your database connection
 
 const getAuth = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const getAuth = async (req, res) => {
       SELECT * FROM "taplist-integration"."auth_info";
     `;
 
-    const authData = await db.any(query); // Use db.any to retrieve multiple rows
+    const authData = await pool.query(query);
     console.log(authData);
 
     res.status(200).json(authData);

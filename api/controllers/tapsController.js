@@ -1,5 +1,4 @@
 const getAuth = require('../models/getAuth');
-const db = require('../bin/db');
 
 const tapsController = async (req, res) => {
   try {

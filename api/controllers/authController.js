@@ -1,6 +1,5 @@
 const createAuth = require('../models/auth');
 const getAuth = require('../models/getAuth');
-const db = require('../bin/db');
 
 const authController = {
   createAuth: async (req, res) => {
