@@ -2,11 +2,11 @@ services:
   db:
     image: postgres:latest
     environment:
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: taplist-integration
     volumes:
-      - ./api/schema:/docker-entrypoint-initdb.d
+      - ./api/schema/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
       - my-network
 
