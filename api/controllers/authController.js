@@ -16,7 +16,7 @@ const authController = {
     } catch (err) {
       console.error('Error occurred while saving authorization:', err);
       res.status(500).json({
-        error: `An error occurred while saving authorization: ${err.message}`,
+        error: `An error occurred while saving authorisation: ${err.message}`,
       });
     }
   },
