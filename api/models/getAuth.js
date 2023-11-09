@@ -7,6 +7,7 @@ const getAuth = async (req, res) => {
     `;
 
     const authData = await db.any(query); // Use db.any to retrieve multiple rows
+    console.log(authData);
 
     res.status(200).json(authData);
   } catch (err) {

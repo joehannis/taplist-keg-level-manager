@@ -7,6 +7,7 @@ const authController = {
       const { venue, auth_token } = req.body; // Extract venue and auth_token from the request
 
       const newAuth = await createAuth(venue, auth_token);
+      console.log('this is from authController');
 
       res.status(200).json({
         message: 'Authorization saved successfully.',
@@ -21,7 +22,9 @@ const authController = {
   },
   getAuth: async (req, res) => {
     try {
-      const response = await getAuth(venue, auth_token);
+      const response = await getAuth();
+      console.log('this is from authController');
+      console.log(response);
       res.status(200).json({
         message: response,
       });
