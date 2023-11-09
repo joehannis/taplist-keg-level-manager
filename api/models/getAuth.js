@@ -3,7 +3,7 @@ const pool = require('../bin/db'); // Import your database connection
 const getAuth = async (req, res) => {
   try {
     const query = `
-      SELECT * FROM "taplist-integration"."auth_info";
+      SELECT * FROM "auth_info";
     `;
 
     const authData = await pool.query(query);

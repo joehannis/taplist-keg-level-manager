@@ -3,7 +3,7 @@ const pool = require('../bin/db'); // Import your database connection
 const createAuth = async (venue, auth_token) => {
   try {
     const query = `
-      INSERT INTO "taplist-integration"."auth_info" ("venue", "auth_token")
+      INSERT INTO "auth_info" ("venue", "auth_token")
       VALUES (${venue}, ${auth_token})
       RETURNING "id";
     `;
