@@ -1,4 +1,5 @@
 const getAuth = require('../models/getAuth');
+const db = require('../bin/db');
 
 const servedController = async (req, res) => {
   try {
