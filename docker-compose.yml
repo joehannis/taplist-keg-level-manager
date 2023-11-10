@@ -16,7 +16,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: taplist-integration
+      POSTGRES_DB: taplist-keg-level-manager
     ports:
       - '5432:5432'
     container_name: db-container
