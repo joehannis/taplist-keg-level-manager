@@ -1,7 +1,6 @@
 ALTER ROLE postgres WITH PASSWORD 'postgres';
-DROP DATABASE IF EXISTS "taplist-keg-level-manager" WITH (FORCE);
-CREATE DATABASE "taplist-keg-level-manager" WITH OWNER = postgres;
-CREATE TABLE auth_info (
+CREATE DATABASE IF NOT EXISTS "taplist-keg-level-manager" WITH OWNER = postgres;
+CREATE TABLE IF NOT EXISTS Sauth_info (
   id SERIAL PRIMARY KEY,
   venue VARCHAR(255) NOT NULL,
   auth_token VARCHAR(255) NOT NULL
