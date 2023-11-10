@@ -1,22 +1,24 @@
 services:
   db:
+    networks:
+      - my-network
     build:
       context: ./db
       dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:db-latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: taplist-integration
-    networks:
-      - my-network
-    x-bake:
-      platforms:
-        - linux/amd64
-        - linux/arm64
-        - linux/arm/v7
-        - linux/arm/v8
-      tags:
-        - joehannis/taplist-keg-level-manager:db-latest
+    ports:
+      - '5432:5432'
     container_name: db-container
 
   api:
