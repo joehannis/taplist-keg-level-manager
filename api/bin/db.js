@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'db',
   database: 'taplist-integration',
-  password: 'password',
+  password: 'postgres',
   port: 5432,
 });
 
