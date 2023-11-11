@@ -9,8 +9,10 @@ const createAuth = async (venue, auth_token) => {
     `;
 
     const result = await pool.query(query);
+    console.log('this is from auth.js');
+    console.log(result.rows[0]); // Print the result object
 
-    return result; // Return the result object
+    return result.rows[0]; // Return the result object
   } catch (err) {
     console.error('Error occurred while saving authorisation:', err);
     throw err; // Rethrow the error for the controller to handle
