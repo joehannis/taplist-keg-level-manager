@@ -3,9 +3,9 @@ const pool = require('../bin/db'); // Import your database connection
 const createAuth = async (venue, auth_token) => {
   try {
     const query = `
-      INSERT INTO "auth_info" ("venue", "auth_token")
-      VALUES (${venue}, ${auth_token})
-      RETURNING "id";
+    INSERT INTO "auth_info" ("venue", "auth_token")
+    VALUES ('hoppyhannis', 'secret-nnz5lj4jfxfqh18afmcaj1imsne84fc2f4b2czs9')
+    RETURNING "id";
     `;
 
     const result = await pool.query(query);
