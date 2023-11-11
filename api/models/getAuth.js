@@ -9,7 +9,7 @@ const getAuth = async (req, res) => {
     const authData = await pool.query(query);
     console.log(authData);
 
-    res.status(200).json(authData);
+    res.json(authData);
   } catch (err) {
     console.error('Error occurred while getting authorisation:', err);
     res.status(500).json({

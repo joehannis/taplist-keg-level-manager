@@ -9,7 +9,7 @@ const authController = {
       const newAuth = await createAuth(venue, auth_token);
       console.log('this is from authController');
 
-      res.status(200).json({
+      res.json({
         message: 'Authorization saved successfully.',
         AuthId: newAuth.id,
       });
