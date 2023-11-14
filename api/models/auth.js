@@ -9,7 +9,7 @@ const createAuth = async (venue, auth_token) => {
     `;
 
     const result = await pool.query(query);
-    console.log('this is from auth.js');
+    console.log('Auth saved successfully!');
     console.log(result.rows[0].venue); // Print the result object
 
     return result.rows[0].venue; // Return the result object
