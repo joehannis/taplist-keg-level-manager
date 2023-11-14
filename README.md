@@ -42,28 +42,27 @@ Paste this into that file:
 
 ```
 services:
-   db:  # PostgreSQL database service
-    image: postgres:latest
+  db:
+    image: joehannis/taplist-keg-level-manager:db-latest
+    container_name: db-container
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: taplist-integration
-    volumes:
-      - ./api/schema:/docker-entrypoint-initdb.d
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taplist-keg-level-manager
+    ports:
+      - "5432:5432"
     networks:
       - my-network
 
   api:
-    networks:
-      - my-network
     image: joehannis/taplist-keg-level-manager:api-latest
     container_name: api-container
     ports:
       - "3000:3000"
-
-  frontend:
     networks:
       - my-network
+
+  frontend:
     image: joehannis/taplist-keg-level-manager:frontend-latest
     container_name: frontend-container
     ports:
@@ -72,6 +71,8 @@ services:
       REACT_APP_API_URL: http://api-container:3000
     depends_on:
       - api
+    networks:
+      - my-network
 
 networks:
   my-network:
