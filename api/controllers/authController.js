@@ -7,12 +7,10 @@ const authController = {
       const { venue, auth_token } = req.body; // Extract venue and auth_token from the request
 
       const newAuth = await createAuth(venue, auth_token);
-      console.log('this is from authController');
-      console.log(newAuth);
 
       res.status(200).json({
         message: 'Authorization saved successfully.',
-        AuthId: newAuth.id,
+        auth: newAuth,
       });
     } catch (err) {
       console.error('Error occurred while saving authorization:', err);
