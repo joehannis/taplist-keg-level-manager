@@ -4,8 +4,9 @@ const tapsController = async (req, res) => {
   try {
     const details = await getAuth();
     console.log('this is from tapsController');
-    console.log(details);
-    const auth_token = details[0].auth_token;
+    console.log(details.Result.rows[0].auth_token);
+    const auth_token = details.Result.rows[0].auth_token;
+    const venue = details.Result.rows[0].venue;
     const response = await fetch(
       `https://api.taplist.io/api/v1/venues/${venue}/taps`,
       {
