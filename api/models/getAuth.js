@@ -1,6 +1,6 @@
 const pool = require('../bin/db'); // Import your database connection
 
-const getAuth = async (req, res) => {
+const getAuth = async () => {
   try {
     const query = `
       SELECT * FROM "auth_info";
@@ -10,7 +10,7 @@ const getAuth = async (req, res) => {
     console.log('This is authData from getAuth');
     console.log(authData);
 
-    res.json(authData);
+    return authData;
   } catch (err) {
     console.error('Error occurred while getting authorisation details:', err);
     res.status(500).json({
