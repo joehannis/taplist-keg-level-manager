@@ -10,7 +10,7 @@ const getAuth = async (req, res) => {
     console.log('This is authData from getAuth');
     console.log(authData);
 
-    res.json(authData.rows);
+    res.json(authData);
   } catch (err) {
     console.error('Error occurred while getting authorisation details:', err);
     res.status(500).json({

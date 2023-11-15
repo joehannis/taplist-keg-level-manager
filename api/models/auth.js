@@ -4,11 +4,11 @@ const createAuth = async (venue, auth_token) => {
   try {
     const query = `
     INSERT INTO "auth_info" ("venue", "auth_token")
-    VALUES ('hoppyhannis', 'secret-nnz5lj4jfxfqh18afmcaj1imsne84fc2f4b2czs9')
+    VALUES ($1, $2)
     RETURNING "id";
     `;
 
-    const result = await pool.query(query);
+    const result = await pool.query(query, [venue, auth_token]);
     console.log('Auth saved successfully!');
 
     return result;
