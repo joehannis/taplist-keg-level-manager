@@ -7,6 +7,7 @@ const getAuth = async (req, res) => {
     `;
 
     const authData = await pool.query(query);
+    console.log('This is authData from getAuth');
     console.log(authData);
 
     res.json(authData.rows);
