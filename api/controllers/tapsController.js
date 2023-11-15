@@ -4,7 +4,12 @@ const tapsController = async (req, res) => {
   try {
     const details = await getAuth();
     console.log('this is from tapsController');
-    console.log(details.Result.rows[0].auth_token);
+    console.log('full object');
+    console.log(details);
+    console.log('result');
+    console.log(details.Result);
+    console.log('rows');
+    console.log(details.Result.rows);
     const auth_token = details.Result.rows[0].auth_token;
     const venue = details.Result.rows[0].venue;
     const response = await fetch(
