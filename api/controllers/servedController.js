@@ -5,10 +5,8 @@ const servedController = async (req, res) => {
     const { currentTapNumber, servedAmount } = req.body;
     const parsedServedAmount = parseInt(servedAmount);
     const details = await getAuth();
-    console.log('this is from servedController');
-    console.log(details);
-    const venue = details[0].venue;
-    const auth_token = details[0].auth_token;
+    const auth_token = details.rows[0].auth_token;
+    const venue = details.rows[0].venue;
     const response = await fetch(
       `https://api.taplist.io/api/v1/venues/${venue}/taps/${currentTapNumber}/current-keg`,
       {

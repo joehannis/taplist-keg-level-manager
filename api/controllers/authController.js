@@ -22,8 +22,6 @@ const authController = {
   getAuth: async (req, res) => {
     try {
       const response = await getAuth();
-      console.log('this is from authController');
-      console.log(response);
       res.status(200).json({
         message: response,
       });

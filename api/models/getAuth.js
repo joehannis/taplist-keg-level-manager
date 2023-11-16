@@ -7,8 +7,6 @@ const getAuth = async () => {
     `;
 
     const authData = await pool.query(query);
-    console.log('This is authData from getAuth');
-    console.log(authData);
 
     return authData;
   } catch (err) {
