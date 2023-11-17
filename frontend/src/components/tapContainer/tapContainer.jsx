@@ -1,31 +1,37 @@
-import { React } from "react";
+import { React } from 'react';
 
-import ServedForm from "../served/servedForm";
-import fetchTapData from "../../common/fetchTapData";
+import ServedForm from '../served/servedForm';
+import fetchTapData from '../../common/fetchTapData';
 
 const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
   return (
-    <div className="tap-data-container">
+    <div className='tap-data-container'>
       {tapData !== null &&
         tapData.map((tap, index) => (
           <div
             key={tap.current_keg.current_tap_number}
-            className={`tap-item ${index % 3 === 2 ? "break-after" : ""}`}
+            className={
+              tapData.length === 1
+                ? 'tap-item-one'
+                : tapData.length === 2
+                ? 'tap-item-two'
+                : `tap-item ${index % 3 === 2 ? 'break-after' : ''}`
+            }
           >
-            <div className="tap-content">
+            <div className='tap-content'>
               <img
-                className="glass-image"
+                className='glass-image'
                 src={tap.current_keg.beverage.glassware_illustration_url}
-                alt="beer label"
+                alt='beer label'
               />
-              <div className="tap-details">
+              <div className='tap-details'>
                 <b>
-                  <p>{tap.label ? tap.label : "Tap No. " + tap.number}</p>
+                  <p>{tap.label ? tap.label : 'Tap No. ' + tap.number}</p>
                 </b>
                 <p>Beer Name: {tap.current_keg.beverage.name}</p>
                 <p>ABV: {tap.current_keg.beverage.abv_percent}</p>
                 <p>
-                  Style:{" "}
+                  Style:{' '}
                   {tap.current_keg.beverage.style
                     ? tap.current_keg.beverage.style.style ||
                       tap.current_keg.beverage.beverage_type
@@ -33,19 +39,19 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
                 </p>
                 <div>
                   <p>Remaining Keg Volume:</p>
-                  {unit === "us-imperial" ? (
+                  {unit === 'us-imperial' ? (
                     <p>
-                      {Math.trunc(tap.current_keg.remaining_volume_ml / 29.6)}{" "}
+                      {Math.trunc(tap.current_keg.remaining_volume_ml / 29.6)}{' '}
                       oz / {Math.trunc(tap.current_keg.percent_full)}% full
                     </p>
-                  ) : unit === "british-imperial" ? (
+                  ) : unit === 'british-imperial' ? (
                     <p>
-                      {Math.trunc(tap.current_keg.remaining_volume_ml / 568)}{" "}
+                      {Math.trunc(tap.current_keg.remaining_volume_ml / 568)}{' '}
                       pints / {Math.trunc(tap.current_keg.percent_full)}% full
                     </p>
                   ) : (
                     <p>
-                      {Math.trunc(tap.current_keg.remaining_volume_ml)} ml /{" "}
+                      {Math.trunc(tap.current_keg.remaining_volume_ml)} ml /{' '}
                       {Math.trunc(tap.current_keg.percent_full)}% full
                     </p>
                   )}
