@@ -117,6 +117,8 @@ code {
   box-sizing: border-box;
   text-align: center;
   width: calc(60%);
+  height: calc(100vh);
+  overflow: auto;
 }
 
 .tap-item-two {
