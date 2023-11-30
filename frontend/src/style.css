@@ -115,7 +115,7 @@ code {
   border-radius: 10px;
   box-sizing: border-box;
   text-align: center;
-  width: calc(100%);
+  width: 80%;
 }
 
 .tap-item-two {
