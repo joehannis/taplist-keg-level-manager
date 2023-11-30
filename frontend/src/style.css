@@ -109,13 +109,14 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-self: center;
   padding: 2%;
   border: 1px solid #ccc;
   margin: 1%;
   border-radius: 10px;
   box-sizing: border-box;
   text-align: center;
-  width: 80%;
+  width: calc(60%);
 }
 
 .tap-item-two {
