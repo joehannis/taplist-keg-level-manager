@@ -29,7 +29,7 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
                   <p>{tap.label ? tap.label : 'Tap No. ' + tap.number}</p>
                 </b>
                 <p>Beer Name: {tap.current_keg.beverage.name}</p>
-                <p>ABV: {tap.current_keg.beverage.abv_percent}</p>
+                <p>ABV: {tap.current_keg.beverage.abv_percent}%</p>
                 <p>
                   Style:{' '}
                   {tap.current_keg.beverage.style
