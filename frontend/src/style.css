@@ -339,20 +339,6 @@ code {
     width: 90%;
   }
 
-  /* Tap item styles */
-  .tap-item {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 90%;
-    margin: 4% auto;
-    padding: 2%;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
   .tap-item {
     display: flex;
     flex-direction: column;
