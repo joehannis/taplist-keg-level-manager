@@ -343,10 +343,10 @@ code {
   .tap-details {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     text-align: center;
     width: 70%;
-    overflow: hidden;
   }
 
   .tap-item {
@@ -360,7 +360,6 @@ code {
     border-radius: 10px;
     box-sizing: border-box;
     text-align: center;
-    overflow: hidden;
   }
 
   /* Glass image styles */
