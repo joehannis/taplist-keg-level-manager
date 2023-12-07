@@ -126,9 +126,7 @@ const ServedForm = ({
             name='served_amount'
             id='served-text'
             onFocus={(e) => e.target.setAttribute('placeholder', '')}
-            onBlur={(e) =>
-              e.target.setAttribute('placeholder', 'Enter served amount in ml')
-            }
+            onBlur={(e) => e.target.setAttribute('placeholder', 'Enter amount')}
           />
           ml
         </div>

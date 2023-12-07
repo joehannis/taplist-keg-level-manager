@@ -365,6 +365,7 @@ code {
     box-sizing: border-box;
     text-align: center;
     overflow: hidden;
+    white-space: nowrap;
   }
 
   /* Glass image styles */
