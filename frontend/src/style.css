@@ -346,7 +346,6 @@ code {
     text-align: center;
     width: 70%;
     overflow: hidden;
-    white-space: nowrap;
   }
 
   .tap-item {
@@ -361,7 +360,6 @@ code {
     box-sizing: border-box;
     text-align: center;
     overflow: hidden;
-    white-space: nowrap;
   }
 
   /* Glass image styles */
