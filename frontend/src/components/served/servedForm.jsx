@@ -128,7 +128,7 @@ const ServedForm = ({
             onFocus={(e) => e.target.setAttribute('placeholder', '')}
             onBlur={(e) => e.target.setAttribute('placeholder', 'Enter amount')}
           />
-          ml
+          &nbsp;ml
         </div>
         <button className='served-submit' type='submit'>
           Submit
