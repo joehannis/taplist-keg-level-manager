@@ -99,6 +99,13 @@ const ServedForm = ({
         ) : unit === 'british-imperial' ? (
           <>
             <button
+              className='pintthird'
+              onClick={() => handleBeer(190)}
+              type='button'
+            >
+              1/3 Pint
+            </button>
+            <button
               className='pinthalf'
               onClick={() => handleBeer(284)}
               type='button'
