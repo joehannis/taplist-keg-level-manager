@@ -85,6 +85,6 @@ volumes:
 ```
 In your terminal, navigate to the file containing your ```docker-compose.yml``` and run ```docker-compose up -d```
 
-The interface can be accessed at ```http://localhost:4173``` on your local machine or ```<your_ip_address>:4173``` from another device on the network.
+The interface can be accessed at ```http://localhost:4173``` on your local machine or ```<ip_address>:4173``` from another device on the network.
 
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!
