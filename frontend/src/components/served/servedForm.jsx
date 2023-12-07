@@ -122,7 +122,7 @@ const ServedForm = ({
           <input
             className='served-text'
             type='number'
-            placeholder='Enter served amount in ml'
+            placeholder='Enter amount'
             name='served_amount'
             id='served-text'
             onFocus={(e) => e.target.setAttribute('placeholder', '')}
@@ -130,6 +130,7 @@ const ServedForm = ({
               e.target.setAttribute('placeholder', 'Enter served amount in ml')
             }
           />
+          ml
         </div>
         <button className='served-submit' type='submit'>
           Submit
