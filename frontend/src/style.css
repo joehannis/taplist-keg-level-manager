@@ -339,6 +339,16 @@ code {
     width: 90%;
   }
 
+  .tap-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .tap-item {
     display: flex;
     flex-direction: column;
