@@ -42,7 +42,7 @@ Paste this into that file:
 
 ```
 services:
-  db:
+  db:  # PostgreSQL database service
     image: joehannis/taplist-keg-level-manager:db-latest
     container_name: db-container
     environment:
@@ -53,6 +53,9 @@ services:
       - "5432:5432"
     networks:
       - my-network
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+  
 
   api:
     image: joehannis/taplist-keg-level-manager:api-latest
@@ -77,6 +80,8 @@ services:
 networks:
   my-network:
     driver: bridge
+volumes:
+  db-data:
 ```
 In your terminal, navigate to the file containing your ```docker-compose.yml``` and run ```docker-compose up -d```
 
