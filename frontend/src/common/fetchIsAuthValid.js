@@ -1,12 +1,12 @@
 const isAuthValid = async () => {
   try {
-    const response = await fetch("http://localhost:3000/auth");
+    const response = await fetch('http://localhost:3000/auth');
     const data = await response.json();
     if (data.length === 0) {
-      window.localStorage.clear();
+      localStorage.clear();
     }
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };
