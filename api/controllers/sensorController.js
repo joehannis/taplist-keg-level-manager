@@ -1,6 +1,6 @@
 const getAuth = require('../models/getAuth');
 
-const servedController = async (currentTapNumber, servedAmount) => {
+const sensorController = async (currentTapNumber, servedAmount) => {
   try {
     const parsedServedAmount = parseInt(servedAmount);
     const details = await getAuth();
@@ -31,4 +31,4 @@ const servedController = async (currentTapNumber, servedAmount) => {
   }
 };
 
-module.exports = servedController;
+module.exports = sensorController;
