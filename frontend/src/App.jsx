@@ -88,7 +88,7 @@ const App = () => {
                   setUnit={setUnit}
                 />
               ) : (
-                <AuthForm issAuthorised={isAuthorised} />
+                <AuthForm setIsAuthorised={setIsAuthorised} />
               )
             }
           />

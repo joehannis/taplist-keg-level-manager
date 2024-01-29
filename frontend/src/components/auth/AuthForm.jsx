@@ -1,6 +1,6 @@
 import postAuth from '../../common/postAuth';
 
-const AuthForm = () => {
+const AuthForm = (setIsAuthorised) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -9,6 +9,7 @@ const AuthForm = () => {
 
     try {
       await postAuth(venue, auth_token);
+      setIsAuthorised(true);
     } catch (error) {
       console.error('An error occurred:', error);
     }
