@@ -17,7 +17,7 @@ const App = () => {
         const response = await fetchAuth();
         console.log(response);
         if (response.status === 200) {
-          isAuthorised = true;
+          setIsAuthorised(true);
         }
       } catch (error) {
         console.error('An error occurred:', error);
