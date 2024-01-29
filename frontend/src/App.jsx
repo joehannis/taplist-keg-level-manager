@@ -15,8 +15,8 @@ const App = () => {
     const fetchAuthData = async () => {
       try {
         const response = await fetchAuth();
-        console.log(response);
-        if (response) {
+        console.log(response.rowCount);
+        if (response.rowCount > 0) {
           setIsAuthorised(true);
         }
       } catch (error) {
