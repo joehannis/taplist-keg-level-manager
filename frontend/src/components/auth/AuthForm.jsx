@@ -1,6 +1,6 @@
-import fetchAuth from "../../common/fetchAuth";
+import postAuth from '../../common/postAuth';
 
-const AuthForm = ({ setIsAuthorized }) => {
+const AuthForm = (setIsAuthorised) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -8,35 +8,32 @@ const AuthForm = ({ setIsAuthorized }) => {
     const auth_token = event.target.elements.auth_token.value;
 
     try {
-      await fetchAuth(venue, auth_token);
-      event.target.reset();
-      localStorage.setItem("venue", venue);
-      localStorage.setItem("auth_token", auth_token);
-      setIsAuthorized(true);
+      await postAuth(venue, auth_token);
+      setIsAuthorised(true);
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.error('An error occurred:', error);
     }
   };
 
   return (
     <>
-      <div className="form-container">
-        <h2 className="auth-title">Enter your details</h2>
+      <div className='form-container'>
+        <h2 className='auth-title'>Enter your details</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-container">
+          <div className='input-container'>
             <input
-              className="auth-text"
-              type="text"
-              placeholder="Enter your venue name"
-              name="venue"
+              className='auth-text'
+              type='text'
+              placeholder='Enter your venue name'
+              name='venue'
             />
             <input
-              className="auth-text"
-              type="text"
-              placeholder="Enter your API key"
-              name="auth_token"
+              className='auth-text'
+              type='text'
+              placeholder='Enter your API key'
+              name='auth_token'
             />
-            <button className="auth-submit" type="submit">
+            <button className='auth-submit' type='submit'>
               Submit
             </button>
           </div>

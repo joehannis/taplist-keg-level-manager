@@ -24,9 +24,9 @@ const sensorController = async (currentTapNumber, servedAmount) => {
     console.log('keg volume updated from Flow Sensor');
     res.status(200).json(data);
   } catch (err) {
-    console.error('Error occurred while updating tap volume:', err);
+    console.error('Error occurred while updating tap volume from sensor:', err);
     res.status(500).json({
-      error: `An error occurred while updatng tap volume: ${err.message}`,
+      error: `An error occurred while updatng tap volume from sensor: ${err.message}`,
     });
   }
 };

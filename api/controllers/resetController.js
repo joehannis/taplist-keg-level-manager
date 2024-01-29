@@ -24,9 +24,9 @@ const resetController = async (req, res) => {
     console.log('keg volume reset');
     res.status(200).json(data);
   } catch (err) {
-    console.error('Error occurred while updating tap volume:', err);
+    console.error('Error occurred while resetting tap volume:', err);
     res.status(500).json({
-      error: `An error occurred while updating tap volume: ${err.message}`,
+      error: `An error occurred while resetting tap volume: ${err.message}`,
     });
   }
 };

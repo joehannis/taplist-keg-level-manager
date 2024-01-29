@@ -1,4 +1,4 @@
-import fetchTaps from "./fetchTaps";
+import fetchTaps from './fetchTaps';
 
 const fetchTapData = async (setTapData) => {
   try {
@@ -9,12 +9,12 @@ const fetchTapData = async (setTapData) => {
       setTapData(filteredTapData);
     } else {
       console.error(
-        "An error occurred while fetching tap data:",
+        'An error occurred while fetching tap data:',
         tapResponse.statusText
       );
     }
   } catch (error) {
-    console.error("An error occurred:", error);
+    console.error('An error occurred:', error);
   }
 };
 
