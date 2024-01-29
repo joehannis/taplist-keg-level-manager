@@ -6,15 +6,21 @@ import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
 const App = () => {
-  const [isAuthorised, setIsAuthorised] = useState(false);
+  let isAuthorised = useRef(false).current;
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState('metric');
+
+  useEffect(() => {
+    if (tapData !== null) {
+      isAuthorised = true;
+    }
+  }, [tapData]);
 
   useEffect(() => {
     if (isAuthorised) {
       fetchTapData(setTapData);
     }
-  }, [isAuthorised]);
+  }, []);
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value);
@@ -72,7 +78,7 @@ const App = () => {
                   setUnit={setUnit}
                 />
               ) : (
-                <AuthForm setIsAuthorised={setIsAuthorised} />
+                <AuthForm issAuthorised={isAuthorised} />
               )
             }
           />
