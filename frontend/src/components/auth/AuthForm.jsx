@@ -1,6 +1,6 @@
 import postAuth from '../../common/postAuth';
 
-const AuthForm = (setIsAuthorised) => {
+const AuthForm = ({ setIsAuthorised }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 

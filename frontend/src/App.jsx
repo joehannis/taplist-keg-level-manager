@@ -18,18 +18,13 @@ const App = () => {
         console.log(response.rowCount);
         if (response.rowCount > 0) {
           setIsAuthorised(true);
+          fetchTapData(setTapData);
         }
       } catch (error) {
         console.error('An error occurred:', error);
       }
     };
     fetchAuthData();
-  }, []);
-
-  useEffect(() => {
-    if (isAuthorised) {
-      fetchTapData(setTapData);
-    }
   }, []);
 
   const handleUnitChange = (e) => {
