@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthForm from './components/auth/AuthForm';
+import fetchAuth from './common/fetchAuth';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
@@ -11,10 +12,19 @@ const App = () => {
   const [unit, setUnit] = useState('metric');
 
   useEffect(() => {
-    if (tapData !== null) {
-      isAuthorised = true;
-    }
-  }, [tapData]);
+    const fetchAuthData = async () => {
+      try {
+        const response = await fetchAuth();
+        console.log(response);
+        if (response.status === 200) {
+          isAuthorised = true;
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
+    fetchAuthData();
+  }, []);
 
   useEffect(() => {
     if (isAuthorised) {
