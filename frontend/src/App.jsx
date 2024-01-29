@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import AuthForm from './components/auth/AuthForm';
 import fetchAuth from './common/fetchAuth';
@@ -42,45 +42,45 @@ const App = () => {
           <img className='logo' src='./logo.png' alt='Taplist Wizard' />
           <h1 className='title'>Taplist Keg Level Manager</h1>
         </div>
-        {isAuthorised ? (
-          <>
-            <div className='unit-container'>
-              <select value={unit} onChange={handleUnitChange}>
-                <option value='metric'>Metric</option>
-                <option value='us-imperial'>US Imperial</option>
-                <option value='british-imperial'>British Imperial</option>
-              </select>
-            </div>
-            <div className='icon-container'>
-              <div className='venue'>
-                <h5>
-                  {tapData
-                    ? tapData[0]?.current_keg?.beverage?.producer?.name
-                    : null}
-                </h5>
-                <img
-                  className='venue-logo'
-                  src={
-                    tapData
-                      ? tapData[0]?.current_keg?.beverage?.producer?.picture
-                          ?.thumbnail_url
-                      : null
-                  }
-                  alt='logo'
-                />
-              </div>
-            </div>
-            <TapContainer
-              tapData={tapData}
-              setTapData={setTapData}
-              unit={unit}
-              setUnit={setUnit}
-            />
-          </>
-        ) : (
-          <AuthForm />
-        )}
       </div>
+      {isAuthorised ? (
+        <>
+          <div className='unit-container'>
+            <select value={unit} onChange={handleUnitChange}>
+              <option value='metric'>Metric</option>
+              <option value='us-imperial'>US Imperial</option>
+              <option value='british-imperial'>British Imperial</option>
+            </select>
+          </div>
+          <div className='icon-container'>
+            <div className='venue'>
+              <h5>
+                {tapData
+                  ? tapData[0]?.current_keg?.beverage?.producer?.name
+                  : null}
+              </h5>
+              <img
+                className='venue-logo'
+                src={
+                  tapData
+                    ? tapData[0]?.current_keg?.beverage?.producer?.picture
+                        ?.thumbnail_url
+                    : null
+                }
+                alt='logo'
+              />
+            </div>
+          </div>
+          <TapContainer
+            tapData={tapData}
+            setTapData={setTapData}
+            unit={unit}
+            setUnit={setUnit}
+          />
+        </>
+      ) : (
+        <AuthForm />
+      )}
     </div>
   );
 };
