@@ -7,7 +7,7 @@ import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
 const App = () => {
-  let isAuthorised = useRef(false).current;
+  const [isAuthorised, setIsAuthorised] = useState(false);
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState('metric');
 
@@ -88,7 +88,7 @@ const App = () => {
                   setUnit={setUnit}
                 />
               ) : (
-                <AuthForm issAuthorised={isAuthorised} />
+                <AuthForm />
               )
             }
           />
