@@ -8,8 +8,8 @@ import TapContainer from './components/tapContainer/tapContainer';
 const App = () => {
   const [isAuthorised, setIsAuthorised] = useState(false);
   const [tapData, setTapData] = useState(null);
-  const [unit, setUnit] = useState(localStorage.getItem('unit') || 'metric');
   const [auth, setAuth] = useState(null);
+  const [unit, setUnit] = useState('metric');
 
   useEffect(() => {
     if (isAuthorised) {
@@ -19,7 +19,6 @@ const App = () => {
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value);
-    localStorage.setItem('unit', e.target.value);
   };
 
   return (
@@ -75,7 +74,7 @@ const App = () => {
                   setUnit={setUnit}
                 />
               ) : (
-                <AuthForm setIsAuthorized={setIsAuthorised} setAuth={setAuth} />
+                <AuthForm setIsAuthorised={setIsAuthorised} setAuth={setAuth} />
               )
             }
           />
