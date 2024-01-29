@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthForm from './components/auth/AuthForm';
@@ -8,12 +8,11 @@ import TapContainer from './components/tapContainer/tapContainer';
 const App = () => {
   const [isAuthorised, setIsAuthorised] = useState(false);
   const [tapData, setTapData] = useState(null);
-  const [auth, setAuth] = useState(null);
   const [unit, setUnit] = useState('metric');
 
   useEffect(() => {
     if (isAuthorised) {
-      fetchTapData(setTapData, auth);
+      fetchTapData(setTapData);
     }
   }, [isAuthorised]);
 
@@ -69,12 +68,11 @@ const App = () => {
                 <TapContainer
                   tapData={tapData}
                   setTapData={setTapData}
-                  setIsAuthorised={setIsAuthorised}
                   unit={unit}
                   setUnit={setUnit}
                 />
               ) : (
-                <AuthForm setIsAuthorised={setIsAuthorised} setAuth={setAuth} />
+                <AuthForm setIsAuthorised={setIsAuthorised} />
               )
             }
           />

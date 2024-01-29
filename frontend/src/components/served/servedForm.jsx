@@ -2,20 +2,14 @@ import React from 'react';
 import fetchServed from '../../common/fetchServed';
 import fetchReset from '../../common/fetchReset';
 
-const ServedForm = ({
-  currentTapNumber,
-  fetchTapData,
-  setTapData,
-  setIsAuthorised,
-  unit,
-}) => {
+const ServedForm = ({ currentTapNumber, fetchTapData, setTapData, unit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const served_amount = e.target.elements['served-text'].value;
     try {
       await fetchServed(currentTapNumber, served_amount);
       e.target.reset();
-      fetchTapData(setTapData, setIsAuthorised);
+      fetchTapData(setTapData);
     } catch (error) {
       console.error('An error occurred:', error);
     }
@@ -24,7 +18,7 @@ const ServedForm = ({
   const handleBeer = async (served_amount) => {
     try {
       await fetchServed(currentTapNumber, served_amount);
-      fetchTapData(setTapData, setIsAuthorised);
+      fetchTapData(setTapData);
     } catch (error) {
       console.error('An error occurred:', error);
     }
@@ -38,7 +32,7 @@ const ServedForm = ({
     if (confirmReset) {
       try {
         await fetchReset(currentTapNumber);
-        fetchTapData(setTapData, setIsAuthorised);
+        fetchTapData(setTapData);
       } catch (error) {
         console.error('An error occurred:', error);
       }

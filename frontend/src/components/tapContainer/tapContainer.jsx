@@ -3,7 +3,7 @@ import { React } from 'react';
 import ServedForm from '../served/servedForm';
 import fetchTapData from '../../common/fetchTapData';
 
-const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
+const TapContainer = ({ tapData, setTapData, unit }) => {
   return (
     <div className='tap-data-container'>
       {tapData !== null &&
@@ -63,7 +63,6 @@ const TapContainer = ({ tapData, setTapData, setIsAuthorised, unit }) => {
             <ServedForm
               currentTapNumber={tap.current_keg.current_tap_number}
               setTapData={setTapData}
-              setIsAuthorised={setIsAuthorised}
               fetchTapData={fetchTapData}
               unit={unit}
             />
