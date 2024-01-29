@@ -41,13 +41,6 @@ const App = () => {
           </div>
           {isAuthorised ? (
             <>
-              <div className='unit-container'>
-                <select value={unit} onChange={handleUnitChange}>
-                  <option value='metric'>Metric</option>
-                  <option value='us-imperial'>US Imperial</option>
-                  <option value='british-imperial'>British Imperial</option>
-                </select>
-              </div>
               <div className='icon-container'>
                 <div className='venue'>
                   <h5>
@@ -65,6 +58,13 @@ const App = () => {
                     }
                     alt='logo'
                   />
+                </div>
+                <div className='unit-container'>
+                  <select value={unit} onChange={handleUnitChange}>
+                    <option value='metric'>Metric</option>
+                    <option value='us-imperial'>US Imperial</option>
+                    <option value='british-imperial'>British Imperial</option>
+                  </select>
                 </div>
               </div>
             </>
