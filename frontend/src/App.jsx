@@ -56,14 +56,14 @@ const App = () => {
     <BrowserRouter>
       <div className='main-container'>
         <div className='header'>
-          <div className='logo-container'>
-            <img className='logo' src='./logo.png' alt='Taplist Wizard' />
-            <h1 className='title'>Taplist Keg Level Manager</h1>
-          </div>
           <button className='logout' onClick={() => logoutHandler()}>
             {' '}
             {isAuthorised ? 'Logout' : 'Try Again'}
           </button>
+          <div className='logo-container'>
+            <img className='logo' src='./logo.png' alt='Taplist Wizard' />
+            <h1 className='title'>Taplist Keg Level Manager</h1>
+          </div>
           {isAuthorised ? (
             <>
               <div className='icon-container'>

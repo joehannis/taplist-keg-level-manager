@@ -3,9 +3,7 @@ const pool = require('../bin/db');
 const deleteAuth = async () => {
   try {
     const query = `
-      DELETE FROM "auth_info"
-      WHERE "id" = 1
-      RETURNING "id";
+      DELETE FROM "auth_info";
     `;
 
     const result = await pool.query(query);
