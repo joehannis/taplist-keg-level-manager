@@ -21,12 +21,12 @@ const createAuth = async (venue, auth_token) => {
     if (details.rows.length > 0) {
       const result = await pool.query(updateQuery, [venue, auth_token]);
       console.log('Auth saved successfully!');
+      return result;
     } else {
       const result = await pool.query(insertQuery, [venue, auth_token]);
       console.log('Auth saved successfully!');
+      return result;
     }
-
-    return result;
   } catch (err) {
     console.error('Error occurred while saving authorisation:', err);
     throw err;
