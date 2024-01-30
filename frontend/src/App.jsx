@@ -46,6 +46,7 @@ const App = () => {
     try {
       await deleteAuth();
       setIsAuthorised(false);
+      setTapData(null);
     } catch (error) {
       console.error('An error occurred:', error);
     }
