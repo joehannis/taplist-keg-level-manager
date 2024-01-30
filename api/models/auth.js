@@ -1,3 +1,5 @@
+const pool = require('../bin/db');
+
 const createAuth = async (venue, auth_token) => {
   try {
     const query = `
