@@ -5,7 +5,7 @@ const createAuth = async (venue, auth_token) => {
   try {
     const updateQuery = `
     UPDATE "auth_info"
-    SET "venue" = $1, "auth_token" = $2
+    SET "id" = 1 "venue" = $1, "auth_token" = $2
     WHERE "id" = 1
     RETURNING "id";
     `;
