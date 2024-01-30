@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthForm from './components/auth/AuthForm';
 import fetchAuth from './common/fetchAuth';
+import deleteAuth from './common/deleteAuth';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
@@ -41,6 +42,15 @@ const App = () => {
     setUnit(e.target.value);
   };
 
+  const logoutHandler = async () => {
+    try {
+      await deleteAuth();
+      setIsAuthorised(false);
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
   return (
     <BrowserRouter>
       <div className='main-container'>
@@ -49,6 +59,10 @@ const App = () => {
             <img className='logo' src='./logo.png' alt='Taplist Wizard' />
             <h1 className='title'>Taplist Keg Level Manager</h1>
           </div>
+          <button className='logout' onClick={() => logoutHandler()}>
+            {' '}
+            {isAuthorised ? 'Logout' : 'Try Again'}
+          </button>
           {isAuthorised ? (
             <>
               <div className='icon-container'>

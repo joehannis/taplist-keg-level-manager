@@ -57,6 +57,13 @@ code {
   max-height: 100%;
 }
 
+.logout {
+  position: absolute;
+  left: 0;
+  margin-left: 5%;
+  margin-top: 8%;
+}
+
 .title {
   text-align: center;
 }
