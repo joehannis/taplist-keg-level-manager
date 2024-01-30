@@ -16,7 +16,7 @@ const App = () => {
       try {
         const response = await fetchAuth();
         console.log(response);
-        if (response) {
+        if (response.message.rowCount > 0) {
           setIsAuthorised(true);
           fetchTapData(setTapData);
         }
