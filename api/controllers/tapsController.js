@@ -12,7 +12,6 @@ const tapsController = async (req, res) => {
       }
     );
     const data = await response.json();
-    console.log('this is data from tapsController');
     res.status(200).json(data);
   } catch (err) {
     console.error('Error occurred while fetching taps:', err);
