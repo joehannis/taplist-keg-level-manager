@@ -1,4 +1,4 @@
-const createAuth = require('../models/auth');
+const createAuth = require('../models/createAuth');
 const getAuth = require('../models/getAuth');
 
 const authController = {
@@ -29,6 +29,19 @@ const authController = {
       console.error('Error occurred while getting authorization:', err);
       res.status(500).json({
         error: `An error occurred while getting authorization: ${err.message}`,
+      });
+    }
+  },
+  deleteAuth: async (req, res) => {
+    try {
+      const response = await deleteAuth();
+      res.status(200).json({
+        message: response,
+      });
+    } catch (err) {
+      console.error('Error occurred while deleting authorization:', err);
+      res.status(500).json({
+        error: `An error occurred while deleting authorization: ${err.message}`,
       });
     }
   },
