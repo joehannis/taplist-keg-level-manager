@@ -16,7 +16,7 @@ const App = () => {
       try {
         const response = await fetchAuth();
         console.log(response);
-        if (response.message.rowCount > 0) {
+        if (response?.message?.rowCount > 0) {
           setIsAuthorised(true);
           fetchTapData(setTapData);
         }
@@ -25,6 +25,17 @@ const App = () => {
       }
     };
     fetchAuthData();
+  }, []);
+
+  useEffect(() => {
+    const tapFetch = async () => {
+      try {
+        await fetchTapData(setTapData);
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
+    tapFetch();
   }, []);
 
   const handleUnitChange = (e) => {
