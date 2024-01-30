@@ -17,3 +17,5 @@ const createAuth = async (venue, auth_token) => {
     throw err;
   }
 };
+
+module.exports = createAuth;
