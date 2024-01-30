@@ -36,7 +36,7 @@ const App = () => {
       }
     };
     tapFetch();
-  }, []);
+  }, [isAuthorised]);
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value);
