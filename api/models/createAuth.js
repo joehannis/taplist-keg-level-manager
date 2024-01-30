@@ -4,8 +4,7 @@ const getAuth = require('./getAuth');
 const createAuth = async (venue, auth_token) => {
   try {
     const updateQuery = `
-    UPDATE "auth_info" ("venue", "auth_token")
-    VALUES ($1, $2)
+    UPDATE "auth_info"
     SET "venue" = $1, "auth_token" = $2
     WHERE "id" = 1
     RETURNING "id";
