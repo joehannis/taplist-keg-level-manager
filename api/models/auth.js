@@ -1,10 +1,10 @@
-const pool = require('../bin/db'); // Import your database connection
-
 const createAuth = async (venue, auth_token) => {
   try {
     const query = `
-    INSERT INTO "auth_info" ("venue", "auth_token")
-    VALUES ($1, $2)
+    INSERT INTO "auth_info" ("id", "venue", "auth_token")
+    VALUES (0, $1, $2)
+    ON CONFLICT ("id") DO UPDATE
+    SET "venue" = $1, "auth_token" = $2
     RETURNING "id";
     `;
 
@@ -17,5 +17,3 @@ const createAuth = async (venue, auth_token) => {
     throw err;
   }
 };
-
-module.exports = createAuth;
