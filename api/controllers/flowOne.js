@@ -1,31 +1,53 @@
-import { Gpio } from 'onoff';
-const sensorController = require('./sensorController');
+const JohnnyFive = require('johnny-five');
+const board = new JohnnyFive.Board();
+const sensorController = require('../controllers/sensorController');
 
-const flowPin = new Gpio(2, 'in', 'rising', { debounceTimeout: 10 });
-let flowRate = 0;
-let count = 0;
+const flowOne = () => {
+  const flowPin = 2;
 
-const setup = () => {
-  flowPin.watch(flowInterrupt);
+  let flowRate = 0;
+  let count = 0;
+
+  console.log('Flow sensor is running');
+
+  board.on('ready', () => {
+    // Initialize digital input with debounce and logging
+    const flowSensor = new JohnnyFive.Pin(flowPin, {
+      type: 'digital',
+      mode: 'in',
+      debounce: 10,
+      pinChange: () => {
+        console.log('Pin change detected');
+      },
+    });
+
+    // Flow interrupt handler with logging
+    flowSensor.on('change', (value) => {
+      if (value) {
+        count++;
+        console.log(`Interrupt triggered, count: ${count}`);
+      }
+    });
+
+    // Loop every second with logging
+    setInterval(() => {
+      flowRate = count * 2.25;
+      console.log(`Flow rate: ${flowRate}`);
+
+      // Call sensor controller with data and logging
+      sensorController(1, flowRate)
+        .then((res) => {
+          console.log(`sensorController response: ${res}`);
+        })
+        .catch((err) => {
+          console.error('Error with sensor controller:', err);
+        });
+
+      // Reset count for next interval and logging
+      count = 0;
+      console.log('Count reset');
+    }, 1000);
+  });
 };
 
-const loop = async () => {
-  count = 0;
-  setTimeout(() => {
-    flowRate = count * 2.25;
-    console.log(flowRate);
-  }, 1000);
-  const res = await sensorController(1, flowRate);
-  console.log(res);
-};
-
-const flowInterrupt = (err, value) => {
-  if (err) {
-    throw err;
-  }
-  count++;
-};
-
-// Run the setup and loop functions
-setup();
-setInterval(loop, 1000);
+module.exports = flowOne;

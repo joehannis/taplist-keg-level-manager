@@ -3,11 +3,13 @@ const tapsRoute = require('../routes/tapsRoute');
 const authRoute = require('../routes/authRoute');
 const servedRoute = require('../routes/servedRoute');
 const resetRoute = require('../routes/resetRoute');
+const flowOne = require('../controllers/flowOne');
 const cors = require('cors');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+flowOne();
 
 app.use('/taps', tapsRoute);
 app.use('/auth', authRoute);

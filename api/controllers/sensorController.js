@@ -1,6 +1,7 @@
 const getAuth = require('../models/getAuth');
 
 const sensorController = async (currentTapNumber, servedAmount) => {
+  console.log('sensorController called');
   try {
     const parsedServedAmount = parseInt(servedAmount);
     const details = await getAuth();
