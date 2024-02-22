@@ -38,7 +38,6 @@ services:
     container_name: api-container
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/taplist-integration
-    privileged: true
 
     ports:
       - '3000:3000'
