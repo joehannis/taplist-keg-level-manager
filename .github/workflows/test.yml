@@ -1,13 +1,15 @@
-name: Docker Image CI
+name: Test CI
 
 on:
   push:
     branches:
-      - 'main'
+      - 'test'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TEST_TAG: 'test'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,4 +22,4 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Build Docker images
         run: |
-          docker buildx bake --push
+          docker buildx bake --push -t ${{ secrets.DOCKERHUB_USERNAME }}/taplist-keg-level-manager:${{ env.TEST_TAG }}
