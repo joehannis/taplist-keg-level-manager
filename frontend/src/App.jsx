@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthForm from './components/auth/AuthForm';
@@ -6,6 +7,8 @@ import fetchAuth from './common/fetchAuth';
 import deleteAuth from './common/deleteAuth';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
+
+const socket = io('http://localhost:3000/served');
 
 const App = () => {
   const [isAuthorised, setIsAuthorised] = useState(false);
@@ -37,6 +40,16 @@ const App = () => {
     };
     tapFetch();
   }, [isAuthorised]);
+
+  useEffect(() => {
+    socket.on('kegVolumeUpdated', () => {
+      console.log('Keg volume updated, triggering rerender...');
+      fetchTapData(setTapData);
+    });
+    return () => {
+      socket.off('kegVolumeUpdated');
+    };
+  }, []);
 
   const handleUnitChange = (e) => {
     setUnit(e.target.value);
