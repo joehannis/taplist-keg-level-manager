@@ -5,7 +5,7 @@ const postAuth = async (venue, auth_token) => {
       auth_token: auth_token,
     });
 
-    const response = await fetch('http://localhost:3000/auth', {
+    const response = await fetch('http://api-container:3000/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

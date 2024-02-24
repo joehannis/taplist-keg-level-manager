@@ -1,9 +1,9 @@
 const fetchTaps = async () => {
   try {
-    const response = await fetch("http://localhost:3000/taps");
+    const response = await fetch('http://api-container:3000/taps');
     return response;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };

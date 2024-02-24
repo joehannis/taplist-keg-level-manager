@@ -5,10 +5,10 @@ const fetchServed = async (currentTapNumber, servedAmount) => {
       servedAmount: servedAmount,
     });
 
-    const response = await fetch("http://localhost:3000/served", {
-      method: "PATCH",
+    const response = await fetch('http://api-container:3000/served', {
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: requestBody,
     });
@@ -16,7 +16,7 @@ const fetchServed = async (currentTapNumber, servedAmount) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };

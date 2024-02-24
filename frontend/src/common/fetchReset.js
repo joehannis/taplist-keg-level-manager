@@ -4,10 +4,10 @@ const fetchReset = async (currentTapNumber) => {
       currentTapNumber: currentTapNumber,
     });
 
-    const response = await fetch("http://localhost:3000/reset", {
-      method: "PATCH",
+    const response = await fetch('http://api-container:3000/reset', {
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: requestBody,
     });
@@ -15,7 +15,7 @@ const fetchReset = async (currentTapNumber) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };
