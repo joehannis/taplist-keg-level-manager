@@ -6,11 +6,7 @@ const resetRoute = require('../routes/resetRoute');
 const cors = require('cors');
 
 const app = express();
-app.use(
-  cors({
-    origin: '*',
-  })
-);
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 
 app.use('/taps', tapsRoute);
