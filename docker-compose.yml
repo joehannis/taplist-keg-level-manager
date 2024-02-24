@@ -45,6 +45,26 @@ services:
     depends_on:
       - db
 
+  nginx:
+    networks:
+      - my-network
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+          - linux/arm/v8
+        tags:
+          - joehannis/taplist-keg-level-manager:nginx-latest
+    container_name: nginx-container
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+
   frontend:
     networks:
       - my-network
