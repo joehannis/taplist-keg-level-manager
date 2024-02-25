@@ -5,7 +5,7 @@ const fetchServed = async (currentTapNumber, servedAmount) => {
       servedAmount: servedAmount,
     });
 
-    const response = await fetch('http://api-container:3000/served', {
+    const response = await fetch('http://localhost:3000/served', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
