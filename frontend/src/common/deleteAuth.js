@@ -1,6 +1,6 @@
 const deleteAuth = async () => {
   try {
-    const response = await fetch('http://api:3000/auth', {
+    const response = await fetch('http://localhost:3000/auth', {
       method: 'DELETE',
     });
     const data = await response.json();
