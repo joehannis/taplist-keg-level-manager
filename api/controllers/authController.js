@@ -1,6 +1,6 @@
-const createAuth = require('../models/createAuth').default;
+const createAuth = require('../models/createAuth');
 const getAuth = require('../models/getAuth');
-const deleteAuth = require('../models/deleteAuth').default;
+const deleteAuth = require('../models/deleteAuth');
 
 const authController = {
   createAuth: async (req, res) => {
