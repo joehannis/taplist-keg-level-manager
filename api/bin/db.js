@@ -1,6 +1,6 @@
-const { Pool } = require('pg');
+const { Client } = require('pg');
 
-const pool = new Pool({
+const client = new Client({
   user: 'postgres',
   host: 'db',
   database: 'taplist-keg-level-manager',
@@ -8,4 +8,4 @@ const pool = new Pool({
   port: 5432,
 });
 
-module.exports = pool;
+module.exports = client;

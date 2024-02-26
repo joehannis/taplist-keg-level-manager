@@ -1,14 +1,16 @@
-const pool = require('../bin/db'); // Import your database connection
+const client = require('../bin/db');
 
 const getAuth = async () => {
   try {
     const query = `
       SELECT * FROM "auth_info";
     `;
-
-    const authData = await pool.query(query);
-
-    return authData;
+    client.connect().then(async () => {
+      console.log('Connected to PostgreSQL database');
+      const authData = await client.query(query);
+      console.log('Authorisation details retrieved successfully!');
+      return authData;
+    });
   } catch (err) {
     console.error('Error occurred while getting authorisation details:', err);
     res.status(500).json({
