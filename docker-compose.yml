@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: taplist-keg-level-manager
     ports:
       - '5432:5432'
@@ -19,7 +19,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/taplist-keg-level-manager
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/taplist-keg-level-manager
 
     ports:
       - '3000:3000'
@@ -48,6 +48,8 @@ services:
       - '4173:4173'
     depends_on:
       - api
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000
 
 networks:
   my-network:
