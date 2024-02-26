@@ -3,6 +3,7 @@ const getAuth = require('../models/getAuth');
 const tapsController = async (req, res) => {
   try {
     const details = await getAuth();
+    console.log('details:', details);
     const auth_token = details.rows[0].auth_token;
     const venue = details.rows[0].venue;
     const response = await fetch(
