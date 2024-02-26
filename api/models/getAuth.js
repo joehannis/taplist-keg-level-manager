@@ -1,13 +1,13 @@
-const client = require('../bin/db');
+const pool = require('../bin/db');
 
 const getAuth = async () => {
   try {
     const query = `
       SELECT * FROM "auth_info";
     `;
-    client.connect().then(async () => {
+    pool.connect().then(async () => {
       console.log('Connected to PostgreSQL database');
-      const authData = await client.query(query);
+      const authData = await pool.query(query);
       console.log('Authorisation details retrieved successfully!');
       return authData;
     });

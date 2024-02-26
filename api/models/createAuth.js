@@ -1,4 +1,4 @@
-const client = require('../bin/db');
+const pool = require('../bin/db');
 const getAuth = require('./getAuth');
 
 const createAuth = async (venue, auth_token) => {
@@ -10,27 +10,21 @@ const createAuth = async (venue, auth_token) => {
       `;
 
     const details = await getAuth();
-
-    client
-      .connect()
-      .then(async () => {
-        console.log('Connected to PostgreSQL database');
-        const result = await client.query(insertQuery, [venue, auth_token]);
-        console.log('Auth saved successfully!');
-        return result;
-      })
-      .catch((err) => {
-        console.error('Error connecting to PostgreSQL database', err);
-      });
-
-    client
-      .end()
-      .then(() => {
-        console.log('Connection to PostgreSQL closed');
-      })
-      .catch((err) => {
-        console.error('Error closing connection', err);
-      });
+    console.log('Auth details:', details);
+    if (details.length === 0) {
+      const result = await pool.query(insertQuery, [venue, auth_token]);
+      console.log('Auth saved successfully!');
+      return result;
+    } else {
+      const deleteQuery = `
+          DELETE FROM "auth_info";
+        `;
+      await pool.query(deleteQuery);
+      console.log('Auth deleted successfully!');
+      const result = await pool.query(insertQuery, [venue, auth_token]);
+      console.log('Auth saved successfully!');
+      return result;
+    }
   } catch (err) {
     console.error('Error occurred while saving authorisation:', err);
     throw err;
