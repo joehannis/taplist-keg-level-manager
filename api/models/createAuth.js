@@ -11,6 +11,7 @@ const createAuth = async (venue, auth_token) => {
 
     const details = await getAuth();
     console.log('Auth details:', details);
+
     if (details.length === 0) {
       const result = await pool.query(insertQuery, [venue, auth_token]);
       console.log('Auth saved successfully!');
