@@ -19,7 +19,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/taplist-integration
+      - DATABASE_URL=postgres://postgres:password@db:5432/taplist-keg-level-manager
 
     ports:
       - '3000:3000'
