@@ -24,5 +24,22 @@ jobs:
       - name: build the image
         run: |
           docker buildx build \
-            --tag joehannis/taplist-keg-level-manager:latest \
-            --platform linux/amd64,linux/arm/v7,linux/arm/v8,linux/arm64 .
+            --file ./api/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:api-latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm/v8,linux/arm64 ./api \
+            --push
+          docker buildx build \
+            --file ./db/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:db-latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm/v8,linux/arm64 ./db \
+            --push
+          docker buildx build \
+            --file ./nginx/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:nginx-latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm/v8,linux/arm64 ./nginx \
+            --push
+          docker buildx build \
+            --file ./frontend/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:frontend-latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm/v8,linux/arm64 ./frontend \
+            --push
