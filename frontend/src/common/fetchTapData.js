@@ -5,7 +5,10 @@ const fetchTapData = async (setTapData) => {
     const tapResponse = await fetchTaps();
     if (tapResponse.ok) {
       const tapData = await tapResponse.json();
-      const filteredTapData = tapData.filter((tap) => tap.current_keg !== null);
+      console.log('tapData:', tapData);
+      const filteredTapData = tapData?.filter(
+        (tap) => tap.current_keg !== null
+      );
       setTapData(filteredTapData);
     } else {
       console.error(

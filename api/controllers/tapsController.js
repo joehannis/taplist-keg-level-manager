@@ -1,5 +1,6 @@
 const tapsController = async (req, res) => {
   try {
+    console.log('api key:', process.env.AUTH_TOKEN);
     const response = await fetch(
       `https://api.taplist.io/api/v1/venues/${process.env.VENUE}/taps`,
       {
