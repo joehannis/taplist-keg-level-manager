@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import AuthForm from './components/auth/AuthForm';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
 const App = () => {
-  // const [isAuthorised, setIsAuthorised] = useState(false);
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState('metric');
 
@@ -21,44 +19,18 @@ const App = () => {
     fetchAuthData();
   }, []);
 
-  // useEffect(() => {
-  //   const tapFetch = async () => {
-  //     try {
-  //       await fetchTapData(setTapData);
-  //     } catch (error) {
-  //       console.error('An error occurred:', error);
-  //     }
-  //   };
-  //   tapFetch();
-  // }, [isAuthorised]);
-
   const handleUnitChange = (e) => {
     setUnit(e.target.value);
   };
-
-  // const logoutHandler = async () => {
-  //   try {
-  //     await deleteAuth();
-  //     setIsAuthorised(false);
-  //     setTapData(null);
-  //   } catch (error) {
-  //     console.error('An error occurred:', error);
-  //   }
-  // };
 
   return (
     <BrowserRouter>
       <div className='main-container'>
         <div className='header'>
-          {/* <button className='logout' onClick={() => logoutHandler()}>
-            {' '}
-            {isAuthorised ? 'Logout' : 'Try Again'}
-          </button> */}
           <div className='logo-container'>
             <img className='logo' src='./logo.png' alt='Taplist Wizard' />
             <h1 className='title'>Taplist Keg Level Manager</h1>
           </div>
-          {/* {isAuthorised ? ( */}
           <>
             <div className='icon-container'>
               <div className='venue'>
@@ -87,23 +59,18 @@ const App = () => {
               </div>
             </div>
           </>
-          {/* ) : null} */}
         </div>
 
         <Routes>
           <Route
             path='/'
             element={
-              // isAuthorised ? (
               <TapContainer
                 tapData={tapData}
                 setTapData={setTapData}
                 unit={unit}
                 setUnit={setUnit}
               />
-              // ) : (
-              //   <AuthForm setIsAuthorised={setIsAuthorised} />
-              // )
             }
           />
         </Routes>
