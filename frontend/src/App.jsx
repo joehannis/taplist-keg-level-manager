@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import AuthForm from './components/auth/AuthForm';
-import fetchAuth from './common/fetchAuth';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
@@ -14,11 +13,7 @@ const App = () => {
   useEffect(() => {
     const fetchAuthData = async () => {
       try {
-        const response = await fetchAuth();
-        if (response?.message?.rowCount > 0) {
-          // setIsAuthorised(true);
-          fetchTapData(setTapData);
-        }
+        fetchTapData(setTapData);
       } catch (error) {
         console.error('An error occurred:', error);
       }
