@@ -1,15 +1,9 @@
-const getAuth = require('../models/getAuth');
-
 const tapsController = async (req, res) => {
   try {
-    const details = await getAuth();
-    console.log('details:', details);
-    const auth_token = details.rows[0].auth_token;
-    const venue = details.rows[0].venue;
     const response = await fetch(
-      `https://api.taplist.io/api/v1/venues/${venue}/taps`,
+      `https://api.taplist.io/api/v1/venues/${process.env.VENUE}/taps`,
       {
-        headers: { Authorization: `Token ${auth_token}` },
+        headers: { Authorization: `Token ${process.env.AUTH_TOKEN}` },
       }
     );
     const data = await response.json();

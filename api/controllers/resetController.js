@@ -1,17 +1,12 @@
-const getAuth = require('../models/getAuth');
-
 const resetController = async (req, res) => {
   try {
     const { currentTapNumber } = req.body;
-    const details = await getAuth();
-    const auth_token = details.rows[0].auth_token;
-    const venue = details.rows[0].venue;
     const response = await fetch(
-      `https://api.taplist.io/api/v1/venues/${venue}/taps/${currentTapNumber}/current-keg`,
+      `https://api.taplist.io/api/v1/venues/${process.env.VENUE}/taps/${currentTapNumber}/current-keg`,
       {
         method: 'PATCH',
         headers: {
-          Authorization: `Token ${auth_token}`,
+          Authorization: `Token ${process.env.AUTH_TOKEN}`,
           'Content-Type': 'application/json',
         },
 

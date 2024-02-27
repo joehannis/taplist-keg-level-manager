@@ -1,42 +1,15 @@
 services:
-  db:
-    networks:
-      - my-network
-    build:
-      context: ./db
-      dockerfile: Dockerfile
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: taplist-keg-level-manager
-    ports:
-      - '5432:5432'
-
   api:
     networks:
       - my-network
     build:
       context: ./api
       dockerfile: Dockerfile
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/taplist-keg-level-manager
-
     ports:
       - '3000:3000'
-
-    depends_on:
-      - db
-
-  nginx:
-    networks:
-      - my-network
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - '80:80'
-    depends_on:
-      - api
+    environment:
+      - VENUE = ''
+      - AUTH_TOKEN = ''
 
   frontend:
     networks:

@@ -4,15 +4,10 @@ const authRoute = require('../routes/authRoute');
 const servedRoute = require('../routes/servedRoute');
 const resetRoute = require('../routes/resetRoute');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-app.use(
-  cors({
-    credentials: true,
-    origin: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 app.use('/taps', tapsRoute);
