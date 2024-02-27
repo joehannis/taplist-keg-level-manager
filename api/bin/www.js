@@ -4,14 +4,12 @@ const authRoute = require('../routes/authRoute');
 const servedRoute = require('../routes/servedRoute');
 const resetRoute = require('../routes/resetRoute');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use('/taps', tapsRoute);
-app.use('/auth', authRoute);
 app.use('/served', servedRoute);
 app.use('/reset', resetRoute);
 
