@@ -11,7 +11,7 @@ const tapsController = async (req, res) => {
   } catch (err) {
     console.error('Error occurred while fetching taps:', err);
     res.status(500).json({
-      error: `An error occurred while fetching taps: ${err.message}`,
+      error: `An error occurred while fetching taps`,
     });
   }
 };
