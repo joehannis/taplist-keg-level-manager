@@ -34,6 +34,7 @@ const flowOne = () => {
         const requestBody = JSON.stringify({
           currentTapNumber: 1,
           servedAmount: amount,
+          flow: true,
         });
 
         fetch('http://localhost:3000/served', {
