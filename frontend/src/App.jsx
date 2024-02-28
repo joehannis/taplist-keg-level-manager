@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import io from 'socket.io-client';
 import fetchTapData from './common/fetchTapData';
 import TapContainer from './components/tapContainer/tapContainer';
 
@@ -8,15 +9,19 @@ const App = () => {
   const [tapData, setTapData] = useState(null);
   const [unit, setUnit] = useState('metric');
 
+  const socketConnection = async () => {
+    const socket = io('http://localhost:4000');
+    socket.on('connect', function () {
+      console.log('connected: ');
+    });
+    socket.on('served', () => {
+      fetchTapData(setTapData);
+    });
+  };
+
   useEffect(() => {
-    const fetchAuthData = async () => {
-      try {
-        fetchTapData(setTapData);
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    };
-    fetchAuthData();
+    fetchTapData(setTapData);
+    socketConnection();
   }, []);
 
   const handleUnitChange = (e) => {
@@ -51,7 +56,11 @@ const App = () => {
                 />
               </div>
               <div className='unit-container'>
-                <select value={unit} onChange={handleUnitChange}>
+                <select
+                  id='unit-select'
+                  value={unit}
+                  onChange={handleUnitChange}
+                >
                   <option value='metric'>Metric</option>
                   <option value='us-imperial'>US Imperial</option>
                   <option value='british-imperial'>British Imperial</option>

@@ -18,6 +18,16 @@ const servedController = async (req, res) => {
     );
     const data = await response.json();
     console.log('keg volume updated');
+
+    const io = req.app.get('io');
+    if (io) {
+      if (req.body.flow) {
+        io.emit('served', { data: 'Served route called' });
+        console.log('Served event emitted');
+      }
+    } else {
+      console.error('Socket.io instance not found');
+    }
     res.status(200).json(data);
   } catch (err) {
     console.error('Error occurred while updating tap volume:', err);
