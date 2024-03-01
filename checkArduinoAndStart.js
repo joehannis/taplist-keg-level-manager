@@ -12,7 +12,7 @@ const checkArduinoAndStart = () => {
   SerialPort.list()
     .then((ports) => {
       let arduinoConnected = ports.some((port) => {
-        return port.vendorId === '2341' && port.productId === '0043';
+        return port.vendorId === '' && port.productId === '';
       });
       if (arduinoConnected) {
         console.log('Arduino connected. Starting flow sensors.');
