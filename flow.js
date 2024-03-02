@@ -7,7 +7,6 @@ const flow = () => {
   let countTwo = 0;
 
   board.on('ready', () => {
-    // Initialize digital input with debounce and logging
     const flowSensorOne = new Sensor.Digital(2);
     flowSensorOne.on('change', (value) => {
       if (value) {
@@ -62,7 +61,7 @@ const flow = () => {
             })
             .then((data) => {
               console.log('Server response:', data);
-              count = 0; // Reset count for the respective tap
+              count = 0;
               console.log('Count reset');
               startFetching = false;
             })
