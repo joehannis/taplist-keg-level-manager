@@ -2,9 +2,11 @@ const express = require('express');
 const tapsRoute = require('../routes/tapsRoute');
 const servedRoute = require('../routes/servedRoute');
 const resetRoute = require('../routes/resetRoute');
+const brewfatherRoute = require('../routes/brewfatherRoute');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
+require('dotenv').config({ path: '../.env' });
 
 const app = express();
 app.use(cors());
@@ -28,6 +30,7 @@ io.on('connection', (socket) => {
 app.use('/taps', tapsRoute);
 app.use('/served', servedRoute);
 app.use('/reset', resetRoute);
+app.use('/brewfather', brewfatherRoute);
 
 app.set('io', io);
 
