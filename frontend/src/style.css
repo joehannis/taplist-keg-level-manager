@@ -401,4 +401,16 @@ code {
     margin-top: 6%;
     align-items: center;
   }
+
+  .brewfather-batch {
+    margin: 5%;
+    padding: 5%;
+  }
+  .brewfather-button {
+    width: 100%;
+  }
+
+  .brewfather-container {
+    width: 100%;
+  }
 }
