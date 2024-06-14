@@ -1,0 +1,28 @@
+.brewfather-batch {
+  margin: 2%;
+}
+.brewfather-results {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.brewfather-button {
+  display: flex;
+  width: 100%;
+  padding-left: 2%;
+}
+
+.brewfather-container {
+  width: 100%;
+}
+
+.brewfather-toggle {
+  display: flex;
+  width: 40%;
+  margin-left: 50%;
+}
+
+.button-title {
+  padding-right: 1%;
+}

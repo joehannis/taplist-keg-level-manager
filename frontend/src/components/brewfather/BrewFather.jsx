@@ -1,6 +1,7 @@
 import { ToggleSlider } from 'react-toggle-slider';
 import { useState } from 'react';
 import fetchBrewFather from '../../common/fetchBrewFather';
+import './brewfather.css';
 
 const BrewFather = () => {
   const [onOff, setOnOff] = useState(false);
@@ -20,17 +21,21 @@ const BrewFather = () => {
   }
 
   return (
-    <div className='brewfather-button'>
-      <ToggleSlider
-        value={onOff}
-        onToggle={() => setOnOff(!onOff)}
-        width={100}
-        height={50}
-        fontSize={20}
-        label='BrewFather'
-      />
+    <div className='brewfather-container'>
+      <span className='brewfather-button'>
+        <h3 className='button-title'>Currently Brewing</h3>
+        <ToggleSlider
+          value={onOff}
+          onToggle={() => setOnOff(!onOff)}
+          width={100}
+          height={50}
+          fontSize={20}
+          label='BrewFather'
+          className='brewfather-toggle'
+        />
+      </span>
       {onOff && (
-        <div className='brewfather-container'>
+        <div className='brewfather-results'>
           {brewFatherData &&
             brewFatherData.map((batch) => (
               <div key={batch._id} className='brewfather-batch'>
