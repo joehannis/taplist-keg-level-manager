@@ -23,7 +23,7 @@ const BrewFather = () => {
   return (
     <div className='brewfather-container'>
       <span className='brewfather-button'>
-        <h3 className='button-title'>Currently Brewing</h3>
+        <h3 className='button-title'>Coming Next</h3>
         <ToggleSlider
           value={onOff}
           onToggle={() => setOnOff(!onOff)}
