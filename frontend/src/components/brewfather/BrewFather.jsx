@@ -10,6 +10,8 @@ const BrewFather = () => {
   const fetchData = async () => {
     try {
       const data = await fetchBrewFather();
+      console.log(data);
+      data.sort((a, b) => new Date(b.brewDate) - new Date(a.brewDate));
       setBrewFatherData(data);
     } catch (error) {
       console.error('Error:', error);

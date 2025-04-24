@@ -1,3 +1,6 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const brewfatherController = async (req, res) => {
   try {
     const userId = process.env.BREWFATHER_ID;
@@ -62,8 +65,6 @@ const brewfatherController = async (req, res) => {
     // This section depends on your desired output format
     const allBatches = [...brewingData, ...fermentingData, ...conditioningData];
 
-    // Send the combined data back to the client
-    console.log(allBatches);
     res.status(200).json(allBatches);
   } catch (err) {
     console.error('Error occurred while fetching batches:', err);
