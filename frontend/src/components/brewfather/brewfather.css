@@ -1,28 +1,34 @@
 .brewfather-batch {
+  width: 100%;
   margin: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .brewfather-results {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: center;
-}
-.brewfather-button {
-  display: flex;
-  width: 100%;
-  padding-left: 2%;
+  margin: 2%;
 }
 
-.brewfather-container {
-  width: 100%;
+.recipe-name {
+  margin-bottom: 5%;
 }
 
-.brewfather-toggle {
-  display: flex;
-  width: 40%;
-  margin-left: 50%;
-}
+@media screen and (max-width: 767px) {
+  .brewfather-batch {
+    margin: 5%;
+  }
+  .brewfather-results {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.button-title {
-  padding-right: 1%;
+  .recipe-name {
+    margin-bottom: 5%;
+  }
 }

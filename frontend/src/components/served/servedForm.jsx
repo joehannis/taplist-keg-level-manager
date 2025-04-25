@@ -117,19 +117,22 @@ const ServedForm = ({ currentTapNumber, fetchTapData, setTapData, unit }) => {
         ) : null}
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form className='custom-amount-container' onSubmit={handleSubmit}>
         <div className='custom-amount'>Custom Amount</div>
         <div className='input-container'>
-          <input
-            className='served-text'
-            type='number'
-            placeholder='Enter amount'
-            name='served_amount'
-            id='served-text'
-            onFocus={(e) => e.target.setAttribute('placeholder', '')}
-            onBlur={(e) => e.target.setAttribute('placeholder', 'Enter amount')}
-          />
-          &nbsp;ml
+          <div className='input-wrapper'>
+            <input
+              className='served-text'
+              type='number'
+              placeholder='Enter amount in ml'
+              name='served_amount'
+              id='served-text'
+              onFocus={(e) => e.target.setAttribute('placeholder', '')}
+              onBlur={(e) =>
+                e.target.setAttribute('placeholder', 'Enter amount in ml')
+              }
+            />
+          </div>
         </div>
         <button className='served-submit' type='submit'>
           Submit

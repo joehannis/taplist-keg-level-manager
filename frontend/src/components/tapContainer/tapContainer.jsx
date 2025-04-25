@@ -2,24 +2,15 @@ import { React } from 'react';
 
 import ServedForm from '../served/servedForm';
 import fetchTapData from '../../common/fetchTapData';
-import BrewFather from '../brewfather/BrewFather';
+//import BrewFather from '../brewfather/BrewFather';
 
 const TapContainer = ({ tapData, setTapData, unit }) => {
   return (
     <>
       <div className='tap-data-container'>
         {tapData !== null &&
-          tapData.map((tap, index) => (
-            <div
-              key={tap.current_keg.current_tap_number}
-              className={
-                tapData.length === 1
-                  ? 'tap-item-one'
-                  : tapData.length === 2
-                  ? 'tap-item-two'
-                  : `tap-item ${index % 3 === 2 ? 'break-after' : ''}`
-              }
-            >
+          tapData.map((tap) => (
+            <div key={tap.current_keg.current_tap_number} className='tap-item'>
               <div className='tap-content'>
                 <img
                   className='glass-image'
@@ -71,7 +62,6 @@ const TapContainer = ({ tapData, setTapData, unit }) => {
             </div>
           ))}
       </div>
-      <BrewFather />
     </>
   );
 };
