@@ -2,7 +2,10 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest --watchAll=false --coverage --detectOpenHandles --forceExit --silent",
+    "test:watch": "jest --watchAll"
+  },
   "engines": {
     "npm": ">=9.6",
     "node": ">=18"
@@ -20,6 +23,20 @@
     "socket.io": "^4.7.4"
   },
   "devDependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "socket.io-client": "^4.8.1",
+    "supertest": "^7.1.0"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   }
 }

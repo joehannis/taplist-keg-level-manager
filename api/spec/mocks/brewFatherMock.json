@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "1Ov2KSXP8zsW2ggcMEfOQ9gFsFZ05e",
+    "batchNo": 37,
+    "brewDate": 1720306800000,
+    "brewer": null,
+    "name": "Batch",
+    "recipe": { "name": "Hoppy Gold" },
+    "status": "Fermenting"
+  },
+  {
+    "_id": "M5hvYacAzS65rGNvK2yXerOBNFlPG2",
+    "batchNo": 43,
+    "brewDate": 1738713600000,
+    "brewer": null,
+    "name": "Batch",
+    "recipe": { "name": "Dank" },
+    "status": "Fermenting"
+  },
+  {
+    "_id": "A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5",
+    "batchNo": 44,
+    "brewDate": 1738713600000,
+    "brewer": null,
+    "name": "Batch",
+    "recipe": { "name": "Dank Variant" },
+    "status": "Fermenting"
+  },
+  {
+    "_id": "yHx8w7Lmm0iD9oS7xrhJGQFFU6vB5q",
+    "batchNo": 30,
+    "brewDate": 1698883200000,
+    "brewer": null,
+    "name": "Batch",
+    "recipe": { "name": "Irish Coffee Imperial Stout " },
+    "status": "Conditioning"
+  }
+]
