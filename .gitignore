@@ -5,7 +5,8 @@
 /mongodb-data
 /api/.env
 # testing
-/coverage
+/api/coverage
+
 
 # production
 /build

@@ -4,7 +4,9 @@
 .pnp.js
 /api/node_modules
 # testing
-/coverage
+/api/coverage
+/api/spec
+/api/setupJest.js
 
 # production
 /build
