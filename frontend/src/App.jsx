@@ -51,7 +51,18 @@ const App = () => {
     <BrowserRouter>
       <div className='main-container'>
         <div className='header'>
-          <span></span>
+          <span className='brewfather-button'>
+            <h3 className='button-title'>Coming Next</h3>
+            <ToggleSlider
+              value={onOff}
+              onToggle={(state) => setOnOff(state)}
+              width={100}
+              height={50}
+              fontSize={20}
+              label='BrewFather'
+              className='brewfather-toggle'
+            />
+          </span>
           <div className='logo-container'>
             <img className='logo' src='./logo.png' alt='Taplist Wizard' />
             <h1 className='title'>Taplist Keg Level Manager</h1>
@@ -89,18 +100,6 @@ const App = () => {
             </div>
           </>
         </div>
-        <span className='brewfather-button'>
-          <h3 className='button-title'>Coming Next</h3>
-          <ToggleSlider
-            value={onOff}
-            onToggle={(state) => setOnOff(state)}
-            width={100}
-            height={50}
-            fontSize={20}
-            label='BrewFather'
-            className='brewfather-toggle'
-          />
-        </span>
 
         <Routes>
           <Route

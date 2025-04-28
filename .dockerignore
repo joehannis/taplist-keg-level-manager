@@ -7,6 +7,7 @@
 /api/coverage
 /api/spec
 /api/setupJest.js
+/api/.env
 
 # production
 /build

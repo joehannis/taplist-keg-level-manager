@@ -38,53 +38,63 @@ code {
 /* Header styles */
 .header {
   background-color: #2c3e50;
-  min-height: 15vh; /* Give it a minimum height relative to the viewport */
-  width: 100%; /* Span the entire width */
-  display: flex; /* Keep it as flex for potential future content */
-  justify-content: center; /* Center header content if any */
-  align-items: center; /* Align header content vertically if any */
+  min-height: 80px; /* Use a fixed minimum height for better consistency */
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Auto for content, 1fr for the flexible logo area */
+  align-items: center; /* Center items vertically */
+  padding: 1em; /* Add some consistent padding around the header */
   color: white;
 }
 
-.logo-container {
-  width: 50%;
-  position: fixed;
-  top: 8%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10; /* Ensure it's above the header if they overlap */
+.brewfather-button {
+  display: flex;
+  align-items: center; /* Vertically align items in the button */
+  justify-content: flex-start;
+  margin-top: 8.5em;
+  margin-left: 1em; /* Use em for spacing */
 }
 
-/* Logo styles */
+.button-title {
+  padding-right: 0.5em; /* Use em for spacing relative to font size */
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .logo {
-  margin-top: 1%;
-  max-height: 100%;
+  max-height: 200px;
 }
 
 .title {
   text-align: center;
+  margin-top: 0.25em; /* Use em for spacing */
+}
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Vertically center content */
+  margin-right: 1em; /* Use em for spacing */
+  margin-top: 1.5em; /* Use em for spacing */
 }
 
 .venue {
   text-align: center;
-  font-size: medium;
+  font-size: 1em; /* Use em for font size relative to parent */
 }
 
 .venue-logo {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  width: 50%;
+  max-width: 80px; /* Use a fixed max-width */
   height: auto;
-}
-
-.settings-container {
-  position: fixed;
-  top: 11%;
-  left: 94%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10; /* Ensure it's above the header if they overlap */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .unit-container {
@@ -92,9 +102,7 @@ code {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10%;
-  width: 100%;
-  margin-top: 1%;
+  margin-top: 0.5em;
   color: #2c3e50;
 }
 
@@ -105,17 +113,7 @@ code {
   align-items: flex-end;
   margin-top: 5%;
 }
-.brewfather-button {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  padding-left: 2%;
-  margin-top: 1%;
-}
 
-.button-title {
-  margin-right: 1%;
-}
 /* Tap data container styles */
 .tap-data-container {
   display: flex;
