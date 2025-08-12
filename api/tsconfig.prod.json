@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@taplist-keg-level-manager/shared": ["./shared/src"]
+      "@taplist-keg-level-manager/shared": ["./api/shared/src"]
     }
   }
 }
