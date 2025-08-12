@@ -5,21 +5,12 @@ FROM node:${NODE_VERSION} AS frontend-build
 WORKDIR /app/client
 
 # Copy package.json and package-lock.json for dependency installation
-COPY ./package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy the rest of the application code
 COPY ./ ./
 
-# Build the Vite project
-RUN npm run build
-
-# Expose the port for the Vite preview server
 EXPOSE 4173
 
-RUN npm prune --omit=dev
+# Build the Vite project
+RUN npm ci && npm run build && npm prune --omit=dev
 
 # Set the command to run the Vite preview server
 CMD ["npm", "run", "preview"]
