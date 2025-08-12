@@ -34,6 +34,8 @@ jobs:
       - name: build the image
         run: |
           cp -r ./shared ./api/shared
+          echo "Listing contents of the 'api' directory to verify 'shared' folder path:"
+          ls -l ./api
           docker buildx build \
             --file ./api/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:api-latest \
