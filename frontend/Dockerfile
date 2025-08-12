@@ -1,4 +1,4 @@
-ARG NODE_VERSION
+ARG NODE_VERSION=24
 FROM node:${NODE_VERSION} AS frontend-build
 
 WORKDIR /app/client
