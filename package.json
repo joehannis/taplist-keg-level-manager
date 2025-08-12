@@ -1,1 +1,30 @@
-{}
+{
+  "name": "taplist-keg-level-manager",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">   <strong>Taplist Keg Level Manager</strong> </h1>",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^5.9.2",
+    "undici-types": "^7.10.0"
+  },
+  "workspaces": [
+    "frontend",
+    "api",
+    "shared"
+  ],
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joehannis/taplist-keg-level-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joehannis/taplist-keg-level-manager/issues"
+  },
+  "homepage": "https://github.com/joehannis/taplist-keg-level-manager#readme"
+}
