@@ -1,6 +1,6 @@
 import './ServedForm.css';
-import fetchServed from '../../common/fetchServed';
-import fetchReset from '../../common/fetchReset';
+import fetchServed from '../../api/fetchServed';
+import fetchReset from '../../api/fetchReset';
 import type { Served, TapList } from '@taplist-keg-level-manager/shared';
 type ServedFormProps = {
   currentTapNumber: number;
