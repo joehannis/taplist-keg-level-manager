@@ -30,12 +30,16 @@ jobs:
       # https://github.com/docker/setup-buildx-action
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Prepare Build Context
+        run: |
+          cp -r ./shared ./api/shared
+      - name: Verify shared folder path
+        run: |
+          echo "Listing contents of the 'api' directory to verify 'shared' folder path:"
+          ls -l ./api
 
       - name: build the image
         run: |
-          cp -r ./shared ./api/shared
-          echo "Listing contents of the 'api' directory to verify 'shared' folder path:"
-          ls -l ./api
           docker buildx build \
             --file ./api/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:api-latest \
