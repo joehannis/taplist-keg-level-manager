@@ -8,7 +8,7 @@ WORKDIR /app/client
 COPY ./package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy the rest of the application code
 COPY ./ ./
@@ -18,6 +18,8 @@ RUN npm run build
 
 # Expose the port for the Vite preview server
 EXPOSE 4173
+
+RUN npm prune --omit=dev
 
 # Set the command to run the Vite preview server
 CMD ["npm", "run", "preview"]
