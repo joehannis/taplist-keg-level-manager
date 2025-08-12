@@ -2,6 +2,7 @@ import './ServedForm.css';
 import fetchServed from '../../api/fetchServed';
 import fetchReset from '../../api/fetchReset';
 import type { Served, TapList } from '@taplist-keg-level-manager/shared';
+
 type ServedFormProps = {
   currentTapNumber: number;
   fetchTapData: (
@@ -13,33 +14,53 @@ type ServedFormProps = {
 
 const ServedForm = ({
   currentTapNumber,
-  fetchTapData,
   setTapData,
   unit,
 }: ServedFormProps) => {
-  const handleBeer = async (servedAmount: string) => {
-    try {
-      const updatedTap: Served | undefined = await fetchServed(
-        currentTapNumber,
-        servedAmount
-      );
-      if (updatedTap) {
-        setTapData((prev) => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            venueName: prev.venueName,
-            venueLogo: prev.venueLogo,
-            taps: prev.taps.map((tap) =>
-              tap.currentTapNumber === updatedTap.currentTapNumber
-                ? { ...tap, ...updatedTap }
-                : tap
-            ),
-          };
-        });
+  const handleBeer = async (
+    servedAmount: string = '',
+    updatedTap: Served | undefined = undefined
+  ) => {
+    if (!updatedTap) {
+      if (servedAmount) {
+        try {
+          const updatedTap: Served | undefined = await fetchServed(
+            currentTapNumber,
+            servedAmount
+          );
+          if (updatedTap) {
+            setTapData((prev) => {
+              if (!prev) return prev;
+              return {
+                ...prev,
+                venueName: prev.venueName,
+                venueLogo: prev.venueLogo,
+                taps: prev.taps.map((tap) =>
+                  tap.currentTapNumber === updatedTap.currentTapNumber
+                    ? { ...tap, ...updatedTap }
+                    : tap
+                ),
+              };
+            });
+          }
+        } catch (error) {
+          console.error('An error occurred:', error);
+        }
       }
-    } catch (error) {
-      console.error('An error occurred:', error);
+    } else {
+      setTapData((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          venueName: prev.venueName,
+          venueLogo: prev.venueLogo,
+          taps: prev.taps.map((tap) =>
+            tap.currentTapNumber === updatedTap.currentTapNumber
+              ? { ...tap, ...updatedTap }
+              : tap
+          ),
+        };
+      });
     }
   };
 
@@ -66,8 +87,12 @@ const ServedForm = ({
     );
     if (confirmReset) {
       try {
-        await fetchReset(currentTapNumber);
-        fetchTapData(setTapData);
+        const tapResult = await fetchReset(currentTapNumber);
+        if (tapResult) {
+          await handleBeer('', tapResult);
+        } else {
+          console.error('Reset failed: No tap data returned.');
+        }
       } catch (error) {
         console.error('An error occurred:', error);
       }
