@@ -1,4 +1,5 @@
-FROM node:24 AS server-build
+ARG NODE_VERSION
+FROM node:${NODE_VERSION} AS server-build
 WORKDIR /app/server
 COPY ./package*.json ./
 RUN npm ci
