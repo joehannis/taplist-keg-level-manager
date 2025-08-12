@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll=false --coverage --detectOpenHandles --forceExit --silent",
     "test:watch": "jest --watchAll",
-    "build": "tsc -p tsconfig.prod.json"
+    "build": "tsc"
   },
   "engines": {
     "npm": ">=9.6",
