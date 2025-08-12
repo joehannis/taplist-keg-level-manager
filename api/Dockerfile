@@ -23,4 +23,4 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 # Set the command to run the compiled JavaScript file
-CMD ["node", "/app/server/dist/api/bin/www.js"]
+CMD ["node", "/app/server/dist/bin/www.js"]
