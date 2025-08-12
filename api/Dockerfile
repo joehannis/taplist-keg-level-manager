@@ -8,7 +8,6 @@ WORKDIR /app/server
 COPY ./package*.json ./
 COPY ./tsconfig.prod.json ./tsconfig.json
 COPY ./nodemon.prod.json ./nodemon.json
-COPY ../shared /app/shared
 
 # Install only production dependencies
 RUN npm install
