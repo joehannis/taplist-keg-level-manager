@@ -1,7 +1,7 @@
 import express from 'express';
 import type { TapList, Tap } from '@taplist-keg-level-manager/shared';
 
-const tapsController = async (req: express.Request, res: express.Response) => {
+const tapsController = async (_req: express.Request, res: express.Response) => {
   try {
     const response: Response = await fetch(
       `https://api.taplist.io/api/v1/venues/${process.env.VENUE}/taps`,

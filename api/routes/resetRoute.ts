@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import resetController from '../controllers/resetController.ts';
+import resetController from '../controllers/resetController';
 
 const router: Router = express.Router();
 

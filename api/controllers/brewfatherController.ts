@@ -2,7 +2,7 @@ import express from 'express';
 import type { BrewFather } from '@taplist-keg-level-manager/shared';
 
 const brewfatherController = async (
-  req: express.Request,
+  _req: express.Request,
   res: express.Response
 ) => {
   try {
