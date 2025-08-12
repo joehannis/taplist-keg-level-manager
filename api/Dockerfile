@@ -9,18 +9,12 @@ COPY ./package*.json ./
 COPY ./tsconfig.prod.json ./tsconfig.json
 COPY ./nodemon.prod.json ./nodemon.json
 COPY ./shared ./shared
-
-# Install only production dependencies
-RUN npm install
-
-# Copy the rest of the application code
 COPY ./bin ./bin
 COPY ./controllers ./controllers
 COPY ./routes ./routes
 
 # Compile TypeScript to JavaScript
-RUN npm run build
-RUN npm prune --omit=dev
+RUN npm install && npm run build && npm prune --omit=dev
 
 # Set the command to run the compiled JavaScript file
 CMD ["node", "/app/server/dist/bin/www.js"]
