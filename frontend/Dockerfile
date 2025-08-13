@@ -16,7 +16,8 @@ EXPOSE 4173
 RUN apt-get update && \
     apt-get install -y python3 python3-pip make g++ && \
     rm -rf /var/lib/apt/lists/* && \
-    npm ci && npm run build && npm prune --omit=dev
+    npm ci && npm run build && npm prune --omit=dev && \
+    ls -R /app/client
 
 # ---- Runtime stage ----
 FROM nginx:alpine AS runtime
