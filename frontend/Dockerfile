@@ -6,6 +6,7 @@ WORKDIR /app/client
 
 
 COPY ./src ./
+COPY ./package*.json ./
 
 EXPOSE 4173
 
