@@ -5,13 +5,8 @@ FROM node:${NODE_VERSION} AS server-build
 WORKDIR /app/server
 
 # Copy only the necessary files for production
-COPY ./package*.json ./
-COPY ./tsconfig.prod.json ./tsconfig.json
-COPY ./nodemon.prod.json ./nodemon.json
-COPY ./shared ./shared
-COPY ./bin ./bin
-COPY ./controllers ./controllers
-COPY ./routes ./routes
+COPY ./api ./
+COPY ../shared ./shared
 
 # Compile TypeScript to JavaScript
 RUN npm install && npm run build && npm prune --omit=dev
