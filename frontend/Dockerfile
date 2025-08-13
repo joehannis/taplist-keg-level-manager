@@ -20,7 +20,7 @@ RUN apt-get update && \
     ls -R /app/client
 
 # ---- Runtime stage ----
-FROM nginx:alpine AS runtime
+FROM nginx:slim AS runtime
 
 # Copy built files into Nginx web root
 COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
