@@ -18,4 +18,12 @@ RUN apt-get update && \
     npm ci && npm run build && npm prune --omit=dev
 
 
-CMD ["node", "/app/server/dist/bin/www.js"]
+FROM node:${NODE_VERSION}-slim AS runtime
+
+WORKDIR /app/server
+COPY --from=server-build /app/server/package*.json ./
+COPY --from=server-build /app/server/dist ./dist
+COPY --from=server-build /app/server/node_modules ./node_modules
+
+EXPOSE 3000
+CMD ["node", "dist/bin/www.js"]
