@@ -7,6 +7,8 @@ WORKDIR /app/client
 
 COPY ./src ./
 COPY ./package*.json ./
+COPY ./tsconfig.json ./
+COPY ./vite.config.ts ./
 
 EXPOSE 4173
 
