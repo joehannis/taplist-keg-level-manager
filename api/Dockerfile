@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION} AS server-build
 WORKDIR /app/server
 
 # Copy only the necessary files for production
-COPY ./api ./
+COPY ./ ./
 COPY ../shared ./shared
 
 # Compile TypeScript to JavaScript
