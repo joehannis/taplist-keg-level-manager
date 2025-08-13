@@ -22,7 +22,7 @@ RUN apt-get update && \
 FROM nginx:alpine AS runtime
 
 # Copy built files into Nginx web root
-COPY --from=frontend-build /app/dist /usr/share/nginx/html
+COPY --from=frontend-build /app/client/dist /usr/share/nginx/html
 
 # Optional: replace default Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
