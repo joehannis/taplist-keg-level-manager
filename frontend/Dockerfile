@@ -16,16 +16,13 @@ EXPOSE 4173
 RUN apt-get update && \
     apt-get install -y python3 python3-pip make g++ && \
     rm -rf /var/lib/apt/lists/* && \
-    npm ci && npm run build && npm prune --omit=dev && \
-    ls -R /app/client
-
+    npm ci && npm run build && npm prune --omit=dev
 # ---- Runtime stage ----
 FROM nginx AS runtime
 
-# Copy built files into Nginx web root
+
 COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
 
-# Optional: replace default Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

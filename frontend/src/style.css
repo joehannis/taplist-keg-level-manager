@@ -26,27 +26,26 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure it takes the full viewport height */
-  max-width: 100%; /* Constrain width to the viewport */
-  background-color: #ffffff; /* Background color for visibility */
+  min-height: 100vh;
+  max-width: 100%;
 }
 
 .header {
   display: grid;
-  grid-template-columns: 15rem 1fr 15rem; /* Reduce fixed column widths */
+  grid-template-columns: 15rem 1fr 15rem;
   grid-template-rows: 2fr;
 
-  width: 100%; /* Ensure header spans full width */
-  margin: 0; /* Remove any unintended margins */
-  padding: 0; /* Remove any unintended padding */
+  width: 100%;
+  margin: 0;
+  padding: 0;
 
   background-color: #2c3e50;
   color: white;
 }
 
 .header > * {
-  margin: 0; /* Ensure no child elements have margins */
-  padding: 0; /* Ensure no child elements have padding */
+  margin: 0;
+  padding: 0;
 }
 
 .brewfather-button {
@@ -68,16 +67,16 @@ body {
   flex-direction: column;
   align-items: center;
   grid-column: 2;
-  grid-row: 1 / span 2; /* Span both rows of the header */
-  justify-content: center; /* Center logo and title vertically */
+  grid-row: 1 / span 2;
+  justify-content: center;
 }
 
 .logo {
-  justify-self: center; /* Center the logo horizontally in the grid column */
-  align-self: center; /* Center the logo vertically in the grid row */
+  justify-self: center;
+  align-self: center;
   height: 10em;
-  max-width: 100%; /* Ensure logo does not exceed container width */
-  object-fit: contain; /* Scale logo to fit container */
+  max-width: 100%;
+  object-fit: contain;
   grid-column: 2;
 }
 
@@ -85,7 +84,7 @@ body {
   grid-column: 2;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
   text-align: center;
 }
 
@@ -93,7 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   grid-column: 3;
   grid-row: 2;
   height: 100%;
@@ -102,7 +101,7 @@ body {
 }
 
 .venue-logo {
-  max-width: 4em; /* Use a fixed max-width */
+  max-width: 4em;
 
   height: auto;
 }
@@ -122,7 +121,7 @@ body {
 
 @media screen and (max-width: 767px) {
   .main-container {
-    align-items: center; /* Center content horizontally on mobile */
+    align-items: center;
     max-width: 100%;
   }
 
@@ -139,36 +138,35 @@ body {
   }
 
   .logo-container {
-    position: relative; /* Make it relative on mobile */
-    top: auto; /* Reset top */
-    left: auto; /* Reset left */
-    transform: none; /* Reset transform */
-    width: 80%; /* Give it a width on mobile */
-    margin-bottom: 20px; /* Add margin below logo-container on mobile */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 80%;
+    margin-bottom: 20px;
   }
   .logo {
     margin-top: 1%;
     max-height: 100%;
-    max-width: 100%; /* Limit logo width on mobile */
+    max-width: 100%;
     height: auto;
   }
 
   .settings-container {
-    position: relative; /* Make it relative on mobile */
-    top: auto; /* Reset top */
-    left: auto; /* Reset left */
-    transform: none; /* Reset transform */
-    width: 80%; /* Give it a width on mobile */
-    margin-top: 1%; /* Add margin above settings-container on mobile */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 80%;
+    margin-top: 1%;
   }
-
   .unit-container {
-    flex-direction: column; /* Stack units in a column on mobile */
-    align-items: center; /* Center items in the column */
+    flex-direction: column;
+    align-items: center;
   }
 
   .icon-container {
-    align-items: center; /* Center icons on mobile */
+    align-items: center;
     margin-top: 20px;
   }
   .venue-logo {
