@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION}-slim AS frontend-build
 WORKDIR /app/client
 
 
-COPY ./src ./
+COPY ./src ./src
 COPY ./package*.json ./
 COPY ./tsconfig.json ./
 COPY ./vite.config.ts ./
