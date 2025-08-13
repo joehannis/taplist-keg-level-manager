@@ -18,5 +18,14 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     npm ci && npm run build && npm prune --omit=dev
 
+# ---- Runtime stage ----
+FROM nginx:alpine AS runtime
 
-CMD ["npm", "run", "preview"]
+# Copy built files into Nginx web root
+COPY --from=frontend-build /app/dist /usr/share/nginx/html
+
+# Optional: replace default Nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
