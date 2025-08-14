@@ -33,12 +33,24 @@ jobs:
       - name: build the image
         run: |
           cp -r ./shared ./api/shared
+
+          # Build API for amd64/arm64 with Node 24
           docker buildx build \
             --file ./api/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:api-latest \
             --platform linux/amd64,linux/arm64 ./api \
             --build-arg NODE_VERSION=24 \
             --push
+
+          # Build API for arm/v7 and arm/v8 with Node 22
+          docker buildx build \
+            --file ./api/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:api-latest \
+            --platform linux/arm/v7,linux/arm/v8 ./api \
+            --build-arg NODE_VERSION=22 \
+            --push
+
+          # Build frontend for arm64 with arm64v8/nginx and Node 24
           docker buildx build \
             --file ./frontend/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:frontend-latest \
@@ -46,23 +58,21 @@ jobs:
             --build-arg NODE_VERSION=24 \
             --build-arg NGINX_VERSION=arm64v8/nginx \
             --push
-             docker buildx build \
+
+          # Build frontend for amd64 with nginx:latest and Node 24
+          docker buildx build \
             --file ./frontend/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:frontend-latest \
             --platform linux/amd64 ./frontend \
             --build-arg NODE_VERSION=24 \
-            --build-arg NGINX_VERSION=nginx \
+            --build-arg NGINX_VERSION=nginx:latest \
             --push
-          docker buildx build \
-            --file ./api/Dockerfile \
-            --tag joehannis/taplist-keg-level-manager:api-latest \
-            --platform linux/arm/v7,linux/arm/v8 ./api \
-            --build-arg NODE_VERSION=22 \
-            --push
+
+          # Build frontend for arm/v7 and arm/v8 with nginx:latest and Node 22
           docker buildx build \
             --file ./frontend/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:frontend-latest \
             --platform linux/arm/v7,linux/arm/v8 ./frontend \
             --build-arg NODE_VERSION=22 \
-            --build-arg NGINX_VERSION=nginx \
+            --build-arg NGINX_VERSION=nginx:latest \
             --push
