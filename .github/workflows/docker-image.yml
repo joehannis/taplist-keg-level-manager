@@ -33,8 +33,6 @@ jobs:
       - name: build the image
         run: |
           cp -r ./shared ./api/shared
-           echo "Listing contents of the 'api' directory to verify 'shared' folder path:"
-          ls -l ./api
           docker buildx build \
             --file ./api/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:api-latest \
@@ -44,8 +42,16 @@ jobs:
           docker buildx build \
             --file ./frontend/Dockerfile \
             --tag joehannis/taplist-keg-level-manager:frontend-latest \
-            --platform linux/amd64,linux/arm64 ./frontend \
+            --platform linux/arm64 ./frontend \
             --build-arg NODE_VERSION=24 \
+            --build-arg NGINX_VERSION=arm64v8/nginx \
+            --push
+             docker buildx build \
+            --file ./frontend/Dockerfile \
+            --tag joehannis/taplist-keg-level-manager:frontend-latest \
+            --platform linux/amd64 ./frontend \
+            --build-arg NODE_VERSION=24 \
+            --build-arg NGINX_VERSION=nginx \
             --push
           docker buildx build \
             --file ./api/Dockerfile \
@@ -58,4 +64,5 @@ jobs:
             --tag joehannis/taplist-keg-level-manager:frontend-latest \
             --platform linux/arm/v7,linux/arm/v8 ./frontend \
             --build-arg NODE_VERSION=22 \
+            --build-arg NGINX_VERSION=nginx \
             --push
