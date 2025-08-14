@@ -1,4 +1,6 @@
 ARG NODE_VERSION=24
+ARG NGINX_VERSION=nginx:latest
+
 FROM node:${NODE_VERSION}-slim AS frontend-build
 
 
@@ -18,7 +20,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     npm ci && npm run build && npm prune --omit=dev
 # ---- Runtime stage ----
-ARG NGINX_VERSION=nginx:latest
+
 FROM ${NGINX_VERSION} AS runtime
 
 COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
