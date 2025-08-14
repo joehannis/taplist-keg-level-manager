@@ -3,7 +3,7 @@ name: Docker Image CI
 on:
   push:
     branches:
-      - 'main'
+      - 'nginx-serve'
 
 jobs:
   build:
@@ -36,28 +36,28 @@ jobs:
 
           docker buildx build \
             --file ./api/Dockerfile \
-            --tag joehannis/taplist-keg-level-manager:api-latest \
+            --tag joehannis/taplist-keg-level-manager:api-nginx \
             --platform linux/amd64,linux/arm64 ./api \
             --build-arg NODE_VERSION=24 \
             --push
 
           docker buildx build \
             --file ./api/Dockerfile \
-            --tag joehannis/taplist-keg-level-manager:api-latest \
+            --tag joehannis/taplist-keg-level-manager:api-nginx \
             --platform linux/arm/v7,linux/arm/v8 ./api \
             --build-arg NODE_VERSION=22 \
             --push
 
           docker buildx build \
             --file ./frontend/Dockerfile \
-            --tag joehannis/taplist-keg-level-manager:frontend-latest \
+            --tag joehannis/taplist-keg-level-manager:frontend-nginx \
             --platform linux/arm64,linux/amd64 ./frontend \
             --build-arg NODE_VERSION=24 \
             --push
 
           docker buildx build \
             --file ./frontend/Dockerfile \
-            --tag joehannis/taplist-keg-level-manager:frontend-latest \
+            --tag joehannis/taplist-keg-level-manager:frontend-nginx \
             --platform linux/arm/v7,linux/arm/v8 ./frontend \
             --build-arg NODE_VERSION=22 \
             --push
