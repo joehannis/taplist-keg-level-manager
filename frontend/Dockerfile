@@ -18,7 +18,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     npm ci && npm run build && npm prune --omit=dev
 # ---- Runtime stage ----
-FROM nginx AS runtime
+FROM nginx:1.27-alpine AS runtime
 
 
 COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
