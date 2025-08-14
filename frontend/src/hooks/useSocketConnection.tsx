@@ -4,7 +4,9 @@ import type { ServerToClientEvents } from '@taplist-keg-level-manager/shared';
 
 const useSocketConnection = (onServed: () => void) => {
   useEffect(() => {
-    const socket: Socket<ServerToClientEvents> = io('http://localhost:4000');
+    const socket: Socket<ServerToClientEvents> = io('http://localhost:4000', {
+      path: '/socket.io/',
+    });
     socket.on('connect', () => {
       console.log('connected');
     });
