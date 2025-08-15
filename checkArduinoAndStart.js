@@ -17,7 +17,7 @@ const checkArduinoAndStart = () => {
       if (arduinoConnected) {
         console.log('Arduino connected. Starting flow sensors.');
         flowOne();
-        flowTwo();
+        // flowTwo();
       } else {
         console.log('Arduino not connected. Retrying in 1 minute.');
         retryAfterDelay(60000);
