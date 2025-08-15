@@ -8,6 +8,8 @@
     "skipLibCheck": true,
     "allowJs": false,
     "outDir": "./dist",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

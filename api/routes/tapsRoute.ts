@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import tapsController from '../controllers/tapsController';
+import tapsController from '../controllers/tapsController.ts';
 
 const router: Router = express.Router();
 

@@ -23,29 +23,32 @@
     "johnny-five": "^2.1.0",
     "onoff": "^6.0.3",
     "socket.io": "^4.8.1",
-    "typescript": "^5.9.2",
-    "tsconfig-paths": "^4.2.0",
+    "socket.io-client": "^4.8.1",
     "ts-node": "^10.9.2",
-    "socket.io-client": "^4.8.1"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.2",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.2.1",
     "@types/node-fetch": "^2.6.13",
     "@types/socket.io": "^3.0.2",
-    "jest": "^30.0.5",
     "jest-fetch-mock": "^3.0.3",
     "nodemon": "^3.1.10",
-    "supertest": "^7.1.4"
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.1"
   },
   "jest": {
-    "automock": false,
-    "setupFiles": [
-      "./setupJest.js"
-    ],
+    "preset": "ts-jest",
+    "testEnvironment": "node",
     "coverageReporters": [
       "text",
       "lcov"
-    ]
+    ],
+    "moduleNameMapper": {
+      "@taplist-keg-level-manager/shared": "<rootDir>/shared/src"
+    }
   }
 }
