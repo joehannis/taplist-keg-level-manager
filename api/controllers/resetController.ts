@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Served } from '@taplist-keg-level-manager/shared';
 import { z } from 'zod';
-import { servedSchema } from '../bin/zod-types';
+import { servedSchema } from '../bin/zod-types.ts';
 
 const resetController = async (req: express.Request, res: express.Response) => {
   if (!req.body.currentTapNumber && req.body.AUTH_TOKEN) {
