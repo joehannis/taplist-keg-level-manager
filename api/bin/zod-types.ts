@@ -33,4 +33,14 @@ export const servedSchema = z.looseObject({
   remaining_volume_ml: z.number().min(0),
 });
 
-export const brewfatherSchema = z.looseObject({});
+export const brewfatherSchema = z.object({
+  _id: z.string(),
+  batchNo: z.number(),
+  brewDate: z.number(),
+  brewer: z.string().nullable(),
+  name: z.string(),
+  recipe: z.object({ name: z.string() }),
+  status: z.string(),
+});
+
+export const brewfatherList = z.array(brewfatherSchema);

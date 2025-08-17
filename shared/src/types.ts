@@ -28,7 +28,7 @@ export interface Served {
 }
 
 export interface BrewFather {
-  id: string;
+  _id: string;
   batchNo: number;
   brewDate: number;
   brewer: string | null;
