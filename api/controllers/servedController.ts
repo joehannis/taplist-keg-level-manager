@@ -1,4 +1,5 @@
 import express from 'express';
+import { servedSchema } from '../bin/zod-types.ts';
 import type {
   Served,
   ServerToClientEvents,
@@ -9,25 +10,27 @@ const servedController = async (
   res: express.Response
 ) => {
   try {
-    if (!req.body.currentTapNumber && req.body.AUTH_TOKEN) {
-      return res.status(400).json({
-        error: 'currentTapNumber is required',
-      });
+    const { currentTapNumber, servedAmount, flow } = req.body;
+
+    if (currentTapNumber == null) {
+      return res.status(400).json({ error: 'currentTapNumber is required' });
+    }
+    if (typeof currentTapNumber !== 'number' || currentTapNumber <= 0) {
+      return res
+        .status(400)
+        .json({ error: 'currentTapNumber must be a positive number' });
+    }
+    if (typeof servedAmount !== 'number' || servedAmount <= 0) {
+      return res
+        .status(400)
+        .json({ error: 'servedAmount must be a positive number' });
+    }
+    if (!process.env.VENUE || !process.env.AUTH_TOKEN) {
+      return res
+        .status(500)
+        .json({ error: 'VENUE and AUTH_TOKEN env vars are required' });
     }
 
-    if (req.body.currentTapNumber <= 0) {
-      return res.status(400).json({
-        error: 'currentTapNumber must be a positive number',
-      });
-    }
-    if (!process.env.VENUE && !process.env.AUTH_TOKEN) {
-      return res.status(500).json({
-        error: 'Environment variables VENUE and AUTH_TOKEN are required',
-      });
-    }
-    const currentTapNumber: number = req.body.currentTapNumber;
-    const servedAmount: number = req.body.servedAmount;
-    const flow: boolean | undefined = req.body.flow;
     const response: Response = await fetch(
       `https://api.taplist.io/api/v1/venues/${process.env.VENUE}/taps/${currentTapNumber}/current-keg`,
       {
@@ -42,29 +45,37 @@ const servedController = async (
         }),
       }
     );
-    const data: any = await response.json();
-    const served: Served | undefined = {
-      beerName: data.beverage.name,
-      currentTapNumber: data.current_tap_number,
-      glasswareIllustrationUrl: data.beverage.glassware_illustration_url,
-      abv: data.beverage.abv_percent,
-      style: data.beverage.style.style,
-      beverageType: data.beverage.beverage_type,
-      remainingVolumeMl: data.remaining_volume_ml,
-      kegPercentFull: data.percent_full,
-    };
-    console.log('keg volume updated');
-
-    const io: ServerToClientEvents | undefined = req.app.get('io');
-    if (io) {
-      if (flow) {
-        io.served('served', { data: 'Served route called' });
-        console.log('Served event emitted');
-      }
+    const data: unknown = await response.json();
+    console.log(data);
+    const result = servedSchema.safeParse(data);
+    if (!result.success) {
+      console.error('Taplist validation error:', result.error);
+      return res.status(502).json({ error: 'Invalid data from Taplist API' });
     } else {
-      console.error('Socket.io instance not found');
+      const served: Served = {
+        beerName: result.data?.beverage.name,
+        currentTapNumber: result.data?.current_tap_number,
+        glasswareIllustrationUrl:
+          result.data?.beverage.glassware_illustration_url || undefined,
+        abv: result.data?.beverage.abv_percent,
+        style: result.data?.beverage.style?.style || null,
+        beverageType: result.data?.beverage.beverage_type ?? '',
+        remainingVolumeMl: result.data?.remaining_volume_ml,
+        kegPercentFull: result?.data?.percent_full,
+      };
+      console.log('keg volume updated');
+
+      const io: ServerToClientEvents | undefined = req.app.get('io');
+      if (io) {
+        if (flow) {
+          io.served('served', { data: 'Served route called' });
+          console.log('Served event emitted');
+        }
+      } else {
+        console.error('Socket.io instance not found');
+      }
+      res.status(200).json(served);
     }
-    res.status(200).json(served);
   } catch (err) {
     console.error('Error occurred while updating tap volume:', err);
     res.status(500).json({

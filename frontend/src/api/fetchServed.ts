@@ -2,7 +2,7 @@ import type { Served } from '@taplist-keg-level-manager/shared';
 
 const fetchServed = async (
   currentTapNumber: number,
-  servedAmount: string
+  servedAmount: number
 ): Promise<Served | undefined> => {
   try {
     const requestBody = JSON.stringify({

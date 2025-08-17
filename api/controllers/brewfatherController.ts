@@ -1,5 +1,7 @@
 import express from 'express';
+import { z } from 'zod';
 import type { BrewFather } from '@taplist-keg-level-manager/shared';
+import { brewfatherSchema } from '../bin/zod-types';
 
 const brewfatherController = async (
   _req: express.Request,

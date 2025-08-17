@@ -12,12 +12,18 @@
   Manage your Taplist keg levels through a simple interface
 </p>
 
+<p align="center">
+  <strong>Demo: Pouring Tap No. 1</strong>
+</p>
+
+![](./images/pour.gif)
+
 #### Features
 
 Supports metric, US imperial and British Imperial units. Buttons can be used for standard pours, or a custom amount can be entered. With additional equipment and configuration. flow sensors can be added to automate the process when pouring. There is also the option to integrate the Brewfather API to show upcoming beers that are fermenting or conditioning.
 
 #### [Initial Setup](https://github.com/joehannis/taplist-keg-level-manager/wiki/Initial-Setup)
-  
+
 #### [Flow Sensor Integration](https://github.com/joehannis/taplist-keg-level-manager/wiki/Flow-Sensor-Integaration)
-  
+
 #### If you use this and enjoy it, please consider [buying me a beer](https://www.buymeacoffee.com/joehannisjp) 🍺!

@@ -18,11 +18,11 @@ const ServedForm = ({
   unit,
 }: ServedFormProps) => {
   const handleBeer = async (
-    servedAmount: string = '',
+    servedAmount: number = 0,
     updatedTap: Served | undefined = undefined
   ) => {
     if (!updatedTap) {
-      if (servedAmount) {
+      if (servedAmount > 0) {
         try {
           const updatedTap: Served | undefined = await fetchServed(
             currentTapNumber,
@@ -68,12 +68,12 @@ const ServedForm = ({
     e.preventDefault();
     const form = e.currentTarget;
 
-    const servedAmount: string = (
-      form.elements.namedItem('served-text') as HTMLInputElement
-    )?.value;
+    const servedAmountNumber: number = Number(
+      (form.elements.namedItem('served-text') as HTMLInputElement)?.value
+    );
 
     try {
-      await handleBeer(servedAmount);
+      await handleBeer(servedAmountNumber);
       form.reset();
     } catch (error) {
       console.error('An error occurred:', error);
@@ -89,7 +89,7 @@ const ServedForm = ({
       try {
         const tapResult = await fetchReset(currentTapNumber);
         if (tapResult) {
-          await handleBeer('', tapResult);
+          await handleBeer(0, tapResult);
         } else {
           console.error('Reset failed: No tap data returned.');
         }
@@ -106,28 +106,28 @@ const ServedForm = ({
           <>
             <button
               className='oz6'
-              onClick={() => handleBeer('177')}
+              onClick={() => handleBeer(177)}
               type='button'
             >
               6oz
             </button>
             <button
               className='oz12'
-              onClick={() => handleBeer('355')}
+              onClick={() => handleBeer(355)}
               type='button'
             >
               12oz
             </button>
             <button
               className='oz16'
-              onClick={() => handleBeer('473')}
+              onClick={() => handleBeer(473)}
               type='button'
             >
               16oz
             </button>
             <button
               className='oz20'
-              onClick={() => handleBeer('568')}
+              onClick={() => handleBeer(568)}
               type='button'
             >
               20oz
@@ -137,14 +137,14 @@ const ServedForm = ({
           <>
             <button
               className='ml250'
-              onClick={() => handleBeer('250')}
+              onClick={() => handleBeer(250)}
               type='button'
             >
               250ml
             </button>
             <button
               className='ml500'
-              onClick={() => handleBeer('500')}
+              onClick={() => handleBeer(500)}
               type='button'
             >
               500ml
@@ -154,21 +154,21 @@ const ServedForm = ({
           <>
             <button
               className='pintthird'
-              onClick={() => handleBeer('190')}
+              onClick={() => handleBeer(190)}
               type='button'
             >
               1/3 Pint
             </button>
             <button
               className='pinthalf'
-              onClick={() => handleBeer('284')}
+              onClick={() => handleBeer(284)}
               type='button'
             >
               1/2 Pint
             </button>
             <button
               className='pint'
-              onClick={() => handleBeer('568')}
+              onClick={() => handleBeer(568)}
               type='button'
             >
               Pint

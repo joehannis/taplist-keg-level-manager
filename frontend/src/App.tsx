@@ -85,7 +85,7 @@ const App = () => {
             </div>
             <img
               className='venue-logo'
-              src={tapData?.venueLogo ?? ''}
+              src={tapData?.venueLogo ?? undefined}
               alt='logo'
             />
             <div className='unit-container'>
