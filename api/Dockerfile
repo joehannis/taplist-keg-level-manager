@@ -7,6 +7,7 @@ WORKDIR /app/server
 COPY ./bin ./bin
 COPY ./controllers ./controllers
 COPY ./routes ./routes
+COPY ./zod ./zod
 COPY ./package*.json ./
 COPY ../shared ./shared
 COPY ./tsconfig.prod.json ./
