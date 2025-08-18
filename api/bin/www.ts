@@ -8,10 +8,10 @@ import { Server } from 'socket.io';
 import type { Socket } from 'socket.io';
 import type { ServerToClientEvents } from '@taplist-keg-level-manager/shared';
 
-import tapsRoute from '../routes/tapsRoute.ts';
-import servedRoute from '../routes/servedRoute.ts';
-import resetRoute from '../routes/resetRoute.ts';
-import brewfatherRoute from '../routes/brewfatherRoute.ts';
+import tapsRoute from '../routes/tapsRoute';
+import servedRoute from '../routes/servedRoute';
+import resetRoute from '../routes/resetRoute';
+import brewfatherRoute from '../routes/brewfatherRoute';
 
 const app = express();
 app.use(cors());

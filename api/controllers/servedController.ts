@@ -1,7 +1,7 @@
 import express from 'express';
 import { z } from 'zod';
-import { servedSchema, servedRequestSchema } from '../zod/zod-types.ts';
-import { validateSchema } from '../zod/validateSchema.ts';
+import { servedSchema, servedRequestSchema } from '../zod/zod-types';
+import { validateSchema } from '../zod/validateSchema';
 import type { Server as IOServer } from 'socket.io';
 import type {
   Served,

@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
-import { validateRequest } from '../zod/validateRequest.ts';
-import { servedRequestSchema } from '../zod/zod-types.ts';
-import servedController from '../controllers/servedController.ts';
+import { validateRequest } from '../zod/validateRequest';
+import { servedRequestSchema } from '../zod/zod-types';
+import servedController from '../controllers/servedController';
 
 const router: Router = express.Router();
 

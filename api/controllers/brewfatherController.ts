@@ -1,6 +1,6 @@
 import express from 'express';
-import { validateSchema } from '../zod/validateSchema.ts';
-import { brewfatherList } from '../zod/zod-types.ts';
+import { validateSchema } from '../zod/validateSchema';
+import { brewfatherList } from '../zod/zod-types';
 
 const brewfatherController = async (
   _req: express.Request,

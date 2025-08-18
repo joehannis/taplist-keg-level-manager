@@ -1,8 +1,8 @@
 import express from 'express';
 import { z } from 'zod';
 import type { Served } from '@taplist-keg-level-manager/shared';
-import { validateSchema } from '../zod/validateSchema.ts';
-import { servedSchema, resetRequestSchema } from '../zod/zod-types.ts';
+import { validateSchema } from '../zod/validateSchema';
+import { servedSchema, resetRequestSchema } from '../zod/zod-types';
 type ResetRequest = z.infer<typeof resetRequestSchema>;
 
 const resetController = async (

@@ -1,6 +1,6 @@
 import express from 'express';
-import { tapListSchema } from '../zod/zod-types.ts';
-import validateSchema from '../zod/validateSchema.ts';
+import { tapListSchema } from '../zod/zod-types';
+import validateSchema from '../zod/validateSchema';
 import type { TapList, Tap } from '@taplist-keg-level-manager/shared';
 
 const tapsController = async (_req: express.Request, res: express.Response) => {

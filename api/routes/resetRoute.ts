@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
-import { resetRequestSchema } from '../zod/zod-types.ts';
-import { validateRequest } from '../zod/validateRequest.ts';
-import resetController from '../controllers/resetController.ts';
+import { resetRequestSchema } from '../zod/zod-types';
+import { validateRequest } from '../zod/validateRequest';
+import resetController from '../controllers/resetController';
 
 const router: Router = express.Router();
 
