@@ -28,7 +28,7 @@ export interface Served {
 }
 
 export interface BrewFather {
-  id: string;
+  _id: string;
   batchNo: number;
   brewDate: number;
   brewer: string | null;
@@ -42,18 +42,5 @@ export interface Recipe {
 }
 
 export interface ServerToClientEvents {
-  served: (event: string, payload: { data: string }) => void;
-}
-
-export interface ClientToServerEvents {
-  hello: () => void;
-}
-
-export interface InterServerEvents {
-  ping: () => void;
-}
-
-export interface SocketData {
-  name: string;
-  age: number;
+  served: () => void;
 }

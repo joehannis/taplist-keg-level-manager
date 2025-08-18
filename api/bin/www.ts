@@ -1,26 +1,25 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import type { Socket } from 'socket.io';
+import type { ServerToClientEvents } from '@taplist-keg-level-manager/shared';
+
 import tapsRoute from '../routes/tapsRoute';
 import servedRoute from '../routes/servedRoute';
 import resetRoute from '../routes/resetRoute';
 import brewfatherRoute from '../routes/brewfatherRoute';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
-import type { Socket } from 'socket.io';
-import type {
-  ServerToClientEvents,
-  ClientToServerEvents,
-} from '@taplist-keg-level-manager/shared';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-type TypedIO = Server<ServerToClientEvents, ClientToServerEvents>;
+const server = createServer(app);
 
-const server = createServer(app).listen(4000);
+type TypedIO = Server<ServerToClientEvents>;
 const io: TypedIO = new Server(server, {
   cors: {
     origin: '*',
@@ -35,16 +34,16 @@ io.on('connection', (socket: Socket) => {
   });
 });
 
+app.set('io', io);
+
 app.use('/taps', tapsRoute);
 app.use('/served', servedRoute);
 app.use('/reset', resetRoute);
 app.use('/brewfather', brewfatherRoute);
 
-app.set('io', io);
-
-const port = 3000;
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server started on port ${port}`);
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
 });
 
 export default app;

@@ -1,8 +1,15 @@
 import express from 'express';
+import { z } from 'zod';
 import type { Served } from '@taplist-keg-level-manager/shared';
+import { validateSchema } from '../zod/validateSchema';
+import { servedSchema, resetRequestSchema } from '../zod/zod-types';
+type ResetRequest = z.infer<typeof resetRequestSchema>;
 
-const resetController = async (req: express.Request, res: express.Response) => {
-  if (!req.body.currentTapNumber && req.body.AUTH_TOKEN) {
+const resetController = async (
+  req: express.Request<{}, {}, ResetRequest>,
+  res: express.Response
+) => {
+  if (!req.body.currentTapNumber) {
     return res.status(400).json({
       error: 'currentTapNumber is required',
     });
@@ -34,16 +41,24 @@ const resetController = async (req: express.Request, res: express.Response) => {
         }),
       }
     );
-    const data: any = await response.json();
+    const data: unknown = await response.json();
+    const result = validateSchema(servedSchema, data);
+    if (!result.success) {
+      console.error(result.error);
+      return res.status(502).json({ error: 'Invalid data from Taplist API' });
+    }
+    const validatedData = result.data;
+
     const reset: Served | undefined = {
-      beerName: data.beverage.name,
-      currentTapNumber: data.current_tap_number,
-      glasswareIllustrationUrl: data.beverage.glassware_illustration_url,
-      abv: data.beverage.abv_percent,
-      style: data.beverage.style.style,
-      beverageType: data.beverage.beverage_type,
-      remainingVolumeMl: data.remaining_volume_ml,
-      kegPercentFull: data.percent_full,
+      beerName: validatedData.beverage.name,
+      currentTapNumber: validatedData.current_tap_number,
+      glasswareIllustrationUrl:
+        validatedData.beverage.glassware_illustration_url || undefined,
+      abv: validatedData.beverage.abv_percent,
+      style: validatedData.beverage.style?.style ?? null,
+      beverageType: validatedData.beverage.beverage_type ?? '',
+      remainingVolumeMl: validatedData.remaining_volume_ml,
+      kegPercentFull: validatedData.percent_full,
     };
     console.log('keg volume reset');
     res.status(200).json(reset);

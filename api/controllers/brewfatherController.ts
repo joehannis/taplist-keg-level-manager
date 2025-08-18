@@ -1,5 +1,6 @@
 import express from 'express';
-import type { BrewFather } from '@taplist-keg-level-manager/shared';
+import { validateSchema } from '../zod/validateSchema';
+import { brewfatherList } from '../zod/zod-types';
 
 const brewfatherController = async (
   _req: express.Request,
@@ -19,7 +20,7 @@ const brewfatherController = async (
 
     // Fetch data for batches with status "Brewing"
     const brewingResponse: Response = await fetch(
-      'https://api.brewfather.app/v2/batches?status=Brewing',
+      'https://api.brewfather.app/v2/batches?limit=50&order_by=status',
       {
         headers: {
           Authorization: `Basic ${credentials}`,
@@ -34,51 +35,20 @@ const brewfatherController = async (
       });
     }
 
-    const brewingData: any = await brewingResponse.json();
+    const brewingData: unknown = await brewingResponse.json();
 
-    const fermentingResponse: Response = await fetch(
-      'https://api.brewfather.app/v2/batches?status=Fermenting',
-      {
-        headers: {
-          Authorization: `Basic ${credentials}`,
-        },
-      }
-    );
-
-    if (!fermentingResponse.ok) {
-      console.warn('Network response was not ok (Fermenting)');
-      return res.status(500).json({
-        error: 'An error occurred while fetching batches (Fermenting)',
-      });
+    const result = validateSchema(brewfatherList, brewingData);
+    if (!result.success) {
+      console.error(result.error);
+      return res.status(502).json({ error: 'Invalid data from Taplist API' });
     }
+    const validatedData = result.data;
 
-    const fermentingData: any = await fermentingResponse.json();
-
-    const conditioningResponse: Response = await fetch(
-      'https://api.brewfather.app/v2/batches?status=Conditioning',
-      {
-        headers: {
-          Authorization: `Basic ${credentials}`,
-        },
+    const allBatches = validatedData.filter((batch) => {
+      if (batch.status !== 'Completed') {
+        return batch;
       }
-    );
-
-    if (!conditioningResponse.ok) {
-      console.warn('Network response was not ok (Conditioning)');
-      return res.status(500).json({
-        error: 'An error occurred while fetching batches (Conditioning)',
-      });
-    }
-
-    const conditioningData: any = await conditioningResponse.json();
-
-    const allBatches: BrewFather[] = [
-      ...brewingData,
-      ...fermentingData,
-      ...conditioningData,
-    ];
-
-    console.log('Fetched batches:', allBatches);
+    });
 
     res.status(200).json(allBatches);
   } catch (err) {
