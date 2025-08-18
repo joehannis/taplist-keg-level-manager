@@ -27,7 +27,9 @@ const App = () => {
     dispatch({ type: 'SET_BREWFATHER_DATA', payload: data });
   const [onOff, setOnOff] = useState<Boolean>(false);
 
-  useSocketConnection(() => fetchTapData().then((data) => setTapData(data)));
+  useSocketConnection({
+    onServed: () => fetchTapData().then((data) => setTapData(data)),
+  });
 
   useEffect(() => {
     fetchTapData().then((data) => setTapData(data));

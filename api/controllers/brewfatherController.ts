@@ -1,7 +1,6 @@
 import express from 'express';
-import { z } from 'zod';
-import type { BrewFather } from '@taplist-keg-level-manager/shared';
-import { brewfatherList } from '../bin/zod-types.ts';
+import { validateSchema } from '../zod/validateSchema.ts';
+import { brewfatherList } from '../zod/zod-types.ts';
 
 const brewfatherController = async (
   _req: express.Request,
@@ -38,19 +37,20 @@ const brewfatherController = async (
 
     const brewingData: unknown = await brewingResponse.json();
 
-    const result = brewfatherList.safeParse(brewingData);
+    const result = validateSchema(brewfatherList, brewingData);
     if (!result.success) {
-      console.error('Taplist validation error:', result.error);
+      console.error(result.error);
       return res.status(502).json({ error: 'Invalid data from Taplist API' });
-    } else {
-      const allBatches = result.data.filter((batch) => {
-        if (batch.status !== 'Completed') {
-          return batch;
-        }
-      });
-
-      res.status(200).json(allBatches);
     }
+    const validatedData = result.data;
+
+    const allBatches = validatedData.filter((batch) => {
+      if (batch.status !== 'Completed') {
+        return batch;
+      }
+    });
+
+    res.status(200).json(allBatches);
   } catch (err) {
     console.error('Error occurred while fetching batches:', err);
     res.status(500).json({

@@ -44,3 +44,13 @@ export const brewfatherSchema = z.object({
 });
 
 export const brewfatherList = z.array(brewfatherSchema);
+
+export const servedRequestSchema = z.object({
+  currentTapNumber: z.number(),
+  servedAmount: z.number(),
+  flow: z.boolean().optional(),
+});
+
+export const resetRequestSchema = z.object({
+  currentTapNumber: z.number(),
+});

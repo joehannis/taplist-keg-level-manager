@@ -1,10 +1,15 @@
 import express from 'express';
-import type { Served } from '@taplist-keg-level-manager/shared';
 import { z } from 'zod';
-import { servedSchema } from '../bin/zod-types.ts';
+import type { Served } from '@taplist-keg-level-manager/shared';
+import { validateSchema } from '../zod/validateSchema.ts';
+import { servedSchema, resetRequestSchema } from '../zod/zod-types.ts';
+type ResetRequest = z.infer<typeof resetRequestSchema>;
 
-const resetController = async (req: express.Request, res: express.Response) => {
-  if (!req.body.currentTapNumber && req.body.AUTH_TOKEN) {
+const resetController = async (
+  req: express.Request<{}, {}, ResetRequest>,
+  res: express.Response
+) => {
+  if (!req.body.currentTapNumber) {
     return res.status(400).json({
       error: 'currentTapNumber is required',
     });
@@ -36,26 +41,27 @@ const resetController = async (req: express.Request, res: express.Response) => {
         }),
       }
     );
-    const data: z.infer<typeof servedSchema> = await response.json();
-    const result = servedSchema.safeParse(data);
+    const data: unknown = await response.json();
+    const result = validateSchema(servedSchema, data);
     if (!result.success) {
-      console.error('Taplist validation error:', result.error);
+      console.error(result.error);
       return res.status(502).json({ error: 'Invalid data from Taplist API' });
-    } else {
-      const reset: Served | undefined = {
-        beerName: data.beverage.name,
-        currentTapNumber: data.current_tap_number,
-        glasswareIllustrationUrl:
-          data.beverage.glassware_illustration_url || undefined,
-        abv: data.beverage.abv_percent,
-        style: data.beverage.style?.style ?? null,
-        beverageType: data.beverage.beverage_type ?? '',
-        remainingVolumeMl: data.remaining_volume_ml,
-        kegPercentFull: data.percent_full,
-      };
-      console.log('keg volume reset');
-      res.status(200).json(reset);
     }
+    const validatedData = result.data;
+
+    const reset: Served | undefined = {
+      beerName: validatedData.beverage.name,
+      currentTapNumber: validatedData.current_tap_number,
+      glasswareIllustrationUrl:
+        validatedData.beverage.glassware_illustration_url || undefined,
+      abv: validatedData.beverage.abv_percent,
+      style: validatedData.beverage.style?.style ?? null,
+      beverageType: validatedData.beverage.beverage_type ?? '',
+      remainingVolumeMl: validatedData.remaining_volume_ml,
+      kegPercentFull: validatedData.percent_full,
+    };
+    console.log('keg volume reset');
+    res.status(200).json(reset);
   } catch (err) {
     console.error('Error occurred while resetting tap volume:', err);
     res.status(500).json({

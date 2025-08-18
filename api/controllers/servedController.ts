@@ -1,12 +1,16 @@
 import express from 'express';
-import { servedSchema } from '../bin/zod-types.ts';
+import { z } from 'zod';
+import { servedSchema, servedRequestSchema } from '../zod/zod-types.ts';
+import { validateSchema } from '../zod/validateSchema.ts';
+import type { Server as IOServer } from 'socket.io';
 import type {
   Served,
   ServerToClientEvents,
 } from '@taplist-keg-level-manager/shared';
+type ServedRequest = z.infer<typeof servedRequestSchema>;
 
 const servedController = async (
-  req: express.Request,
+  req: express.Request<{}, {}, ServedRequest>,
   res: express.Response
 ) => {
   try {
@@ -46,36 +50,35 @@ const servedController = async (
       }
     );
     const data: unknown = await response.json();
-    console.log(data);
-    const result = servedSchema.safeParse(data);
+    const result = validateSchema(servedSchema, data);
     if (!result.success) {
-      console.error('Taplist validation error:', result.error);
+      console.error(result.error);
       return res.status(502).json({ error: 'Invalid data from Taplist API' });
-    } else {
-      const served: Served = {
-        beerName: result.data?.beverage.name,
-        currentTapNumber: result.data?.current_tap_number,
-        glasswareIllustrationUrl:
-          result.data?.beverage.glassware_illustration_url || undefined,
-        abv: result.data?.beverage.abv_percent,
-        style: result.data?.beverage.style?.style || null,
-        beverageType: result.data?.beverage.beverage_type ?? '',
-        remainingVolumeMl: result.data?.remaining_volume_ml,
-        kegPercentFull: result?.data?.percent_full,
-      };
-      console.log('keg volume updated');
-
-      const io: ServerToClientEvents | undefined = req.app.get('io');
-      if (io) {
-        if (flow) {
-          io.served('served', { data: 'Served route called' });
-          console.log('Served event emitted');
-        }
-      } else {
-        console.error('Socket.io instance not found');
-      }
-      res.status(200).json(served);
     }
+    const validatedData = result.data;
+
+    const served: Served | undefined = {
+      beerName: validatedData.beverage.name,
+      currentTapNumber: validatedData.current_tap_number,
+      glasswareIllustrationUrl:
+        validatedData.beverage.glassware_illustration_url || undefined,
+      abv: validatedData.beverage.abv_percent,
+      style: validatedData.beverage.style?.style ?? null,
+      beverageType: validatedData.beverage.beverage_type ?? '',
+      remainingVolumeMl: validatedData.remaining_volume_ml,
+      kegPercentFull: validatedData.percent_full,
+    };
+    console.log('keg volume reset');
+    const io: IOServer<ServerToClientEvents> | undefined = req.app.get('io');
+    if (io) {
+      if (flow) {
+        io.emit('served');
+        console.log('Served event emitted');
+      }
+    } else {
+      console.error('Socket.io instance not found');
+    }
+    res.status(200).json(served);
   } catch (err) {
     console.error('Error occurred while updating tap volume:', err);
     res.status(500).json({
