@@ -1,6 +1,4 @@
-ARG NODE_VERSION=24
-
-FROM node:${NODE_VERSION}-slim AS frontend-build
+FROM node:22-slim AS frontend-build
 
 
 WORKDIR /app/client

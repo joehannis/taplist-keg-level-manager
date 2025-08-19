@@ -40,7 +40,6 @@ jobs:
             --platform linux/amd64,linux/arm64/v8,linux/arm/v7 \
             --tag joehannis/taplist-keg-level-manager:api-nginx \
             ./api \
-            --build-arg NODE_VERSION=22 \
             --push
 
       - name: Build Frontend Nginx Image
@@ -52,5 +51,4 @@ jobs:
             --platform linux/amd64,linux/arm64/v8,linux/arm/v7 \
             --tag joehannis/taplist-keg-level-manager:frontend-nginx \
             ./frontend \
-            --build-arg NODE_VERSION=24 \
             --push

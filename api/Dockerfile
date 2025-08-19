@@ -1,5 +1,4 @@
-ARG NODE_VERSION=24
-FROM node:${NODE_VERSION}-slim AS server-build
+FROM node:22-slim AS server-build
 
 WORKDIR /app/server
 
