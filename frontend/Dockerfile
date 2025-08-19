@@ -1,4 +1,5 @@
 ARG NODE_VERSION=24
+ARG NGINX_VERSION=nginx
 
 FROM node:${NODE_VERSION}-slim AS frontend-build
 
@@ -21,7 +22,7 @@ RUN apt-get update && \
     apt-get remove --purge -y python3 python3-pip make g++ && \
     rm -rf /var/lib/apt/lists/*
 
-FROM nginx:alpine AS runtime
+FROM ${NGINX_VERSION}:alpine AS runtime
 
 COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
 
