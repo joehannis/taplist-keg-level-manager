@@ -1,6 +1,4 @@
-ARG NODE_VERSION=24
-
-FROM node:${NODE_VERSION}-slim AS frontend-build
+FROM node:22-slim AS frontend-build
 
 
 WORKDIR /app/client
@@ -17,6 +15,15 @@ EXPOSE 4173
 RUN apt-get update && \
     apt-get install -y python3 python3-pip make g++ && \
     rm -rf /var/lib/apt/lists/* && \
-    npm ci && npm run build && npm prune --omit=dev
+    npm ci && npm run build && npm prune --omit=dev && \
+    apt-get remove --purge -y python3 python3-pip make g++ && \
+    rm -rf /var/lib/apt/lists/*
 
-CMD ["npm", "run", "preview"]
+FROM nginx:alpine AS runtime
+
+COPY --from=frontend-build /app/client/src/dist /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
