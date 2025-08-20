@@ -18,7 +18,7 @@ RUN apt-get update && \
     npm ci && npm run build && npm prune --omit=dev
 
 
-FROM node:${NODE_VERSION}-slim AS runtime
+FROM node:22-slim AS runtime
 
 WORKDIR /app/server
 COPY --from=server-build /app/server/package*.json ./
