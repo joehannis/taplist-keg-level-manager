@@ -38,7 +38,7 @@ jobs:
           docker buildx build \
             --file ./api/Dockerfile \
             --platform linux/amd64,linux/arm64/v8,linux/arm/v7 \
-            --tag joehannis/taplist-keg-level-manager:api-nginx \
+            --tag joehannis/taplist-keg-level-manager:api-latest \
             ./api \
             --push
 
@@ -49,6 +49,6 @@ jobs:
           docker buildx build \
             --file ./frontend/Dockerfile \
             --platform linux/amd64,linux/arm64/v8,linux/arm/v7 \
-            --tag joehannis/taplist-keg-level-manager:frontend-nginx \
+            --tag joehannis/taplist-keg-level-manager:frontend-latest \
             ./frontend \
             --push
