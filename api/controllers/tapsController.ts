@@ -19,7 +19,6 @@ const tapsController = async (_req: express.Request, res: express.Response) => {
       return res.status(502).json({ error: 'Invalid data from Taplist API' });
     }
     const validatedData = result.data;
-    console.log(validatedData[0]?.current_keg?.beverage);
 
     const taps = validatedData
       .filter((tap) => tap?.current_keg)
@@ -37,8 +36,6 @@ const tapsController = async (_req: express.Request, res: express.Response) => {
           kegPercentFull: tap?.current_keg?.percent_full,
         };
       });
-
-    console.log(taps);
 
     const fullTapsObject: TapList = {
       venueName: validatedData[0]?.venue,
