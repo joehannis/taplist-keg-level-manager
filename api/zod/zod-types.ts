@@ -14,7 +14,7 @@ export const tapSchema = z.looseObject({
     remaining_volume_ml: z.number().min(0),
   }),
   label: z.string().optional(),
-  logo_thumbnail_url: z.url(),
+  logo_thumbnail_url: z.url().nullable(),
   venue: z.string(),
 });
 
