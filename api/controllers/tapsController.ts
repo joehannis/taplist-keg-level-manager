@@ -19,25 +19,30 @@ const tapsController = async (_req: express.Request, res: express.Response) => {
       return res.status(502).json({ error: 'Invalid data from Taplist API' });
     }
     const validatedData = result.data;
+    console.log(validatedData[0]?.current_keg?.beverage);
 
-    const taps = validatedData.map((tap) => {
-      return {
-        beerName: tap.current_keg.beverage.name,
-        currentTapNumber: tap.current_keg.current_tap_number,
-        glasswareIllustrationUrl:
-          tap.current_keg.beverage.glassware_illustration_url,
-        tapLabel: tap.label,
-        abv: tap.current_keg.beverage.abv_percent,
-        style: tap.current_keg.beverage.style?.style,
-        beverageType: tap.current_keg.beverage.beverage_type,
-        remainingVolumeMl: tap.current_keg.remaining_volume_ml,
-        kegPercentFull: tap.current_keg.percent_full,
-      };
-    });
+    const taps = validatedData
+      .filter((tap) => tap?.current_keg)
+      .map((tap) => {
+        return {
+          beerName: tap?.current_keg?.beverage.name,
+          currentTapNumber: tap?.current_keg?.current_tap_number,
+          glasswareIllustrationUrl:
+            tap?.current_keg?.beverage.glassware_illustration_url,
+          tapLabel: tap?.label,
+          abv: tap?.current_keg?.beverage.abv_percent,
+          style: tap?.current_keg?.beverage.style?.style,
+          beverageType: tap?.current_keg?.beverage.beverage_type,
+          remainingVolumeMl: tap?.current_keg?.remaining_volume_ml,
+          kegPercentFull: tap?.current_keg?.percent_full,
+        };
+      });
+
+    console.log(taps);
 
     const fullTapsObject: TapList = {
-      venueName: validatedData[0].venue,
-      venueLogo: validatedData[0].logo_thumbnail_url,
+      venueName: validatedData[0]?.venue,
+      venueLogo: validatedData[0]?.logo_thumbnail_url,
       taps: taps as Tap[],
     };
 

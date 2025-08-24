@@ -1,6 +1,6 @@
 export interface TapList {
-  venueName: string;
-  venueLogo: string | null;
+  venueName: string | null | undefined;
+  venueLogo: string | null | undefined;
   taps: Tap[];
 }
 
